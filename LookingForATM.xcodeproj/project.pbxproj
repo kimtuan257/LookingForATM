@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02AB03C01A6EBB453AE9D8DC /* libPods-LookingForATM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */; };
+		B0C3644E1BB130AA0015A975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3644D1BB130AA0015A975 /* main.m */; };
+		B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C364581BB130AA0015A975 /* Assets.xcassets */; };
+		B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */; };
+		B0C364671BB130AA0015A975 /* LookingForATMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364661BB130AA0015A975 /* LookingForATMTests.m */; };
+		B0C364721BB130AA0015A975 /* LookingForATMUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364711BB130AA0015A975 /* LookingForATMUITests.m */; };
+		B0C364871BB131320015A975 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364851BB131320015A975 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		B0C3648B1BB133310015A975 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364891BB133310015A975 /* HomeVC.m */; settings = {ASSET_TAGS = (); }; };
+		B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0C3648A1BB133310015A975 /* HomeVC.xib */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B0C364631BB130AA0015A975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B0C364411BB130AA0015A975 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B0C364481BB130AA0015A975;
+			remoteInfo = LookingForATM;
+		};
+		B0C3646E1BB130AA0015A975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B0C364411BB130AA0015A975 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B0C364481BB130AA0015A975;
+			remoteInfo = LookingForATM;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LookingForATM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83C68DF445ABDD91759D288C /* Pods-LookingForATM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LookingForATM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM.debug.xcconfig"; sourceTree = "<group>"; };
+		B0C364491BB130AA0015A975 /* LookingForATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookingForATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0C3644D1BB130AA0015A975 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B0C364581BB130AA0015A975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B0C3645B1BB130AA0015A975 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B0C3645D1BB130AA0015A975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0C364621BB130AA0015A975 /* LookingForATMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LookingForATMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0C364661BB130AA0015A975 /* LookingForATMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookingForATMTests.m; sourceTree = "<group>"; };
+		B0C364681BB130AA0015A975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0C3646D1BB130AA0015A975 /* LookingForATMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LookingForATMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0C364711BB130AA0015A975 /* LookingForATMUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookingForATMUITests.m; sourceTree = "<group>"; };
+		B0C364731BB130AA0015A975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0C364841BB131320015A975 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B0C364851BB131320015A975 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B0C364881BB133310015A975 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		B0C364891BB133310015A975 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
+		B0C3648A1BB133310015A975 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
+		B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LookingForATM.release.xcconfig"; path = "Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0C364461BB130AA0015A975 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02AB03C01A6EBB453AE9D8DC /* libPods-LookingForATM.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0C3645F1BB130AA0015A975 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0C3646A1BB130AA0015A975 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB0F7AA9EB19EB8AE2CC2E77 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83C68DF445ABDD91759D288C /* Pods-LookingForATM.debug.xcconfig */,
+				B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B0C364401BB130AA0015A975 = {
+			isa = PBXGroup;
+			children = (
+				B0C3644B1BB130AA0015A975 /* LookingForATM */,
+				B0C364651BB130AA0015A975 /* LookingForATMTests */,
+				B0C364701BB130AA0015A975 /* LookingForATMUITests */,
+				B0C3644A1BB130AA0015A975 /* Products */,
+				AB0F7AA9EB19EB8AE2CC2E77 /* Pods */,
+				E1DD3180525FC4EBC300CAFA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B0C3644A1BB130AA0015A975 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0C364491BB130AA0015A975 /* LookingForATM.app */,
+				B0C364621BB130AA0015A975 /* LookingForATMTests.xctest */,
+				B0C3646D1BB130AA0015A975 /* LookingForATMUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0C3644B1BB130AA0015A975 /* LookingForATM */ = {
+			isa = PBXGroup;
+			children = (
+				B0C3647F1BB131320015A975 /* Classes */,
+				B0C364581BB130AA0015A975 /* Assets.xcassets */,
+				B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */,
+				B0C3645D1BB130AA0015A975 /* Info.plist */,
+				B0C3644C1BB130AA0015A975 /* Supporting Files */,
+			);
+			path = LookingForATM;
+			sourceTree = "<group>";
+		};
+		B0C3644C1BB130AA0015A975 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0C3644D1BB130AA0015A975 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0C364651BB130AA0015A975 /* LookingForATMTests */ = {
+			isa = PBXGroup;
+			children = (
+				B0C364661BB130AA0015A975 /* LookingForATMTests.m */,
+				B0C364681BB130AA0015A975 /* Info.plist */,
+			);
+			path = LookingForATMTests;
+			sourceTree = "<group>";
+		};
+		B0C364701BB130AA0015A975 /* LookingForATMUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B0C364711BB130AA0015A975 /* LookingForATMUITests.m */,
+				B0C364731BB130AA0015A975 /* Info.plist */,
+			);
+			path = LookingForATMUITests;
+			sourceTree = "<group>";
+		};
+		B0C3647F1BB131320015A975 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B0C364801BB131320015A975 /* Libraries */,
+				B0C364811BB131320015A975 /* Model */,
+				B0C364821BB131320015A975 /* ViewController */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B0C364801BB131320015A975 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		B0C364811BB131320015A975 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B0C364821BB131320015A975 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B0C364831BB131320015A975 /* AppDelegate */,
+				B0C364861BB131320015A975 /* HomeVC */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B0C364831BB131320015A975 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B0C364841BB131320015A975 /* AppDelegate.h */,
+				B0C364851BB131320015A975 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		B0C364861BB131320015A975 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				B0C364881BB133310015A975 /* HomeVC.h */,
+				B0C364891BB133310015A975 /* HomeVC.m */,
+				B0C3648A1BB133310015A975 /* HomeVC.xib */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		E1DD3180525FC4EBC300CAFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B0C364481BB130AA0015A975 /* LookingForATM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0C364761BB130AA0015A975 /* Build configuration list for PBXNativeTarget "LookingForATM" */;
+			buildPhases = (
+				994732AFB227B7D089BE1003 /* Check Pods Manifest.lock */,
+				B0C364451BB130AA0015A975 /* Sources */,
+				B0C364461BB130AA0015A975 /* Frameworks */,
+				B0C364471BB130AA0015A975 /* Resources */,
+				26660C0008428DEEF96B6486 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LookingForATM;
+			productName = LookingForATM;
+			productReference = B0C364491BB130AA0015A975 /* LookingForATM.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B0C364611BB130AA0015A975 /* LookingForATMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0C364791BB130AA0015A975 /* Build configuration list for PBXNativeTarget "LookingForATMTests" */;
+			buildPhases = (
+				B0C3645E1BB130AA0015A975 /* Sources */,
+				B0C3645F1BB130AA0015A975 /* Frameworks */,
+				B0C364601BB130AA0015A975 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0C364641BB130AA0015A975 /* PBXTargetDependency */,
+			);
+			name = LookingForATMTests;
+			productName = LookingForATMTests;
+			productReference = B0C364621BB130AA0015A975 /* LookingForATMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B0C3646C1BB130AA0015A975 /* LookingForATMUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0C3647C1BB130AA0015A975 /* Build configuration list for PBXNativeTarget "LookingForATMUITests" */;
+			buildPhases = (
+				B0C364691BB130AA0015A975 /* Sources */,
+				B0C3646A1BB130AA0015A975 /* Frameworks */,
+				B0C3646B1BB130AA0015A975 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0C3646F1BB130AA0015A975 /* PBXTargetDependency */,
+			);
+			name = LookingForATMUITests;
+			productName = LookingForATMUITests;
+			productReference = B0C3646D1BB130AA0015A975 /* LookingForATMUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0C364411BB130AA0015A975 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Le Kim Tuan";
+				TargetAttributes = {
+					B0C364481BB130AA0015A975 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = YDZYNP2483;
+					};
+					B0C364611BB130AA0015A975 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = YDZYNP2483;
+						TestTargetID = B0C364481BB130AA0015A975;
+					};
+					B0C3646C1BB130AA0015A975 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = YDZYNP2483;
+						TestTargetID = B0C364481BB130AA0015A975;
+					};
+				};
+			};
+			buildConfigurationList = B0C364441BB130AA0015A975 /* Build configuration list for PBXProject "LookingForATM" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B0C364401BB130AA0015A975;
+			productRefGroup = B0C3644A1BB130AA0015A975 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0C364481BB130AA0015A975 /* LookingForATM */,
+				B0C364611BB130AA0015A975 /* LookingForATMTests */,
+				B0C3646C1BB130AA0015A975 /* LookingForATMUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0C364471BB130AA0015A975 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */,
+				B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */,
+				B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0C364601BB130AA0015A975 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0C3646B1BB130AA0015A975 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26660C0008428DEEF96B6486 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		994732AFB227B7D089BE1003 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0C364451BB130AA0015A975 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
+				B0C364871BB131320015A975 /* AppDelegate.m in Sources */,
+				B0C3644E1BB130AA0015A975 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0C3645E1BB130AA0015A975 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0C364671BB130AA0015A975 /* LookingForATMTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0C364691BB130AA0015A975 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0C364721BB130AA0015A975 /* LookingForATMUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B0C364641BB130AA0015A975 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B0C364481BB130AA0015A975 /* LookingForATM */;
+			targetProxy = B0C364631BB130AA0015A975 /* PBXContainerItemProxy */;
+		};
+		B0C3646F1BB130AA0015A975 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B0C364481BB130AA0015A975 /* LookingForATM */;
+			targetProxy = B0C3646E1BB130AA0015A975 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0C3645B1BB130AA0015A975 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B0C364741BB130AA0015A975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B0C364751BB130AA0015A975 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B0C364771BB130AA0015A975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83C68DF445ABDD91759D288C /* Pods-LookingForATM.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LookingForATM/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B0C364781BB130AA0015A975 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LookingForATM/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B0C3647A1BB130AA0015A975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LookingForATMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LookingForATM.app/LookingForATM";
+			};
+			name = Debug;
+		};
+		B0C3647B1BB130AA0015A975 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LookingForATMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LookingForATM.app/LookingForATM";
+			};
+			name = Release;
+		};
+		B0C3647D1BB130AA0015A975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LookingForATMUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATMUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LookingForATM;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		B0C3647E1BB130AA0015A975 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LookingForATMUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATMUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LookingForATM;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0C364441BB130AA0015A975 /* Build configuration list for PBXProject "LookingForATM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0C364741BB130AA0015A975 /* Debug */,
+				B0C364751BB130AA0015A975 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0C364761BB130AA0015A975 /* Build configuration list for PBXNativeTarget "LookingForATM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0C364771BB130AA0015A975 /* Debug */,
+				B0C364781BB130AA0015A975 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0C364791BB130AA0015A975 /* Build configuration list for PBXNativeTarget "LookingForATMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0C3647A1BB130AA0015A975 /* Debug */,
+				B0C3647B1BB130AA0015A975 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0C3647C1BB130AA0015A975 /* Build configuration list for PBXNativeTarget "LookingForATMUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0C3647D1BB130AA0015A975 /* Debug */,
+				B0C3647E1BB130AA0015A975 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0C364411BB130AA0015A975 /* Project object */;
+}
