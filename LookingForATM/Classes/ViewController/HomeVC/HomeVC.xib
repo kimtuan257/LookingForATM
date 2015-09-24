@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC">
             <connections>
                 <outlet property="indicatorView" destination="u2t-bY-qxL" id="zsn-ZF-MJE"/>
+                <outlet property="mapView" destination="MhB-gz-8UD" id="BCU-K4-EPp"/>
                 <outlet property="segmentControl" destination="1jm-6c-qFM" id="6kK-W9-eW9"/>
                 <outlet property="tableView" destination="BC6-cx-FvU" id="uWd-kr-KCG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -44,6 +45,9 @@
                         <action selector="segmentAction:" destination="-1" eventType="valueChanged" id="0Jc-df-M9e"/>
                     </connections>
                 </segmentedControl>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MhB-gz-8UD">
+                    <rect key="frame" x="0.0" y="80" width="320" height="488"/>
+                </mapView>
             </subviews>
             <color key="backgroundColor" red="0.33917465790000001" green="0.75623160789999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -61,7 +65,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="1474" y="162"/>
+            <point key="canvasLocation" x="1589" y="162"/>
         </view>
     </objects>
 </document>

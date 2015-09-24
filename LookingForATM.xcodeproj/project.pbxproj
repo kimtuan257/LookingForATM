@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		02AB03C01A6EBB453AE9D8DC /* libPods-LookingForATM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */; };
+		B041820C1BB3FEA100F367BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B041820B1BB3FEA100F367BA /* CoreLocation.framework */; };
+		B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B041820D1BB3FEA900F367BA /* MapKit.framework */; };
+		B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B04182101BB3FFC000F367BA /* FXAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B04867791BB23E0E007FB1C8 /* INSSearchBar.m */; settings = {ASSET_TAGS = (); }; };
 		B04867851BB23E2D007FB1C8 /* NavBarIconSearch_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B048677B1BB23E2D007FB1C8 /* NavBarIconSearch_blue.png */; settings = {ASSET_TAGS = (); }; };
 		B04867861BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B048677C1BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -54,6 +57,10 @@
 /* Begin PBXFileReference section */
 		63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LookingForATM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C68DF445ABDD91759D288C /* Pods-LookingForATM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LookingForATM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM.debug.xcconfig"; sourceTree = "<group>"; };
+		B041820B1BB3FEA100F367BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B041820D1BB3FEA900F367BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B041820F1BB3FFC000F367BA /* FXAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXAnnotation.h; sourceTree = "<group>"; };
+		B04182101BB3FFC000F367BA /* FXAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXAnnotation.m; sourceTree = "<group>"; };
 		B04867781BB23E0E007FB1C8 /* INSSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSSearchBar.h; sourceTree = "<group>"; };
 		B04867791BB23E0E007FB1C8 /* INSSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSSearchBar.m; sourceTree = "<group>"; };
 		B048677B1BB23E2D007FB1C8 /* NavBarIconSearch_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIconSearch_blue.png; sourceTree = "<group>"; };
@@ -97,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */,
+				B041820C1BB3FEA100F367BA /* CoreLocation.framework in Frameworks */,
 				02AB03C01A6EBB453AE9D8DC /* libPods-LookingForATM.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +227,8 @@
 		B0C364811BB131320015A975 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B041820F1BB3FFC000F367BA /* FXAnnotation.h */,
+				B04182101BB3FFC000F367BA /* FXAnnotation.m */,
 				B0C364931BB13C190015A975 /* Items.h */,
 				B0C364941BB13C190015A975 /* Items.m */,
 			);
@@ -285,6 +296,8 @@
 		E1DD3180525FC4EBC300CAFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B041820D1BB3FEA900F367BA /* MapKit.framework */,
+				B041820B1BB3FEA100F367BA /* CoreLocation.framework */,
 				63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */,
 			);
 			name = Frameworks;
@@ -471,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */,
 				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
 				B0C364871BB131320015A975 /* AppDelegate.m in Sources */,
 				B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */,

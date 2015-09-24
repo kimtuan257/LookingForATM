@@ -10,14 +10,17 @@
 #import "HomeCell.h"
 #import "Items.h"
 #import "INSSearchBar.h"
+#import "FXAnnotation.h"
 #import <AFNetworking/AFNetworking.h>
+#import <MapKit/MapKit.h>
 
-@interface HomeVC ()<UITableViewDataSource, UITableViewDelegate, INSSearchBarDelegate> {
+@interface HomeVC ()<UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, INSSearchBarDelegate> {
     NSMutableArray *_mainList;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) INSSearchBar *searchBarINS;
 @end
 
@@ -31,9 +34,11 @@
     [_indicatorView stopAnimating];
     self.navigationController.navigationBarHidden = YES;
     [_tableView setHidden:YES];
+    [_mapView setHidden:YES];
     _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(20, 5, CGRectGetWidth(self.view.bounds) - 40.0, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
+    _mapView.delegate = self;
 }
 
 -(BOOL)prefersStatusBarHidden {
@@ -42,11 +47,47 @@
 
 - (IBAction)segmentAction:(id)sender {
     if (_segmentControl.selectedSegmentIndex == 1) {
+        [_mapView setHidden:YES];
         [_tableView setHidden:NO];
+    }else{
+        [_tableView setHidden:YES];
+        [_mapView setHidden:NO];
     }
 }
 
-#pragma mark search bar delegate
+-(void)addPinToMap {
+    FXAnnotation *pin = [FXAnnotation new];
+    for (int i = 0; i < _mainList.count; i++) {
+        Items *item = _mainList[i];
+        pin.title = item.name;
+        pin.subtitle = item.address;
+        pin.coordinate = CLLocationCoordinate2DMake(item.latitude, item.longitude);
+        CLLocationCoordinate2D zoomLocation;
+        zoomLocation.latitude = item.latitude;
+        zoomLocation.longitude = item.longitude;
+        // 2
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*1609.344, 0.5*1609.344);
+        // 3
+        [_mapView setRegion:viewRegion animated:YES];
+        [_mapView addAnnotation:pin];
+    }
+}
+
+#pragma mark MapView Delegate
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    CLLocation *location = _mapView.userLocation.location;
+    MKCoordinateRegion region;
+    
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    MKCoordinateSpan          span;
+    span.latitudeDelta      = 0.02;
+    span.longitudeDelta     = 0.02;
+    region.span             = span;
+    [_mapView setRegion:region animated:YES];
+}
+
+#pragma mark Search Bar Delegate
 -(CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
     return CGRectMake(20.0, 5.0, CGRectGetWidth(self.view.bounds) - 40.0, 34.0);
 }
@@ -54,6 +95,7 @@
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
     NSString *searchPlace = _searchBarINS.searchField.text;
     [self findATMWithName:searchPlace];
+    [self addPinToMap];
     [_tableView reloadData];
 }
 
@@ -69,7 +111,7 @@
     
 }
 
-#pragma mark parse webservice
+#pragma mark Parse WebService
 -(void)findATMWithName:(NSString*)name {
     [_indicatorView setHidden:NO];
     [_indicatorView startAnimating];
