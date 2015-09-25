@@ -19,5 +19,4 @@
 // cac property tu them vao
 @property (nonatomic) int index;
 
-
 @end

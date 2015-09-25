@@ -27,10 +27,6 @@
                         <outlet property="delegate" destination="-1" id="V6v-aA-n04"/>
                     </connections>
                 </tableView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="u2t-bY-qxL">
-                    <rect key="frame" x="142" y="265" width="37" height="37"/>
-                    <color key="color" red="0.33917465790000001" green="0.75623160789999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </activityIndicatorView>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1jm-6c-qFM">
                     <rect key="frame" x="8" y="44" width="304" height="29"/>
                     <constraints>
@@ -45,7 +41,11 @@
                         <action selector="segmentAction:" destination="-1" eventType="valueChanged" id="0Jc-df-M9e"/>
                     </connections>
                 </segmentedControl>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MhB-gz-8UD">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="u2t-bY-qxL">
+                    <rect key="frame" x="142" y="265" width="37" height="37"/>
+                    <color key="color" red="0.1267577956192254" green="0.55143313519097159" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MhB-gz-8UD">
                     <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                 </mapView>
             </subviews>
@@ -53,6 +53,8 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="u2t-bY-qxL" secondAttribute="trailing" constant="141" id="1Og-8j-efC"/>
                 <constraint firstAttribute="bottom" secondItem="u2t-bY-qxL" secondAttribute="bottom" constant="266" id="1uq-aW-9uk"/>
+                <constraint firstItem="MhB-gz-8UD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2O4-uu-I7I"/>
+                <constraint firstItem="MhB-gz-8UD" firstAttribute="top" secondItem="1jm-6c-qFM" secondAttribute="bottom" constant="8" id="3Ty-e1-9eY"/>
                 <constraint firstItem="1jm-6c-qFM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="5O9-r0-vOg"/>
                 <constraint firstAttribute="trailing" secondItem="BC6-cx-FvU" secondAttribute="trailing" id="5yF-9X-sSc"/>
                 <constraint firstAttribute="trailing" secondItem="1jm-6c-qFM" secondAttribute="trailing" constant="8" id="CIE-JZ-y6Z"/>
@@ -60,12 +62,14 @@
                 <constraint firstAttribute="bottom" secondItem="BC6-cx-FvU" secondAttribute="bottom" id="ME4-ob-oV8"/>
                 <constraint firstItem="1jm-6c-qFM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="R2U-0u-e8m"/>
                 <constraint firstItem="u2t-bY-qxL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="265" id="YZ6-Ke-2aB"/>
+                <constraint firstAttribute="trailing" secondItem="MhB-gz-8UD" secondAttribute="trailing" id="YgQ-lm-Hny"/>
                 <constraint firstItem="u2t-bY-qxL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="142" id="dNt-3y-h5S"/>
+                <constraint firstAttribute="bottom" secondItem="MhB-gz-8UD" secondAttribute="bottom" id="feb-GR-QMm"/>
                 <constraint firstItem="BC6-cx-FvU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="p9B-gq-4Nw"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="1589" y="162"/>
+            <point key="canvasLocation" x="1663" y="118"/>
         </view>
     </objects>
 </document>

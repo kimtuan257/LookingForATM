@@ -13,9 +13,13 @@
 #import "FXAnnotation.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MapKit/MapKit.h>
+#import <MapKit/MKAnnotation.h>
 
 @interface HomeVC ()<UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, INSSearchBarDelegate> {
     NSMutableArray *_mainList;
+    NSMutableArray *_pins;
+    MKPolyline *_routeOverlay;
+    MKRoute *_currentRoute;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
@@ -38,7 +42,11 @@
     _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(20, 5, CGRectGetWidth(self.view.bounds) - 40.0, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
+    _mapView.showsUserLocation = YES;
     _mapView.delegate = self;
+    
+    //init array annotation
+    _pins = [NSMutableArray new];
 }
 
 -(BOOL)prefersStatusBarHidden {
@@ -56,28 +64,71 @@
 }
 
 -(void)addPinToMap {
-    FXAnnotation *pin = [FXAnnotation new];
+    if (_pins) {
+        //remove all overlay and annotation
+        [_mapView removeOverlay:_routeOverlay];
+        [_mapView removeAnnotations:_pins];
+        
+        //remove old object in array pins
+        [_pins removeAllObjects];
+    }
     for (int i = 0; i < _mainList.count; i++) {
+        FXAnnotation *pin = [FXAnnotation new];
         Items *item = _mainList[i];
         pin.title = item.name;
         pin.subtitle = item.address;
         pin.coordinate = CLLocationCoordinate2DMake(item.latitude, item.longitude);
-        CLLocationCoordinate2D zoomLocation;
-        zoomLocation.latitude = item.latitude;
-        zoomLocation.longitude = item.longitude;
-        // 2
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*1609.344, 0.5*1609.344);
-        // 3
-        [_mapView setRegion:viewRegion animated:YES];
-        [_mapView addAnnotation:pin];
+        pin.index = i;
+        
+        [_pins addObject:pin];
     }
+    //add annotation for map
+    [_mapView addAnnotations:_pins];
 }
 
-#pragma mark MapView Delegate
+-(void)drawRouteOnMap: (MKRoute*)route {
+    if (_routeOverlay) {
+        [_mapView removeOverlay:_routeOverlay];
+    }
+    _routeOverlay = route.polyline;
+    
+    [_mapView addOverlay:_routeOverlay];
+}
+
+-(IBAction)selectActionPin:(id)sender {
+    UIButton *button = (UIButton*)sender;
+    Items *item = _mainList[button.tag];
+    MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
+    
+    //location source
+    CLLocation *sourceLocation = _mapView.userLocation.location;
+    CLLocationCoordinate2D sourceCoordinate = CLLocationCoordinate2DMake(sourceLocation.coordinate.latitude, sourceLocation.coordinate.longitude);
+    MKPlacemark *sourcePlacemark = [[MKPlacemark alloc]initWithCoordinate:sourceCoordinate addressDictionary:nil];
+    MKMapItem *source = [[MKMapItem alloc]initWithPlacemark:sourcePlacemark];
+    
+    //location destination
+    CLLocationCoordinate2D destinationCoordinate = CLLocationCoordinate2DMake(item.latitude, item.longitude);
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinate addressDictionary:nil];
+    MKMapItem *destination = [[MKMapItem alloc]initWithPlacemark:destinationPlacemark];
+    
+    [directionRequest setSource:source];
+    [directionRequest setDestination:destination];
+    
+    MKDirections *direction = [[MKDirections alloc]initWithRequest:directionRequest];
+    [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"ERROR!");
+            return;
+        }
+        _currentRoute = [response.routes firstObject];
+        [self drawRouteOnMap:_currentRoute];
+    }];
+}
+
+#pragma mark - MapView Delegate
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     CLLocation *location = _mapView.userLocation.location;
     MKCoordinateRegion region;
-    
     region.center.latitude  = location.coordinate.latitude;
     region.center.longitude = location.coordinate.longitude;
     MKCoordinateSpan          span;
@@ -87,7 +138,28 @@
     [_mapView setRegion:region animated:YES];
 }
 
-#pragma mark Search Bar Delegate
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    FXAnnotation *fxAnnotation = (FXAnnotation*)annotation;
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    rightButton.tag = fxAnnotation.index;
+    [rightButton addTarget:self action:@selector(selectActionPin:) forControlEvents:UIControlEventTouchUpInside];
+    annotationView.canShowCallout = YES;
+    annotationView.rightCalloutAccessoryView = rightButton;
+    return annotationView;
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithPolyline:overlay];
+    render.strokeColor = [UIColor blueColor];
+    render.lineWidth = 4;
+    return render;
+}
+
+#pragma mark - Search Bar Delegate
 -(CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
     return CGRectMake(20.0, 5.0, CGRectGetWidth(self.view.bounds) - 40.0, 34.0);
 }
@@ -95,12 +167,12 @@
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
     NSString *searchPlace = _searchBarINS.searchField.text;
     [self findATMWithName:searchPlace];
-    [self addPinToMap];
     [_tableView reloadData];
 }
 
 -(void)searchBarDidTapReturn:(INSSearchBar *)searchBar {
     [_searchBarINS.searchField resignFirstResponder];
+    [self addPinToMap];
 }
 
 -(void)searchBar:(INSSearchBar *)searchBar willStartTransitioningToState:(INSSearchBarState)destinationState {
@@ -111,7 +183,7 @@
     
 }
 
-#pragma mark Parse WebService
+#pragma mark - Parse WebService
 -(void)findATMWithName:(NSString*)name {
     [_indicatorView setHidden:NO];
     [_indicatorView startAnimating];
@@ -157,7 +229,7 @@
     [operation start];
 }
 
-#pragma mark TableViewDelegate and TableViewDataSource
+#pragma mark - TableViewDelegate and TableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _mainList.count;
 }
