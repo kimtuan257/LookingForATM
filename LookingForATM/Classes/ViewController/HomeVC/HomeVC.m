@@ -11,6 +11,7 @@
 #import "Items.h"
 #import "INSSearchBar.h"
 #import "FXAnnotation.h"
+#import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MapKit/MapKit.h>
 #import <MapKit/MKAnnotation.h>
@@ -20,6 +21,7 @@
     NSMutableArray *_pins;
     MKPolyline *_routeOverlay;
     MKRoute *_currentRoute;
+    AppDelegate *_myAppdelegate;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
@@ -33,13 +35,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
     [_indicatorView setHidden:YES];
     [_indicatorView stopAnimating];
     self.navigationController.navigationBarHidden = YES;
     [_tableView setHidden:YES];
     [_mapView setHidden:YES];
-    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(20, 5, CGRectGetWidth(self.view.bounds) - 40.0, 34)];
+    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(50, 5, CGRectGetWidth(self.view.bounds) - 60, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
     _mapView.showsUserLocation = YES;
@@ -61,6 +64,18 @@
         [_tableView setHidden:YES];
         [_mapView setHidden:NO];
     }
+}
+- (IBAction)actionGetLocation:(id)sender {
+    _mapView.showsUserLocation = YES;
+    CLLocation *location = _mapView.userLocation.location;
+    MKCoordinateRegion region;
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    MKCoordinateSpan          span;
+    span.latitudeDelta      = 0.02;
+    span.longitudeDelta     = 0.02;
+    region.span             = span;
+    [_mapView setRegion:region animated:YES];
 }
 
 -(void)addPinToMap {
@@ -125,6 +140,10 @@
     }];
 }
 
+-(IBAction)goToDetail:(id)sender {
+    NSLog(@"go to detail!!!");
+}
+
 #pragma mark - MapView Delegate
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     CLLocation *location = _mapView.userLocation.location;
@@ -139,16 +158,39 @@
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    FXAnnotation *fxAnnotation = (FXAnnotation*)annotation;
+    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
-    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    rightButton.tag = fxAnnotation.index;
-    [rightButton addTarget:self action:@selector(selectActionPin:) forControlEvents:UIControlEventTouchUpInside];
-    annotationView.canShowCallout = YES;
-    annotationView.rightCalloutAccessoryView = rightButton;
+    //check use location pin
+    if(annotation != mapView.userLocation) {
+        FXAnnotation *fxAnnotation = (FXAnnotation*)annotation;
+        // set reuseable
+        static NSString *defaultPinID = @"mypin";
+        
+        annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+        if (!annotationView){
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID];
+        }
+        
+        annotationView.canShowCallout = YES;
+        annotationView.draggable = YES;
+        annotationView.image = [UIImage imageNamed:@"Marker.png"];
+        
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        rightButton.tag = fxAnnotation.index;
+        [rightButton addTarget:self action:@selector(selectActionPin:) forControlEvents:UIControlEventTouchUpInside];
+        [rightButton setTitle:annotation.title forState:UIControlStateNormal];
+        annotationView.rightCalloutAccessoryView = rightButton;
+        annotationView.canShowCallout = YES;
+        
+        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        [leftButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
+        annotationView.leftCalloutAccessoryView = leftButton;
+        annotationView.canShowCallout = YES;
+    }else{
+        [mapView.userLocation setTitle:@"I am here"];
+    }
     return annotationView;
 }
 
@@ -161,7 +203,7 @@
 
 #pragma mark - Search Bar Delegate
 -(CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
-    return CGRectMake(20.0, 5.0, CGRectGetWidth(self.view.bounds) - 40.0, 34.0);
+    return CGRectMake(50, 5, CGRectGetWidth(self.view.bounds) - 60, 34);
 }
 
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
@@ -185,9 +227,10 @@
 
 #pragma mark - Parse WebService
 -(void)findATMWithName:(NSString*)name {
+    NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
     [_indicatorView setHidden:NO];
     [_indicatorView startAnimating];
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=16.066667,108.23333&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", name];
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=16.066667,108.23333&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", nameEncoded];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
@@ -239,6 +282,8 @@
     Items *item = _mainList[indexPath.row];
     cell.nameLabel.text = item.name;
     cell.addressLabel.text = item.address;
+    CLLocation *itemLocation = [[CLLocation alloc]initWithLatitude:item.latitude longitude:item.longitude];
+    cell.distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
     return cell;
 }
 

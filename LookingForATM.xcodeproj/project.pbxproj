@@ -22,6 +22,10 @@
 		B048678C1BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867821BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B048678D1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867831BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png */; settings = {ASSET_TAGS = (); }; };
 		B048678E1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867841BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B07443971BB694BE009B60E5 /* GetLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B07443951BB694BE009B60E5 /* GetLocation.png */; settings = {ASSET_TAGS = (); }; };
+		B07443981BB694BE009B60E5 /* GetLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07443961BB694BE009B60E5 /* GetLocation@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B0A5D1161BB58D6D000C9D4B /* Marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B0A5D1181BB58DA0000C9D4B /* Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5D1171BB58DA0000C9D4B /* Marker.png */; settings = {ASSET_TAGS = (); }; };
 		B0C3644E1BB130AA0015A975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3644D1BB130AA0015A975 /* main.m */; };
 		B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C364581BB130AA0015A975 /* Assets.xcassets */; };
 		B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */; };
@@ -33,8 +37,6 @@
 		B0C364911BB1389E0015A975 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3648F1BB1389E0015A975 /* HomeCell.m */; settings = {ASSET_TAGS = (); }; };
 		B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0C364901BB1389E0015A975 /* HomeCell.xib */; settings = {ASSET_TAGS = (); }; };
 		B0C364951BB13C190015A975 /* Items.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364941BB13C190015A975 /* Items.m */; settings = {ASSET_TAGS = (); }; };
-		B0C364981BB14D410015A975 /* ic_search.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C364971BB14D410015A975 /* ic_search.png */; settings = {ASSET_TAGS = (); }; };
-		B0C3649A1BB160900015A975 /* magnifier13.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C364991BB160900015A975 /* magnifier13.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,10 @@
 		B04867821BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearchBar2_blue@2x.png"; sourceTree = "<group>"; };
 		B04867831BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIconSearchCircle_blue.png; sourceTree = "<group>"; };
 		B04867841BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearchCircle_blue@2x.png"; sourceTree = "<group>"; };
+		B07443951BB694BE009B60E5 /* GetLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GetLocation.png; sourceTree = "<group>"; };
+		B07443961BB694BE009B60E5 /* GetLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GetLocation@2x.png"; sourceTree = "<group>"; };
+		B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker@2x.png"; sourceTree = "<group>"; };
+		B0A5D1171BB58DA0000C9D4B /* Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Marker.png; sourceTree = "<group>"; };
 		B0C364491BB130AA0015A975 /* LookingForATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookingForATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C3644D1BB130AA0015A975 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0C364581BB130AA0015A975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,8 +100,6 @@
 		B0C364901BB1389E0015A975 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		B0C364931BB13C190015A975 /* Items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Items.h; sourceTree = "<group>"; };
 		B0C364941BB13C190015A975 /* Items.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Items.m; sourceTree = "<group>"; };
-		B0C364971BB14D410015A975 /* ic_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_search.png; sourceTree = "<group>"; };
-		B0C364991BB160900015A975 /* magnifier13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifier13.png; sourceTree = "<group>"; };
 		B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LookingForATM.release.xcconfig"; path = "Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,8 +281,10 @@
 		B0C364961BB14D410015A975 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				B0C364971BB14D410015A975 /* ic_search.png */,
-				B0C364991BB160900015A975 /* magnifier13.png */,
+				B07443951BB694BE009B60E5 /* GetLocation.png */,
+				B07443961BB694BE009B60E5 /* GetLocation@2x.png */,
+				B0A5D1171BB58DA0000C9D4B /* Marker.png */,
+				B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */,
 				B048677B1BB23E2D007FB1C8 /* NavBarIconSearch_blue.png */,
 				B048677C1BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png */,
 				B048677D1BB23E2D007FB1C8 /* NavBarIconSearch_white.png */,
@@ -411,11 +417,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0C3649A1BB160900015A975 /* magnifier13.png in Resources */,
 				B04867861BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png in Resources */,
 				B04867871BB23E2D007FB1C8 /* NavBarIconSearch_white.png in Resources */,
 				B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */,
+				B0A5D1161BB58D6D000C9D4B /* Marker@2x.png in Resources */,
 				B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */,
+				B07443971BB694BE009B60E5 /* GetLocation.png in Resources */,
 				B048678E1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png in Resources */,
 				B048678B1BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue.png in Resources */,
 				B048678A1BB23E2D007FB1C8 /* NavBarIconSearchBar_blue@2x.png in Resources */,
@@ -424,9 +431,10 @@
 				B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */,
 				B04867851BB23E2D007FB1C8 /* NavBarIconSearch_blue.png in Resources */,
 				B048678D1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png in Resources */,
-				B0C364981BB14D410015A975 /* ic_search.png in Resources */,
 				B048678C1BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png in Resources */,
 				B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */,
+				B07443981BB694BE009B60E5 /* GetLocation@2x.png in Resources */,
+				B0A5D1181BB58DA0000C9D4B /* Marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
