@@ -22,7 +22,24 @@
     UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:home];
     _window.rootViewController = navi;
     [_window makeKeyAndVisible];
+    
+    [MagicalRecord setupAutoMigratingCoreDataStack];
+    
+    //get current location
+    _locationManager = [CLLocationManager new];
+    _locationManager.delegate = self;
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
+    _locationManager.distanceFilter = 10;//10 met
+    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;//do chinh xac gan 10 met
+    [_locationManager startUpdatingLocation];
+    
     return YES;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    _currentLocation = newLocation;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

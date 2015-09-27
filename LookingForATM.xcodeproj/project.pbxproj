@@ -8,6 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		02AB03C01A6EBB453AE9D8DC /* libPods-LookingForATM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */; };
+		B041820C1BB3FEA100F367BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B041820B1BB3FEA100F367BA /* CoreLocation.framework */; };
+		B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B041820D1BB3FEA900F367BA /* MapKit.framework */; };
+		B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B04182101BB3FFC000F367BA /* FXAnnotation.m */; settings = {ASSET_TAGS = (); }; };
+		B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B04867791BB23E0E007FB1C8 /* INSSearchBar.m */; settings = {ASSET_TAGS = (); }; };
+		B04867851BB23E2D007FB1C8 /* NavBarIconSearch_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B048677B1BB23E2D007FB1C8 /* NavBarIconSearch_blue.png */; settings = {ASSET_TAGS = (); }; };
+		B04867861BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B048677C1BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B04867871BB23E2D007FB1C8 /* NavBarIconSearch_white.png in Resources */ = {isa = PBXBuildFile; fileRef = B048677D1BB23E2D007FB1C8 /* NavBarIconSearch_white.png */; settings = {ASSET_TAGS = (); }; };
+		B04867881BB23E2D007FB1C8 /* NavBarIconSearch_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B048677E1BB23E2D007FB1C8 /* NavBarIconSearch_white@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B04867891BB23E2D007FB1C8 /* NavBarIconSearchBar_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B048677F1BB23E2D007FB1C8 /* NavBarIconSearchBar_blue.png */; settings = {ASSET_TAGS = (); }; };
+		B048678A1BB23E2D007FB1C8 /* NavBarIconSearchBar_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867801BB23E2D007FB1C8 /* NavBarIconSearchBar_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B048678B1BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867811BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue.png */; settings = {ASSET_TAGS = (); }; };
+		B048678C1BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867821BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B048678D1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867831BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png */; settings = {ASSET_TAGS = (); }; };
+		B048678E1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867841BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B07443971BB694BE009B60E5 /* GetLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B07443951BB694BE009B60E5 /* GetLocation.png */; settings = {ASSET_TAGS = (); }; };
+		B07443981BB694BE009B60E5 /* GetLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07443961BB694BE009B60E5 /* GetLocation@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		B08F89E11BB78AAC004D7107 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F89E01BB78AAC004D7107 /* CoreData.framework */; };
+		B08F89E61BB78ADB004D7107 /* PlaceHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F89E31BB78ADB004D7107 /* PlaceHistory.m */; settings = {ASSET_TAGS = (); }; };
+		B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */; settings = {ASSET_TAGS = (); }; };
+		B0A5D1161BB58D6D000C9D4B /* Marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B0A5D1181BB58DA0000C9D4B /* Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5D1171BB58DA0000C9D4B /* Marker.png */; settings = {ASSET_TAGS = (); }; };
 		B0C3644E1BB130AA0015A975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3644D1BB130AA0015A975 /* main.m */; };
 		B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C364581BB130AA0015A975 /* Assets.xcassets */; };
 		B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */; };
@@ -16,6 +38,9 @@
 		B0C364871BB131320015A975 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364851BB131320015A975 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		B0C3648B1BB133310015A975 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364891BB133310015A975 /* HomeVC.m */; settings = {ASSET_TAGS = (); }; };
 		B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0C3648A1BB133310015A975 /* HomeVC.xib */; settings = {ASSET_TAGS = (); }; };
+		B0C364911BB1389E0015A975 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3648F1BB1389E0015A975 /* HomeCell.m */; settings = {ASSET_TAGS = (); }; };
+		B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0C364901BB1389E0015A975 /* HomeCell.xib */; settings = {ASSET_TAGS = (); }; };
+		B0C364951BB13C190015A975 /* Items.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364941BB13C190015A975 /* Items.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +63,33 @@
 /* Begin PBXFileReference section */
 		63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LookingForATM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C68DF445ABDD91759D288C /* Pods-LookingForATM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LookingForATM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM.debug.xcconfig"; sourceTree = "<group>"; };
+		B041820B1BB3FEA100F367BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B041820D1BB3FEA900F367BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B041820F1BB3FFC000F367BA /* FXAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXAnnotation.h; sourceTree = "<group>"; };
+		B04182101BB3FFC000F367BA /* FXAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXAnnotation.m; sourceTree = "<group>"; };
+		B04867781BB23E0E007FB1C8 /* INSSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSSearchBar.h; sourceTree = "<group>"; };
+		B04867791BB23E0E007FB1C8 /* INSSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSSearchBar.m; sourceTree = "<group>"; };
+		B048677B1BB23E2D007FB1C8 /* NavBarIconSearch_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIconSearch_blue.png; sourceTree = "<group>"; };
+		B048677C1BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearch_blue@2x.png"; sourceTree = "<group>"; };
+		B048677D1BB23E2D007FB1C8 /* NavBarIconSearch_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIconSearch_white.png; sourceTree = "<group>"; };
+		B048677E1BB23E2D007FB1C8 /* NavBarIconSearch_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearch_white@2x.png"; sourceTree = "<group>"; };
+		B048677F1BB23E2D007FB1C8 /* NavBarIconSearchBar_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIconSearchBar_blue.png; sourceTree = "<group>"; };
+		B04867801BB23E2D007FB1C8 /* NavBarIconSearchBar_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearchBar_blue@2x.png"; sourceTree = "<group>"; };
+		B04867811BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIconSearchBar2_blue.png; sourceTree = "<group>"; };
+		B04867821BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearchBar2_blue@2x.png"; sourceTree = "<group>"; };
+		B04867831BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIconSearchCircle_blue.png; sourceTree = "<group>"; };
+		B04867841BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearchCircle_blue@2x.png"; sourceTree = "<group>"; };
+		B07443951BB694BE009B60E5 /* GetLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GetLocation.png; sourceTree = "<group>"; };
+		B07443961BB694BE009B60E5 /* GetLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GetLocation@2x.png"; sourceTree = "<group>"; };
+		B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryATM.xcdatamodel; sourceTree = "<group>"; };
+		B08F89E01BB78AAC004D7107 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B08F89E21BB78ADB004D7107 /* PlaceHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHistory.h; sourceTree = "<group>"; };
+		B08F89E31BB78ADB004D7107 /* PlaceHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHistory.m; sourceTree = "<group>"; };
+		B08F89E81BB78C34004D7107 /* PlaceHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHistoryModel.h; sourceTree = "<group>"; };
+		B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHistoryModel.m; sourceTree = "<group>"; };
+		B08F89ED1BB792AD004D7107 /* LookingForATM.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookingForATM.pch; sourceTree = SOURCE_ROOT; };
+		B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker@2x.png"; sourceTree = "<group>"; };
+		B0A5D1171BB58DA0000C9D4B /* Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Marker.png; sourceTree = "<group>"; };
 		B0C364491BB130AA0015A975 /* LookingForATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookingForATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C3644D1BB130AA0015A975 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0C364581BB130AA0015A975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +106,11 @@
 		B0C364881BB133310015A975 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		B0C364891BB133310015A975 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		B0C3648A1BB133310015A975 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
+		B0C3648E1BB1389E0015A975 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
+		B0C3648F1BB1389E0015A975 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
+		B0C364901BB1389E0015A975 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		B0C364931BB13C190015A975 /* Items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Items.h; sourceTree = "<group>"; };
+		B0C364941BB13C190015A975 /* Items.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Items.m; sourceTree = "<group>"; };
 		B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LookingForATM.release.xcconfig"; path = "Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +119,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B08F89E11BB78AAC004D7107 /* CoreData.framework in Frameworks */,
+				B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */,
+				B041820C1BB3FEA100F367BA /* CoreLocation.framework in Frameworks */,
 				02AB03C01A6EBB453AE9D8DC /* libPods-LookingForATM.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +152,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B04867771BB23E0E007FB1C8 /* INSSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				B04867781BB23E0E007FB1C8 /* INSSearchBar.h */,
+				B04867791BB23E0E007FB1C8 /* INSSearchBar.m */,
+			);
+			path = INSSearchBar;
+			sourceTree = "<group>";
+		};
+		B08F89D91BB789A5004D7107 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */,
+			);
+			name = CoreData;
+			path = Classes/CoreData;
+			sourceTree = "<group>";
+		};
 		B0C364401BB130AA0015A975 = {
 			isa = PBXGroup;
 			children = (
@@ -117,10 +195,12 @@
 		B0C3644B1BB130AA0015A975 /* LookingForATM */ = {
 			isa = PBXGroup;
 			children = (
+				B08F89D91BB789A5004D7107 /* CoreData */,
 				B0C3647F1BB131320015A975 /* Classes */,
 				B0C364581BB130AA0015A975 /* Assets.xcassets */,
 				B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */,
 				B0C3645D1BB130AA0015A975 /* Info.plist */,
+				B08F89ED1BB792AD004D7107 /* LookingForATM.pch */,
 				B0C3644C1BB130AA0015A975 /* Supporting Files */,
 			);
 			path = LookingForATM;
@@ -155,6 +235,7 @@
 		B0C3647F1BB131320015A975 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B0C364961BB14D410015A975 /* Image */,
 				B0C364801BB131320015A975 /* Libraries */,
 				B0C364811BB131320015A975 /* Model */,
 				B0C364821BB131320015A975 /* ViewController */,
@@ -165,6 +246,7 @@
 		B0C364801BB131320015A975 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B04867771BB23E0E007FB1C8 /* INSSearchBar */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -172,6 +254,14 @@
 		B0C364811BB131320015A975 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B041820F1BB3FFC000F367BA /* FXAnnotation.h */,
+				B04182101BB3FFC000F367BA /* FXAnnotation.m */,
+				B0C364931BB13C190015A975 /* Items.h */,
+				B0C364941BB13C190015A975 /* Items.m */,
+				B08F89E21BB78ADB004D7107 /* PlaceHistory.h */,
+				B08F89E31BB78ADB004D7107 /* PlaceHistory.m */,
+				B08F89E81BB78C34004D7107 /* PlaceHistoryModel.h */,
+				B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				B0C364831BB131320015A975 /* AppDelegate */,
+				B0C3648D1BB138870015A975 /* HomeCell */,
 				B0C364861BB131320015A975 /* HomeVC */,
 			);
 			path = ViewController;
@@ -204,9 +295,43 @@
 			path = HomeVC;
 			sourceTree = "<group>";
 		};
+		B0C3648D1BB138870015A975 /* HomeCell */ = {
+			isa = PBXGroup;
+			children = (
+				B0C3648E1BB1389E0015A975 /* HomeCell.h */,
+				B0C3648F1BB1389E0015A975 /* HomeCell.m */,
+				B0C364901BB1389E0015A975 /* HomeCell.xib */,
+			);
+			path = HomeCell;
+			sourceTree = "<group>";
+		};
+		B0C364961BB14D410015A975 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				B07443951BB694BE009B60E5 /* GetLocation.png */,
+				B07443961BB694BE009B60E5 /* GetLocation@2x.png */,
+				B0A5D1171BB58DA0000C9D4B /* Marker.png */,
+				B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */,
+				B048677B1BB23E2D007FB1C8 /* NavBarIconSearch_blue.png */,
+				B048677C1BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png */,
+				B048677D1BB23E2D007FB1C8 /* NavBarIconSearch_white.png */,
+				B048677E1BB23E2D007FB1C8 /* NavBarIconSearch_white@2x.png */,
+				B048677F1BB23E2D007FB1C8 /* NavBarIconSearchBar_blue.png */,
+				B04867801BB23E2D007FB1C8 /* NavBarIconSearchBar_blue@2x.png */,
+				B04867811BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue.png */,
+				B04867821BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png */,
+				B04867831BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png */,
+				B04867841BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		E1DD3180525FC4EBC300CAFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B08F89E01BB78AAC004D7107 /* CoreData.framework */,
+				B041820D1BB3FEA900F367BA /* MapKit.framework */,
+				B041820B1BB3FEA100F367BA /* CoreLocation.framework */,
 				63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */,
 			);
 			name = Frameworks;
@@ -320,9 +445,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04867861BB23E2D007FB1C8 /* NavBarIconSearch_blue@2x.png in Resources */,
+				B04867871BB23E2D007FB1C8 /* NavBarIconSearch_white.png in Resources */,
 				B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */,
+				B0A5D1161BB58D6D000C9D4B /* Marker@2x.png in Resources */,
 				B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */,
+				B07443971BB694BE009B60E5 /* GetLocation.png in Resources */,
+				B048678E1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png in Resources */,
+				B048678B1BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue.png in Resources */,
+				B048678A1BB23E2D007FB1C8 /* NavBarIconSearchBar_blue@2x.png in Resources */,
+				B04867881BB23E2D007FB1C8 /* NavBarIconSearch_white@2x.png in Resources */,
+				B04867891BB23E2D007FB1C8 /* NavBarIconSearchBar_blue.png in Resources */,
+				B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */,
+				B04867851BB23E2D007FB1C8 /* NavBarIconSearch_blue.png in Resources */,
+				B048678D1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue.png in Resources */,
+				B048678C1BB23E2D007FB1C8 /* NavBarIconSearchBar2_blue@2x.png in Resources */,
 				B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */,
+				B07443981BB694BE009B60E5 /* GetLocation@2x.png in Resources */,
+				B0A5D1181BB58DA0000C9D4B /* Marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,8 +520,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */,
 				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
 				B0C364871BB131320015A975 /* AppDelegate.m in Sources */,
+				B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */,
+				B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */,
+				B0C364951BB13C190015A975 /* Items.m in Sources */,
+				B08F89E61BB78ADB004D7107 /* PlaceHistory.m in Sources */,
+				B0C364911BB1389E0015A975 /* HomeCell.m in Sources */,
+				B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */,
 				B0C3644E1BB130AA0015A975 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +661,8 @@
 			baseConfigurationReference = 83C68DF445ABDD91759D288C /* Pods-LookingForATM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = /Users/KimTuan/Desktop/LookingForATM/LookingForATM.pch;
 				INFOPLIST_FILE = LookingForATM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -527,6 +676,8 @@
 			baseConfigurationReference = B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = /Users/KimTuan/Desktop/LookingForATM/LookingForATM.pch;
 				INFOPLIST_FILE = LookingForATM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -623,6 +774,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */,
+			);
+			currentVersion = B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */;
+			name = HistoryATM.xcdatamodeld;
+			path = ../../HistoryATM.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B0C364411BB130AA0015A975 /* Project object */;
 }
