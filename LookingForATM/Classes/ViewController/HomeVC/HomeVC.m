@@ -11,6 +11,7 @@
 #import "Items.h"
 #import "INSSearchBar.h"
 #import "FXAnnotation.h"
+#import "PlaceHistory.h"
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MapKit/MapKit.h>
@@ -289,6 +290,19 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PlaceHistory *history = [PlaceHistory MR_createEntity];
+    Items *item = _mainList[indexPath.row];
+    history.name = item.name;
+    history.address = item.address;
+    history.latitude = [NSNumber numberWithDouble:item.latitude];
+    history.longitude = [NSNumber numberWithDouble:item.longitude];
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Added to history success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 @end

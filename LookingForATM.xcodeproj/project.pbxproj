@@ -24,6 +24,10 @@
 		B048678E1BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04867841BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B07443971BB694BE009B60E5 /* GetLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B07443951BB694BE009B60E5 /* GetLocation.png */; settings = {ASSET_TAGS = (); }; };
 		B07443981BB694BE009B60E5 /* GetLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07443961BB694BE009B60E5 /* GetLocation@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		B08F89E11BB78AAC004D7107 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F89E01BB78AAC004D7107 /* CoreData.framework */; };
+		B08F89E61BB78ADB004D7107 /* PlaceHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F89E31BB78ADB004D7107 /* PlaceHistory.m */; settings = {ASSET_TAGS = (); }; };
+		B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */; settings = {ASSET_TAGS = (); }; };
 		B0A5D1161BB58D6D000C9D4B /* Marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B0A5D1181BB58DA0000C9D4B /* Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5D1171BB58DA0000C9D4B /* Marker.png */; settings = {ASSET_TAGS = (); }; };
 		B0C3644E1BB130AA0015A975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3644D1BB130AA0015A975 /* main.m */; };
@@ -77,6 +81,13 @@
 		B04867841BB23E2D007FB1C8 /* NavBarIconSearchCircle_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarIconSearchCircle_blue@2x.png"; sourceTree = "<group>"; };
 		B07443951BB694BE009B60E5 /* GetLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GetLocation.png; sourceTree = "<group>"; };
 		B07443961BB694BE009B60E5 /* GetLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GetLocation@2x.png"; sourceTree = "<group>"; };
+		B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryATM.xcdatamodel; sourceTree = "<group>"; };
+		B08F89E01BB78AAC004D7107 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B08F89E21BB78ADB004D7107 /* PlaceHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHistory.h; sourceTree = "<group>"; };
+		B08F89E31BB78ADB004D7107 /* PlaceHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHistory.m; sourceTree = "<group>"; };
+		B08F89E81BB78C34004D7107 /* PlaceHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHistoryModel.h; sourceTree = "<group>"; };
+		B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHistoryModel.m; sourceTree = "<group>"; };
+		B08F89ED1BB792AD004D7107 /* LookingForATM.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookingForATM.pch; sourceTree = SOURCE_ROOT; };
 		B0A5D1151BB58D6D000C9D4B /* Marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker@2x.png"; sourceTree = "<group>"; };
 		B0A5D1171BB58DA0000C9D4B /* Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Marker.png; sourceTree = "<group>"; };
 		B0C364491BB130AA0015A975 /* LookingForATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookingForATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B08F89E11BB78AAC004D7107 /* CoreData.framework in Frameworks */,
 				B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */,
 				B041820C1BB3FEA100F367BA /* CoreLocation.framework in Frameworks */,
 				02AB03C01A6EBB453AE9D8DC /* libPods-LookingForATM.a in Frameworks */,
@@ -149,6 +161,15 @@
 			path = INSSearchBar;
 			sourceTree = "<group>";
 		};
+		B08F89D91BB789A5004D7107 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */,
+			);
+			name = CoreData;
+			path = Classes/CoreData;
+			sourceTree = "<group>";
+		};
 		B0C364401BB130AA0015A975 = {
 			isa = PBXGroup;
 			children = (
@@ -174,10 +195,12 @@
 		B0C3644B1BB130AA0015A975 /* LookingForATM */ = {
 			isa = PBXGroup;
 			children = (
+				B08F89D91BB789A5004D7107 /* CoreData */,
 				B0C3647F1BB131320015A975 /* Classes */,
 				B0C364581BB130AA0015A975 /* Assets.xcassets */,
 				B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */,
 				B0C3645D1BB130AA0015A975 /* Info.plist */,
+				B08F89ED1BB792AD004D7107 /* LookingForATM.pch */,
 				B0C3644C1BB130AA0015A975 /* Supporting Files */,
 			);
 			path = LookingForATM;
@@ -235,6 +258,10 @@
 				B04182101BB3FFC000F367BA /* FXAnnotation.m */,
 				B0C364931BB13C190015A975 /* Items.h */,
 				B0C364941BB13C190015A975 /* Items.m */,
+				B08F89E21BB78ADB004D7107 /* PlaceHistory.h */,
+				B08F89E31BB78ADB004D7107 /* PlaceHistory.m */,
+				B08F89E81BB78C34004D7107 /* PlaceHistoryModel.h */,
+				B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +329,7 @@
 		E1DD3180525FC4EBC300CAFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B08F89E01BB78AAC004D7107 /* CoreData.framework */,
 				B041820D1BB3FEA900F367BA /* MapKit.framework */,
 				B041820B1BB3FEA100F367BA /* CoreLocation.framework */,
 				63523FA01EE5285F4D0BC1C4 /* libPods-LookingForATM.a */,
@@ -495,9 +523,12 @@
 				B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */,
 				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
 				B0C364871BB131320015A975 /* AppDelegate.m in Sources */,
+				B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */,
 				B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */,
 				B0C364951BB13C190015A975 /* Items.m in Sources */,
+				B08F89E61BB78ADB004D7107 /* PlaceHistory.m in Sources */,
 				B0C364911BB1389E0015A975 /* HomeCell.m in Sources */,
+				B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */,
 				B0C3644E1BB130AA0015A975 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +661,8 @@
 			baseConfigurationReference = 83C68DF445ABDD91759D288C /* Pods-LookingForATM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = /Users/KimTuan/Desktop/LookingForATM/LookingForATM.pch;
 				INFOPLIST_FILE = LookingForATM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -643,6 +676,8 @@
 			baseConfigurationReference = B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = /Users/KimTuan/Desktop/LookingForATM/LookingForATM.pch;
 				INFOPLIST_FILE = LookingForATM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -739,6 +774,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */,
+			);
+			currentVersion = B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */;
+			name = HistoryATM.xcdatamodeld;
+			path = ../../HistoryATM.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B0C364411BB130AA0015A975 /* Project object */;
 }

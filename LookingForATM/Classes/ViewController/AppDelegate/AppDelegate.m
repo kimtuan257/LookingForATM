@@ -23,6 +23,8 @@
     _window.rootViewController = navi;
     [_window makeKeyAndVisible];
     
+    [MagicalRecord setupAutoMigratingCoreDataStack];
+    
     //get current location
     _locationManager = [CLLocationManager new];
     _locationManager.delegate = self;
