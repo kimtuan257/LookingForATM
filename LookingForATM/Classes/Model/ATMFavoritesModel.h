@@ -1,13 +1,13 @@
 //
-//  PlaceHistoryModel.h
+//  ATMFavoritesModel.h
 //  LookingForATM
 //
-//  Created by Le Kim Tuan on 9/27/15.
+//  Created by Le Kim Tuan on 9/28/15.
 //  Copyright © 2015 Le Kim Tuan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface PlaceHistoryModel : NSObject
+@interface ATMFavoritesModel : NSObject
 +(NSFetchedResultsController*)fetchDataWithDelegate:(id)delegate;
 @end

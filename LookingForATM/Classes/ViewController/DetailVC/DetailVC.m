@@ -39,8 +39,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)goToFavorites:(id)sender {
-    NSLog(@"Go to Favorites");
+- (IBAction)addToFavorites:(id)sender {
+    
 }
 
 -(BOOL)prefersStatusBarHidden {

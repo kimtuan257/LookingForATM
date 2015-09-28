@@ -26,6 +26,13 @@
 		B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B041820D1BB3FEA900F367BA /* MapKit.framework */; };
 		B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B04182101BB3FFC000F367BA /* FXAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B04867791BB23E0E007FB1C8 /* INSSearchBar.m */; settings = {ASSET_TAGS = (); }; };
+		B0781BC21BB9263500933242 /* AddToFavorites.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BBE1BB9263500933242 /* AddToFavorites.png */; settings = {ASSET_TAGS = (); }; };
+		B0781BC31BB9263500933242 /* AddToFavorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B0781BC41BB9263500933242 /* AddToFavoritesFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */; settings = {ASSET_TAGS = (); }; };
+		B0781BC51BB9263500933242 /* AddToFavoritesFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BC11BB9263500933242 /* AddToFavoritesFilled@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B0781BC81BB9274300933242 /* FavoritesATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0781BC61BB9274300933242 /* FavoritesATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		B0781BCD1BB9281A00933242 /* ATMFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BCA1BB9281A00933242 /* ATMFavorites.m */; settings = {ASSET_TAGS = (); }; };
+		B0781BD11BB928EA00933242 /* ATMFavoritesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */; settings = {ASSET_TAGS = (); }; };
 		B07E6D021BB7D72A00623AC0 /* DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B07E6D001BB7D72A00623AC0 /* DetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B07E6D011BB7D72A00623AC0 /* DetailVC.xib */; settings = {ASSET_TAGS = (); }; };
 		B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
@@ -91,6 +98,15 @@
 		B04182101BB3FFC000F367BA /* FXAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXAnnotation.m; sourceTree = "<group>"; };
 		B04867781BB23E0E007FB1C8 /* INSSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSSearchBar.h; sourceTree = "<group>"; };
 		B04867791BB23E0E007FB1C8 /* INSSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSSearchBar.m; sourceTree = "<group>"; };
+		B0781BBE1BB9263500933242 /* AddToFavorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddToFavorites.png; sourceTree = "<group>"; };
+		B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddToFavorites@2x.png"; sourceTree = "<group>"; };
+		B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddToFavoritesFilled.png; sourceTree = "<group>"; };
+		B0781BC11BB9263500933242 /* AddToFavoritesFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddToFavoritesFilled@2x.png"; sourceTree = "<group>"; };
+		B0781BC71BB9274300933242 /* FavoritesATM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoritesATM.xcdatamodel; sourceTree = "<group>"; };
+		B0781BC91BB9281A00933242 /* ATMFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMFavorites.h; sourceTree = "<group>"; };
+		B0781BCA1BB9281A00933242 /* ATMFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMFavorites.m; sourceTree = "<group>"; };
+		B0781BCF1BB928EA00933242 /* ATMFavoritesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMFavoritesModel.h; sourceTree = "<group>"; };
+		B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMFavoritesModel.m; sourceTree = "<group>"; };
 		B07E6CFF1BB7D72A00623AC0 /* DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVC.h; sourceTree = "<group>"; };
 		B07E6D001BB7D72A00623AC0 /* DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVC.m; sourceTree = "<group>"; };
 		B07E6D011BB7D72A00623AC0 /* DetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
@@ -213,6 +229,17 @@
 			path = INSSearchBar;
 			sourceTree = "<group>";
 		};
+		B0781BBD1BB9263500933242 /* AddFavorite */ = {
+			isa = PBXGroup;
+			children = (
+				B0781BBE1BB9263500933242 /* AddToFavorites.png */,
+				B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */,
+				B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */,
+				B0781BC11BB9263500933242 /* AddToFavoritesFilled@2x.png */,
+			);
+			path = AddFavorite;
+			sourceTree = "<group>";
+		};
 		B07E6CFE1BB7D70600623AC0 /* DetailVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */,
+				B0781BC61BB9274300933242 /* FavoritesATM.xcdatamodeld */,
 			);
 			name = CoreData;
 			path = Classes/CoreData;
@@ -351,6 +379,10 @@
 				B08F89E31BB78ADB004D7107 /* PlaceHistory.m */,
 				B08F89E81BB78C34004D7107 /* PlaceHistoryModel.h */,
 				B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */,
+				B0781BC91BB9281A00933242 /* ATMFavorites.h */,
+				B0781BCA1BB9281A00933242 /* ATMFavorites.m */,
+				B0781BCF1BB928EA00933242 /* ATMFavoritesModel.h */,
+				B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,6 +430,7 @@
 		B0C364961BB14D410015A975 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				B0781BBD1BB9263500933242 /* AddFavorite */,
 				B09546E91BB8F15100922945 /* Back */,
 				B09546E41BB8F04800922945 /* Favorites */,
 				B04033191BB8220A001A917F /* GetLocation */,
@@ -533,18 +566,22 @@
 				B04033361BB8220A001A917F /* NavBarIconSearchBar_blue@2x.png in Resources */,
 				B04033301BB8220A001A917F /* NavBarIconSearch_blue@2x.png in Resources */,
 				B04033371BB8220A001A917F /* NavBarIconSearchCircle_blue.png in Resources */,
+				B0781BC31BB9263500933242 /* AddToFavorites@2x.png in Resources */,
 				B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */,
 				B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */,
 				B04033381BB8220A001A917F /* NavBarIconSearchCircle_blue@2x.png in Resources */,
+				B0781BC41BB9263500933242 /* AddToFavoritesFilled.png in Resources */,
 				B040332E1BB8220A001A917F /* GetLocation@2x.png in Resources */,
 				B040332F1BB8220A001A917F /* NavBarIconSearch_blue.png in Resources */,
 				B09546F21BB8F16600922945 /* Home@2x.png in Resources */,
 				B04033321BB8220A001A917F /* NavBarIconSearch_white@2x.png in Resources */,
+				B0781BC51BB9263500933242 /* AddToFavoritesFilled@2x.png in Resources */,
 				B09546F11BB8F16600922945 /* Home.png in Resources */,
 				B04033341BB8220A001A917F /* NavBarIconSearchBar2_blue@2x.png in Resources */,
 				B040332D1BB8220A001A917F /* GetLocation.png in Resources */,
 				B04033351BB8220A001A917F /* NavBarIconSearchBar_blue.png in Resources */,
 				B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */,
+				B0781BC21BB9263500933242 /* AddToFavorites.png in Resources */,
 				B09546E71BB8F04800922945 /* Favorite.png in Resources */,
 				B040333A1BB8220A001A917F /* Marker@2x.png in Resources */,
 				B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */,
@@ -611,6 +648,7 @@
 			files = (
 				B07E6D021BB7D72A00623AC0 /* DetailVC.m in Sources */,
 				B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */,
+				B0781BD11BB928EA00933242 /* ATMFavoritesModel.m in Sources */,
 				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
 				B0C364871BB131320015A975 /* AppDelegate.m in Sources */,
 				B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */,
@@ -618,7 +656,9 @@
 				B0C364951BB13C190015A975 /* Items.m in Sources */,
 				B08F89E61BB78ADB004D7107 /* PlaceHistory.m in Sources */,
 				B0C364911BB1389E0015A975 /* HomeCell.m in Sources */,
+				B0781BCD1BB9281A00933242 /* ATMFavorites.m in Sources */,
 				B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */,
+				B0781BC81BB9274300933242 /* FavoritesATM.xcdatamodeld in Sources */,
 				B0C3644E1BB130AA0015A975 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,6 +906,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		B0781BC61BB9274300933242 /* FavoritesATM.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B0781BC71BB9274300933242 /* FavoritesATM.xcdatamodel */,
+			);
+			currentVersion = B0781BC71BB9274300933242 /* FavoritesATM.xcdatamodel */;
+			path = FavoritesATM.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

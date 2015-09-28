@@ -54,9 +54,9 @@
                         <constraint firstAttribute="width" constant="24" id="67S-cm-QSQ"/>
                         <constraint firstAttribute="height" constant="24" id="yKO-40-98H"/>
                     </constraints>
-                    <state key="normal" image="Favorite.png"/>
+                    <state key="normal" image="AddToFavorites.png"/>
                     <connections>
-                        <action selector="goToFavorites:" destination="-1" eventType="touchUpInside" id="M5L-nf-DLW"/>
+                        <action selector="addToFavorites:" destination="-1" eventType="touchUpInside" id="lg8-Hy-zCS"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddc-aY-Tbq">
@@ -88,11 +88,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="1743" y="-5"/>
+            <point key="canvasLocation" x="1889" y="-31"/>
         </view>
     </objects>
     <resources>
+        <image name="AddToFavorites.png" width="24" height="24"/>
         <image name="Back.png" width="24" height="24"/>
-        <image name="Favorite.png" width="24" height="24"/>
     </resources>
 </document>
