@@ -28,7 +28,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tV-fi-dUx">
-                    <rect key="frame" x="18" y="10" width="24" height="24"/>
+                    <rect key="frame" x="10" y="10" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="Gr6-S1-uM5"/>
                         <constraint firstAttribute="width" constant="24" id="KtF-ep-gT4"/>
@@ -59,11 +59,20 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MhB-gz-8UD">
                     <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                 </mapView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYt-tY-qKm">
+                    <rect key="frame" x="286" y="10" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="hBG-jZ-O64"/>
+                        <constraint firstAttribute="height" constant="24" id="zAX-t5-5Mw"/>
+                    </constraints>
+                    <state key="normal" image="Favorite.png"/>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.33917465790000001" green="0.75623160789999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="u2t-bY-qxL" secondAttribute="trailing" constant="141" id="1Og-8j-efC"/>
                 <constraint firstAttribute="bottom" secondItem="u2t-bY-qxL" secondAttribute="bottom" constant="266" id="1uq-aW-9uk"/>
+                <constraint firstItem="BYt-tY-qKm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="2MB-wd-FLk"/>
                 <constraint firstItem="MhB-gz-8UD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2O4-uu-I7I"/>
                 <constraint firstItem="MhB-gz-8UD" firstAttribute="top" secondItem="1jm-6c-qFM" secondAttribute="bottom" constant="8" id="3Ty-e1-9eY"/>
                 <constraint firstItem="1jm-6c-qFM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="5O9-r0-vOg"/>
@@ -73,19 +82,21 @@
                 <constraint firstItem="3tV-fi-dUx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="Kbu-pQ-612"/>
                 <constraint firstAttribute="bottom" secondItem="BC6-cx-FvU" secondAttribute="bottom" id="ME4-ob-oV8"/>
                 <constraint firstItem="1jm-6c-qFM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="R2U-0u-e8m"/>
-                <constraint firstItem="3tV-fi-dUx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="WvN-xq-7Zp"/>
+                <constraint firstItem="3tV-fi-dUx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="WvN-xq-7Zp"/>
                 <constraint firstItem="u2t-bY-qxL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="265" id="YZ6-Ke-2aB"/>
                 <constraint firstAttribute="trailing" secondItem="MhB-gz-8UD" secondAttribute="trailing" id="YgQ-lm-Hny"/>
                 <constraint firstItem="u2t-bY-qxL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="142" id="dNt-3y-h5S"/>
                 <constraint firstAttribute="bottom" secondItem="MhB-gz-8UD" secondAttribute="bottom" id="feb-GR-QMm"/>
                 <constraint firstItem="BC6-cx-FvU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="p9B-gq-4Nw"/>
+                <constraint firstAttribute="trailing" secondItem="BYt-tY-qKm" secondAttribute="trailing" constant="10" id="w6W-1Z-IBT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="2410" y="49"/>
+            <point key="canvasLocation" x="2620" y="-28"/>
         </view>
     </objects>
     <resources>
+        <image name="Favorite.png" width="24" height="24"/>
         <image name="GetLocation.png" width="24" height="24"/>
     </resources>
 </document>

@@ -12,6 +12,7 @@
 #import "INSSearchBar.h"
 #import "FXAnnotation.h"
 #import "PlaceHistory.h"
+#import "DetailVC.h"
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MapKit/MapKit.h>
@@ -43,7 +44,7 @@
     self.navigationController.navigationBarHidden = YES;
     [_tableView setHidden:YES];
     [_mapView setHidden:YES];
-    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(50, 5, CGRectGetWidth(self.view.bounds) - 60, 34)];
+    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 5, CGRectGetWidth(self.view.bounds) - 70, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
     _mapView.showsUserLocation = YES;
@@ -67,6 +68,7 @@
     }
 }
 - (IBAction)actionGetLocation:(id)sender {
+    [_mapView setHidden:NO];
     _mapView.showsUserLocation = YES;
     CLLocation *location = _mapView.userLocation.location;
     MKCoordinateRegion region;
@@ -117,7 +119,7 @@
     MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
     
     //location source
-    CLLocation *sourceLocation = _mapView.userLocation.location;
+    CLLocation *sourceLocation = _myAppdelegate.currentLocation;
     CLLocationCoordinate2D sourceCoordinate = CLLocationCoordinate2DMake(sourceLocation.coordinate.latitude, sourceLocation.coordinate.longitude);
     MKPlacemark *sourcePlacemark = [[MKPlacemark alloc]initWithCoordinate:sourceCoordinate addressDictionary:nil];
     MKMapItem *source = [[MKMapItem alloc]initWithPlacemark:sourcePlacemark];
@@ -142,7 +144,20 @@
 }
 
 -(IBAction)goToDetail:(id)sender {
-    NSLog(@"go to detail!!!");
+//    PlaceHistory *history = [PlaceHistory MR_createEntity];
+    DetailVC *detailVC = [DetailVC new];
+    UIButton *button = (UIButton*)sender;
+    Items *item = _mainList[button.tag];
+//    history.name = item.name;
+//    history.address = item.address;
+//    history.latitude = [NSNumber numberWithDouble:item.latitude];
+//    history.longitude = [NSNumber numberWithDouble:item.longitude];
+//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    detailVC.name = item.name;
+    detailVC.address = item.address;
+    detailVC.latitude = item.latitude;
+    detailVC.longitude = item.longitude;
 }
 
 #pragma mark - MapView Delegate
@@ -186,6 +201,7 @@
         annotationView.canShowCallout = YES;
         
         UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        leftButton.tag = fxAnnotation.index;
         [leftButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
         annotationView.leftCalloutAccessoryView = leftButton;
         annotationView.canShowCallout = YES;
@@ -204,7 +220,7 @@
 
 #pragma mark - Search Bar Delegate
 -(CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
-    return CGRectMake(50, 5, CGRectGetWidth(self.view.bounds) - 60, 34);
+    return CGRectMake(35, 5, CGRectGetWidth(self.view.bounds) - 70, 34);
 }
 
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
@@ -294,15 +310,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    PlaceHistory *history = [PlaceHistory MR_createEntity];
+    DetailVC *detailVC = [DetailVC new];
+//    PlaceHistory *history = [PlaceHistory MR_createEntity];
     Items *item = _mainList[indexPath.row];
-    history.name = item.name;
-    history.address = item.address;
-    history.latitude = [NSNumber numberWithDouble:item.latitude];
-    history.longitude = [NSNumber numberWithDouble:item.longitude];
-    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Added to history success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
+//    history.name = item.name;
+//    history.address = item.address;
+//    history.latitude = [NSNumber numberWithDouble:item.latitude];
+//    history.longitude = [NSNumber numberWithDouble:item.longitude];
+//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    detailVC.name = item.name;
+    detailVC.address = item.address;
+    detailVC.latitude = item.latitude;
+    detailVC.longitude = item.longitude;
 }
 
 @end
