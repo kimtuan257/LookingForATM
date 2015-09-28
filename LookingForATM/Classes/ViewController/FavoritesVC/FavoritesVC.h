@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FavoritesVC : UIViewController
-@property (nonatomic) NSFetchedResultsController *fetchResultController;
+@property (nonatomic) NSFetchedResultsController *fetchFavorite;
+@property (nonatomic) NSFetchedResultsController *fetchHistory;
 @end

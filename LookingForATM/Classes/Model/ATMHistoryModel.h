@@ -1,5 +1,5 @@
 //
-//  ATMFavoritesModel.h
+//  ATMHistoryModel.h
 //  LookingForATM
 //
 //  Created by Le Kim Tuan on 9/28/15.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ATMFavoritesModel : NSObject
-+(NSFetchedResultsController*)fetchFavoriteWithDelegate:(id)delegate;
+@interface ATMHistoryModel : NSObject
++(NSFetchedResultsController*)fetchHistoryWithDelegate:(id)delegate;
 @end

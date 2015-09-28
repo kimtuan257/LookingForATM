@@ -40,7 +40,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     FavoritesVC *favorites = [FavoritesVC new];
-    NSArray *tempArray = favorites.fetchResultController.fetchedObjects;
+    NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
     BOOL flag = YES;
     for (int i = 0; i < tempArray.count; i++) {
         ATMFavorites *dataTemp = tempArray[i];
@@ -57,7 +57,7 @@
     }
 }
 
-- (IBAction)backHomeVC:(id)sender {
+- (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

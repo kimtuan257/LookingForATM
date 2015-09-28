@@ -11,7 +11,7 @@
 #import "Items.h"
 #import "INSSearchBar.h"
 #import "FXAnnotation.h"
-#import "PlaceHistory.h"
+#import "ATMHistory.h"
 #import "DetailVC.h"
 #import "FavoritesVC.h"
 #import "AppDelegate.h"
@@ -150,15 +150,26 @@
 }
 
 -(IBAction)goToDetail:(id)sender {
-//    PlaceHistory *history = [PlaceHistory MR_createEntity];
+    ATMHistory *history = [ATMHistory MR_createEntity];
     DetailVC *detailVC = [DetailVC new];
+    FavoritesVC *favorite = [FavoritesVC new];
     UIButton *button = (UIButton*)sender;
     Items *item = _mainList[button.tag];
-//    history.name = item.name;
-//    history.address = item.address;
-//    history.latitude = [NSNumber numberWithDouble:item.latitude];
-//    history.longitude = [NSNumber numberWithDouble:item.longitude];
-//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    BOOL flag = YES;
+    for (int i = 0; i < favorite.fetchHistory.fetchedObjects.count; i++) {
+        ATMHistory *dataTemp = favorite.fetchHistory.fetchedObjects[i];
+        if ([item.name isEqualToString:dataTemp.name]) {
+            flag = NO;
+            break;
+        }
+    }
+    if (flag) {
+        history.name = item.name;
+        history.address = item.address;
+        history.latitude = [NSNumber numberWithDouble:item.latitude];
+        history.longitude = [NSNumber numberWithDouble:item.longitude];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    }
     [self.navigationController pushViewController:detailVC animated:YES];
     detailVC.name = item.name;
     detailVC.address = item.address;
@@ -317,13 +328,24 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DetailVC *detailVC = [DetailVC new];
-//    PlaceHistory *history = [PlaceHistory MR_createEntity];
+    ATMHistory *history = [ATMHistory MR_createEntity];
+    FavoritesVC *favorite = [FavoritesVC new];
     Items *item = _mainList[indexPath.row];
-//    history.name = item.name;
-//    history.address = item.address;
-//    history.latitude = [NSNumber numberWithDouble:item.latitude];
-//    history.longitude = [NSNumber numberWithDouble:item.longitude];
-//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    BOOL flag = YES;
+    for (int i = 0; i < favorite.fetchHistory.fetchedObjects.count; i++) {
+        ATMHistory *dataTemp = favorite.fetchHistory.fetchedObjects[i];
+        if ([item.name isEqualToString:dataTemp.name]) {
+            flag = NO;
+            break;
+        }
+    }
+    if (flag) {
+        history.name = item.name;
+        history.address = item.address;
+        history.latitude = [NSNumber numberWithDouble:item.latitude];
+        history.longitude = [NSNumber numberWithDouble:item.longitude];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    }
     [self.navigationController pushViewController:detailVC animated:YES];
     detailVC.name = item.name;
     detailVC.address = item.address;

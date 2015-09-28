@@ -26,6 +26,9 @@
 		B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B041820D1BB3FEA900F367BA /* MapKit.framework */; };
 		B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B04182101BB3FFC000F367BA /* FXAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B04867791BB23E0E007FB1C8 /* INSSearchBar.m */; settings = {ASSET_TAGS = (); }; };
+		B06DE07C1BB9703300BBA378 /* HistoryATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B06DE07A1BB9703300BBA378 /* HistoryATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		B06DE0811BB9709900BBA378 /* ATMHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B06DE07E1BB9709900BBA378 /* ATMHistory.m */; settings = {ASSET_TAGS = (); }; };
+		B06DE0851BB9712300BBA378 /* ATMHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B06DE0841BB9712300BBA378 /* ATMHistoryModel.m */; settings = {ASSET_TAGS = (); }; };
 		B0781BC21BB9263500933242 /* AddToFavorites.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BBE1BB9263500933242 /* AddToFavorites.png */; settings = {ASSET_TAGS = (); }; };
 		B0781BC31BB9263500933242 /* AddToFavorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B0781BC41BB9263500933242 /* AddToFavoritesFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */; settings = {ASSET_TAGS = (); }; };
@@ -37,10 +40,7 @@
 		B0781BD81BB92C7A00933242 /* FavoritesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0781BD61BB92C7A00933242 /* FavoritesVC.xib */; settings = {ASSET_TAGS = (); }; };
 		B07E6D021BB7D72A00623AC0 /* DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B07E6D001BB7D72A00623AC0 /* DetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B07E6D011BB7D72A00623AC0 /* DetailVC.xib */; settings = {ASSET_TAGS = (); }; };
-		B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		B08F89E11BB78AAC004D7107 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F89E01BB78AAC004D7107 /* CoreData.framework */; };
-		B08F89E61BB78ADB004D7107 /* PlaceHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F89E31BB78ADB004D7107 /* PlaceHistory.m */; settings = {ASSET_TAGS = (); }; };
-		B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */; settings = {ASSET_TAGS = (); }; };
 		B09546E71BB8F04800922945 /* Favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = B09546E51BB8F04800922945 /* Favorite.png */; settings = {ASSET_TAGS = (); }; };
 		B09546E81BB8F04800922945 /* Favorite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09546E61BB8F04800922945 /* Favorite@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B09546EC1BB8F15100922945 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = B09546EA1BB8F15100922945 /* Back.png */; settings = {ASSET_TAGS = (); }; };
@@ -100,6 +100,11 @@
 		B04182101BB3FFC000F367BA /* FXAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXAnnotation.m; sourceTree = "<group>"; };
 		B04867781BB23E0E007FB1C8 /* INSSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSSearchBar.h; sourceTree = "<group>"; };
 		B04867791BB23E0E007FB1C8 /* INSSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSSearchBar.m; sourceTree = "<group>"; };
+		B06DE07B1BB9703300BBA378 /* HistoryATM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryATM.xcdatamodel; sourceTree = "<group>"; };
+		B06DE07D1BB9709900BBA378 /* ATMHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHistory.h; sourceTree = "<group>"; };
+		B06DE07E1BB9709900BBA378 /* ATMHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHistory.m; sourceTree = "<group>"; };
+		B06DE0831BB9712300BBA378 /* ATMHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHistoryModel.h; sourceTree = "<group>"; };
+		B06DE0841BB9712300BBA378 /* ATMHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHistoryModel.m; sourceTree = "<group>"; };
 		B0781BBE1BB9263500933242 /* AddToFavorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddToFavorites.png; sourceTree = "<group>"; };
 		B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddToFavorites@2x.png"; sourceTree = "<group>"; };
 		B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddToFavoritesFilled.png; sourceTree = "<group>"; };
@@ -115,12 +120,7 @@
 		B07E6CFF1BB7D72A00623AC0 /* DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVC.h; sourceTree = "<group>"; };
 		B07E6D001BB7D72A00623AC0 /* DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVC.m; sourceTree = "<group>"; };
 		B07E6D011BB7D72A00623AC0 /* DetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
-		B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryATM.xcdatamodel; sourceTree = "<group>"; };
 		B08F89E01BB78AAC004D7107 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B08F89E21BB78ADB004D7107 /* PlaceHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHistory.h; sourceTree = "<group>"; };
-		B08F89E31BB78ADB004D7107 /* PlaceHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHistory.m; sourceTree = "<group>"; };
-		B08F89E81BB78C34004D7107 /* PlaceHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHistoryModel.h; sourceTree = "<group>"; };
-		B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHistoryModel.m; sourceTree = "<group>"; };
 		B08F89ED1BB792AD004D7107 /* LookingForATM.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookingForATM.pch; sourceTree = SOURCE_ROOT; };
 		B09546E51BB8F04800922945 /* Favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favorite.png; sourceTree = "<group>"; };
 		B09546E61BB8F04800922945 /* Favorite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite@2x.png"; sourceTree = "<group>"; };
@@ -268,8 +268,8 @@
 		B08F89D91BB789A5004D7107 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */,
 				B0781BC61BB9274300933242 /* FavoritesATM.xcdatamodeld */,
+				B06DE07A1BB9703300BBA378 /* HistoryATM.xcdatamodeld */,
 			);
 			name = CoreData;
 			path = Classes/CoreData;
@@ -390,14 +390,14 @@
 				B04182101BB3FFC000F367BA /* FXAnnotation.m */,
 				B0C364931BB13C190015A975 /* Items.h */,
 				B0C364941BB13C190015A975 /* Items.m */,
-				B08F89E21BB78ADB004D7107 /* PlaceHistory.h */,
-				B08F89E31BB78ADB004D7107 /* PlaceHistory.m */,
-				B08F89E81BB78C34004D7107 /* PlaceHistoryModel.h */,
-				B08F89E91BB78C34004D7107 /* PlaceHistoryModel.m */,
 				B0781BC91BB9281A00933242 /* ATMFavorites.h */,
 				B0781BCA1BB9281A00933242 /* ATMFavorites.m */,
 				B0781BCF1BB928EA00933242 /* ATMFavoritesModel.h */,
 				B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */,
+				B06DE07D1BB9709900BBA378 /* ATMHistory.h */,
+				B06DE07E1BB9709900BBA378 /* ATMHistory.m */,
+				B06DE0831BB9712300BBA378 /* ATMHistoryModel.h */,
+				B06DE0841BB9712300BBA378 /* ATMHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -664,17 +664,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B07E6D021BB7D72A00623AC0 /* DetailVC.m in Sources */,
+				B06DE0811BB9709900BBA378 /* ATMHistory.m in Sources */,
 				B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */,
 				B0781BD11BB928EA00933242 /* ATMFavoritesModel.m in Sources */,
 				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
+				B06DE07C1BB9703300BBA378 /* HistoryATM.xcdatamodeld in Sources */,
 				B0C364871BB131320015A975 /* AppDelegate.m in Sources */,
-				B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */,
 				B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */,
 				B0C364951BB13C190015A975 /* Items.m in Sources */,
-				B08F89E61BB78ADB004D7107 /* PlaceHistory.m in Sources */,
 				B0C364911BB1389E0015A975 /* HomeCell.m in Sources */,
+				B06DE0851BB9712300BBA378 /* ATMHistoryModel.m in Sources */,
 				B0781BCD1BB9281A00933242 /* ATMFavorites.m in Sources */,
-				B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */,
 				B0781BC81BB9274300933242 /* FavoritesATM.xcdatamodeld in Sources */,
 				B0C3644E1BB130AA0015A975 /* main.m in Sources */,
 				B0781BD71BB92C7A00933242 /* FavoritesVC.m in Sources */,
@@ -924,6 +924,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		B06DE07A1BB9703300BBA378 /* HistoryATM.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B06DE07B1BB9703300BBA378 /* HistoryATM.xcdatamodel */,
+			);
+			currentVersion = B06DE07B1BB9703300BBA378 /* HistoryATM.xcdatamodel */;
+			path = HistoryATM.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		B0781BC61BB9274300933242 /* FavoritesATM.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
@@ -931,17 +941,6 @@
 			);
 			currentVersion = B0781BC71BB9274300933242 /* FavoritesATM.xcdatamodel */;
 			path = FavoritesATM.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */,
-			);
-			currentVersion = B08F89D71BB7886E004D7107 /* HistoryATM.xcdatamodel */;
-			name = HistoryATM.xcdatamodeld;
-			path = ../../HistoryATM.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
