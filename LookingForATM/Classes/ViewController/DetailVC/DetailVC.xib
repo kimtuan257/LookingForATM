@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVC">
             <connections>
+                <outlet property="addFavoriteButton" destination="auP-q8-c3D" id="tb0-Ne-Iof"/>
                 <outlet property="addressLabel" destination="ddc-aY-Tbq" id="S4C-IV-r7k"/>
                 <outlet property="distanceLabel" destination="lcv-zh-fFx" id="YDQ-XW-mth"/>
                 <outlet property="mapView" destination="IQN-bZ-Srh" id="yAl-4E-khK"/>

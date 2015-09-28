@@ -9,6 +9,8 @@
 #import "DetailVC.h"
 #import "AppDelegate.h"
 #import "FXAnnotation.h"
+#import "ATMFavorites.h"
+#import "FavoritesVC.h"
 #import <MapKit/MapKit.h>
 
 @interface DetailVC ()<MKMapViewDelegate> {
@@ -20,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addFavoriteButton;
 @end
 
 @implementation DetailVC
@@ -35,12 +38,40 @@
     [self directionOnmap];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    FavoritesVC *favorites = [FavoritesVC new];
+    NSArray *tempArray = favorites.fetchResultController.fetchedObjects;
+    BOOL flag = YES;
+    for (int i = 0; i < tempArray.count; i++) {
+        ATMFavorites *dataTemp = tempArray[i];
+        NSString *string1 = [NSString stringWithFormat:@"%@", dataTemp.name];
+        NSString *string2 = [NSString stringWithFormat:@"%@", _name];
+        if ([string1 isEqualToString:string2]) {
+            flag = NO;
+            break;
+        }
+    }
+    if (!flag) {
+        [_addFavoriteButton setImage:[UIImage imageNamed:@"AddToFavoritesFilled.png.png"] forState:UIControlStateNormal];
+        _addFavoriteButton.enabled = NO;
+    }
+}
+
 - (IBAction)backHomeVC:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)addToFavorites:(id)sender {
-    
+    ATMFavorites *atm = [ATMFavorites MR_createEntity];
+    atm.name = _name;
+    atm.address = _address;
+    atm.latitude = [NSNumber numberWithDouble:_latitude];
+    atm.longitude = [NSNumber numberWithDouble:_longitude];
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Add ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [_addFavoriteButton setImage:[UIImage imageNamed:@"AddToFavoritesFilled.png"] forState:UIControlStateNormal];
+    _addFavoriteButton.enabled = NO;
 }
 
 -(BOOL)prefersStatusBarHidden {

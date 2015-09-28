@@ -66,6 +66,9 @@
                         <constraint firstAttribute="height" constant="24" id="zAX-t5-5Mw"/>
                     </constraints>
                     <state key="normal" image="Favorite.png"/>
+                    <connections>
+                        <action selector="goToFavorites:" destination="-1" eventType="touchUpInside" id="vqk-o3-heK"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>

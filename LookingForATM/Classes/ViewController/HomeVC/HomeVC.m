@@ -13,6 +13,7 @@
 #import "FXAnnotation.h"
 #import "PlaceHistory.h"
 #import "DetailVC.h"
+#import "FavoritesVC.h"
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MapKit/MapKit.h>
@@ -79,6 +80,11 @@
     span.longitudeDelta     = 0.02;
     region.span             = span;
     [_mapView setRegion:region animated:YES];
+}
+
+- (IBAction)goToFavorites:(id)sender {
+    FavoritesVC *favoriteVC = [FavoritesVC new];
+    [self.navigationController pushViewController:favoriteVC animated:YES];
 }
 
 -(void)addPinToMap {

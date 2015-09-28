@@ -33,6 +33,8 @@
 		B0781BC81BB9274300933242 /* FavoritesATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0781BC61BB9274300933242 /* FavoritesATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		B0781BCD1BB9281A00933242 /* ATMFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BCA1BB9281A00933242 /* ATMFavorites.m */; settings = {ASSET_TAGS = (); }; };
 		B0781BD11BB928EA00933242 /* ATMFavoritesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */; settings = {ASSET_TAGS = (); }; };
+		B0781BD71BB92C7A00933242 /* FavoritesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BD51BB92C7A00933242 /* FavoritesVC.m */; settings = {ASSET_TAGS = (); }; };
+		B0781BD81BB92C7A00933242 /* FavoritesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0781BD61BB92C7A00933242 /* FavoritesVC.xib */; settings = {ASSET_TAGS = (); }; };
 		B07E6D021BB7D72A00623AC0 /* DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B07E6D001BB7D72A00623AC0 /* DetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B07E6D011BB7D72A00623AC0 /* DetailVC.xib */; settings = {ASSET_TAGS = (); }; };
 		B08F89D81BB7886E004D7107 /* HistoryATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B08F89D61BB7886E004D7107 /* HistoryATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
@@ -107,6 +109,9 @@
 		B0781BCA1BB9281A00933242 /* ATMFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMFavorites.m; sourceTree = "<group>"; };
 		B0781BCF1BB928EA00933242 /* ATMFavoritesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMFavoritesModel.h; sourceTree = "<group>"; };
 		B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMFavoritesModel.m; sourceTree = "<group>"; };
+		B0781BD41BB92C7A00933242 /* FavoritesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesVC.h; sourceTree = "<group>"; };
+		B0781BD51BB92C7A00933242 /* FavoritesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesVC.m; sourceTree = "<group>"; };
+		B0781BD61BB92C7A00933242 /* FavoritesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesVC.xib; sourceTree = "<group>"; };
 		B07E6CFF1BB7D72A00623AC0 /* DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVC.h; sourceTree = "<group>"; };
 		B07E6D001BB7D72A00623AC0 /* DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVC.m; sourceTree = "<group>"; };
 		B07E6D011BB7D72A00623AC0 /* DetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
@@ -238,6 +243,16 @@
 				B0781BC11BB9263500933242 /* AddToFavoritesFilled@2x.png */,
 			);
 			path = AddFavorite;
+			sourceTree = "<group>";
+		};
+		B0781BD31BB92C5C00933242 /* FavoritesVC */ = {
+			isa = PBXGroup;
+			children = (
+				B0781BD41BB92C7A00933242 /* FavoritesVC.h */,
+				B0781BD51BB92C7A00933242 /* FavoritesVC.m */,
+				B0781BD61BB92C7A00933242 /* FavoritesVC.xib */,
+			);
+			path = FavoritesVC;
 			sourceTree = "<group>";
 		};
 		B07E6CFE1BB7D70600623AC0 /* DetailVC */ = {
@@ -394,6 +409,7 @@
 				B0C3648D1BB138870015A975 /* HomeCell */,
 				B0C364861BB131320015A975 /* HomeVC */,
 				B07E6CFE1BB7D70600623AC0 /* DetailVC */,
+				B0781BD31BB92C5C00933242 /* FavoritesVC */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -572,6 +588,7 @@
 				B04033381BB8220A001A917F /* NavBarIconSearchCircle_blue@2x.png in Resources */,
 				B0781BC41BB9263500933242 /* AddToFavoritesFilled.png in Resources */,
 				B040332E1BB8220A001A917F /* GetLocation@2x.png in Resources */,
+				B0781BD81BB92C7A00933242 /* FavoritesVC.xib in Resources */,
 				B040332F1BB8220A001A917F /* NavBarIconSearch_blue.png in Resources */,
 				B09546F21BB8F16600922945 /* Home@2x.png in Resources */,
 				B04033321BB8220A001A917F /* NavBarIconSearch_white@2x.png in Resources */,
@@ -660,6 +677,7 @@
 				B08F89EA1BB78C34004D7107 /* PlaceHistoryModel.m in Sources */,
 				B0781BC81BB9274300933242 /* FavoritesATM.xcdatamodeld in Sources */,
 				B0C3644E1BB130AA0015A975 /* main.m in Sources */,
+				B0781BD71BB92C7A00933242 /* FavoritesVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
