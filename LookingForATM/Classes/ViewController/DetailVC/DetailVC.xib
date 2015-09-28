@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVC">
+            <connections>
+                <outlet property="addressLabel" destination="ddc-aY-Tbq" id="S4C-IV-r7k"/>
+                <outlet property="distanceLabel" destination="lcv-zh-fFx" id="YDQ-XW-mth"/>
+                <outlet property="mapView" destination="IQN-bZ-Srh" id="yAl-4E-khK"/>
+                <outlet property="nameLabel" destination="kqb-me-AC9" id="r1n-C4-DAC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IQN-bZ-Srh">
+                    <rect key="frame" x="0.0" y="44" width="320" height="445"/>
+                </mapView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqb-me-AC9">
+                    <rect key="frame" x="42" y="12" width="236" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="BaK-hV-6bW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcv-zh-fFx">
+                    <rect key="frame" x="8" y="535" width="304" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52C-Kb-f6b">
+                    <rect key="frame" x="10" y="10" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="FFC-P7-mwm"/>
+                        <constraint firstAttribute="width" constant="24" id="wwk-rZ-rxQ"/>
+                    </constraints>
+                    <state key="normal" image="Back.png"/>
+                    <connections>
+                        <action selector="backHomeVC:" destination="-1" eventType="touchUpInside" id="hWe-Zl-wvi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auP-q8-c3D">
+                    <rect key="frame" x="286" y="10" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="67S-cm-QSQ"/>
+                        <constraint firstAttribute="height" constant="24" id="yKO-40-98H"/>
+                    </constraints>
+                    <state key="normal" image="AddToFavorites.png"/>
+                    <connections>
+                        <action selector="addToFavorites:" destination="-1" eventType="touchUpInside" id="lg8-Hy-zCS"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddc-aY-Tbq">
+                    <rect key="frame" x="8" y="504" width="304" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lcv-zh-fFx" secondAttribute="bottom" constant="15" id="4hO-kl-5CL"/>
+                <constraint firstItem="52C-Kb-f6b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="6TD-SY-1rS"/>
+                <constraint firstAttribute="trailing" secondItem="ddc-aY-Tbq" secondAttribute="trailing" constant="8" id="C4b-ll-esT"/>
+                <constraint firstItem="52C-Kb-f6b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="E7e-g3-jtT"/>
+                <constraint firstItem="kqb-me-AC9" firstAttribute="leading" secondItem="52C-Kb-f6b" secondAttribute="trailing" constant="8" id="KzI-Oz-lTk"/>
+                <constraint firstItem="IQN-bZ-Srh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="Oyn-Cd-mBy"/>
+                <constraint firstItem="lcv-zh-fFx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="QmO-wS-Ohx"/>
+                <constraint firstItem="ddc-aY-Tbq" firstAttribute="top" secondItem="IQN-bZ-Srh" secondAttribute="bottom" constant="15" id="YT9-je-O6J"/>
+                <constraint firstAttribute="trailing" secondItem="auP-q8-c3D" secondAttribute="trailing" constant="10" id="dWL-Dk-ZGz"/>
+                <constraint firstItem="IQN-bZ-Srh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iIc-9f-mHp"/>
+                <constraint firstItem="ddc-aY-Tbq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="kMn-nu-0SK"/>
+                <constraint firstAttribute="trailing" secondItem="lcv-zh-fFx" secondAttribute="trailing" constant="8" id="kYW-W7-WP2"/>
+                <constraint firstItem="lcv-zh-fFx" firstAttribute="top" secondItem="ddc-aY-Tbq" secondAttribute="bottom" constant="11" id="mZ1-Wy-k3z"/>
+                <constraint firstItem="kqb-me-AC9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="12" id="pC9-9X-Vcn"/>
+                <constraint firstAttribute="trailing" secondItem="IQN-bZ-Srh" secondAttribute="trailing" id="q5O-fm-BSi"/>
+                <constraint firstItem="auP-q8-c3D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="qDC-p4-F7x"/>
+                <constraint firstItem="auP-q8-c3D" firstAttribute="leading" secondItem="kqb-me-AC9" secondAttribute="trailing" constant="8" id="r6u-Gc-aRy"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="1889" y="-31"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AddToFavorites.png" width="24" height="24"/>
+        <image name="Back.png" width="24" height="24"/>
+    </resources>
+</document>

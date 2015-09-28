@@ -57,7 +57,7 @@
                 <outlet property="distanceLabel" destination="e6z-5w-tKK" id="qO7-sb-vCK"/>
                 <outlet property="nameLabel" destination="VbN-Ut-sST" id="KzC-c4-B6e"/>
             </connections>
-            <point key="canvasLocation" x="847" y="208"/>
+            <point key="canvasLocation" x="805" y="190"/>
         </tableViewCell>
     </objects>
 </document>
