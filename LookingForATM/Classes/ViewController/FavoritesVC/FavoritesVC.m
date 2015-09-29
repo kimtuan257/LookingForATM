@@ -35,8 +35,8 @@
     [_historyTableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
 }
 
--(BOOL)prefersStatusBarHidden {
-    return YES;
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (IBAction)segmentAction:(id)sender {
@@ -109,6 +109,20 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.favoritesTableView) {
+        ATMFavorites *favorites = self.fetchFavorite.fetchedObjects[indexPath.row];
+        [favorites MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        [self.favoritesTableView reloadData];
+    }else{
+        ATMHistory *history = self.fetchHistory.fetchedObjects[indexPath.row];
+        [history MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        [self.historyTableView reloadData];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

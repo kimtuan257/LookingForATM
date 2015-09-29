@@ -44,9 +44,18 @@
     BOOL flag = YES;
     for (int i = 0; i < tempArray.count; i++) {
         ATMFavorites *dataTemp = tempArray[i];
-        NSString *string1 = [NSString stringWithFormat:@"%@", dataTemp.name];
-        NSString *string2 = [NSString stringWithFormat:@"%@", _name];
-        if ([string1 isEqualToString:string2]) {
+        
+        //Get location of atm current
+        CLLocation *locationATMCurrent = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
+        
+        //Get location of atm in coredata
+        double latitudeATMCoreData = [dataTemp.latitude doubleValue];
+        double longitudeATMCoreData = [dataTemp.longitude doubleValue];
+        CLLocation *locationATMCoreData = [[CLLocation alloc]initWithLatitude:latitudeATMCoreData longitude:longitudeATMCoreData];
+        
+        //Compare 2 locatios by calculator distance between 2 locations
+        float distance = [locationATMCurrent distanceFromLocation:locationATMCoreData];
+        if (distance == 0) {
             flag = NO;
             break;
         }
@@ -74,8 +83,8 @@
     _addFavoriteButton.enabled = NO;
 }
 
--(BOOL)prefersStatusBarHidden {
-    return YES;
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 -(void)showDetailPlace {

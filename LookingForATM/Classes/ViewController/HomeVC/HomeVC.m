@@ -45,7 +45,7 @@
     self.navigationController.navigationBarHidden = YES;
     [_tableView setHidden:YES];
     [_mapView setHidden:YES];
-    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 5, CGRectGetWidth(self.view.bounds) - 70, 34)];
+    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
     _mapView.showsUserLocation = YES;
@@ -55,8 +55,8 @@
     _pins = [NSMutableArray new];
 }
 
--(BOOL)prefersStatusBarHidden {
-    return YES;
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (IBAction)segmentAction:(id)sender {
@@ -155,10 +155,25 @@
     FavoritesVC *favorite = [FavoritesVC new];
     UIButton *button = (UIButton*)sender;
     Items *item = _mainList[button.tag];
+    
+    //Check in coredata atmcurrent has or not
     BOOL flag = YES;
     for (int i = 0; i < favorite.fetchHistory.fetchedObjects.count; i++) {
         ATMHistory *dataTemp = favorite.fetchHistory.fetchedObjects[i];
-        if ([item.name isEqualToString:dataTemp.name]) {
+        
+        //Get location atm in coredata
+        double latitudeATMCoreData = [dataTemp.latitude doubleValue];
+        double longitudeATMCoreData = [dataTemp.longitude doubleValue];
+        CLLocation *locationATMCoreData = [[CLLocation alloc]initWithLatitude:latitudeATMCoreData longitude:longitudeATMCoreData];
+        
+        //Get location atm current
+        double latitudeATMCurrent = item.latitude;
+        double longitudeATMCurrent = item.longitude;
+        CLLocation *locationATMCurrent = [[CLLocation alloc]initWithLatitude:latitudeATMCurrent longitude:longitudeATMCurrent];
+        
+        //Compare location of atm in coredata and current by calculator distance between 2 locations
+        float distance = [locationATMCurrent distanceFromLocation:locationATMCoreData];
+        if (distance == 0) {
             flag = NO;
             break;
         }
@@ -237,7 +252,7 @@
 
 #pragma mark - Search Bar Delegate
 -(CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
-    return CGRectMake(35, 5, CGRectGetWidth(self.view.bounds) - 70, 34);
+    return CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34);
 }
 
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
@@ -327,6 +342,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //Check in coredata atmcurrent has or not
     DetailVC *detailVC = [DetailVC new];
     ATMHistory *history = [ATMHistory MR_createEntity];
     FavoritesVC *favorite = [FavoritesVC new];
@@ -334,7 +351,20 @@
     BOOL flag = YES;
     for (int i = 0; i < favorite.fetchHistory.fetchedObjects.count; i++) {
         ATMHistory *dataTemp = favorite.fetchHistory.fetchedObjects[i];
-        if ([item.name isEqualToString:dataTemp.name]) {
+        
+        //Get location of ATM in CoreData
+        double latitudeATMCoreData = [dataTemp.latitude doubleValue];
+        double longitudeATMCoreData = [dataTemp.longitude doubleValue];
+        CLLocation *locationATMCoreData = [[CLLocation alloc]initWithLatitude:latitudeATMCoreData longitude:longitudeATMCoreData];
+        
+        //Get location of ATM current
+        double latitudeATMCurrent = item.latitude;
+        double longitudeATMCurrent = item.longitude;
+        CLLocation *locationATMCurrent = [[CLLocation alloc]initWithLatitude:latitudeATMCurrent longitude:longitudeATMCurrent];
+        
+        //Compare location of ATM in coredata and current by calculator distance between 2 locations
+        float distance = [locationATMCurrent distanceFromLocation:locationATMCoreData];
+        if (distance == 0) {
             flag = NO;
             break;
         }
