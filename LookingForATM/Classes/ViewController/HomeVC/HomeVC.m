@@ -223,7 +223,7 @@
         
         annotationView.canShowCallout = YES;
         annotationView.draggable = YES;
-        annotationView.image = [UIImage imageNamed:@"Marker.png"];
+        annotationView.image = [UIImage imageNamed:@"MarkerATM.png"];
         
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         rightButton.tag = fxAnnotation.index;
@@ -245,7 +245,7 @@
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithPolyline:overlay];
-    render.strokeColor = [UIColor blueColor];
+    render.strokeColor = [UIColor greenColor];
     render.lineWidth = 4;
     return render;
 }

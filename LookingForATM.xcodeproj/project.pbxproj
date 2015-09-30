@@ -29,10 +29,6 @@
 		B06DE07C1BB9703300BBA378 /* HistoryATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B06DE07A1BB9703300BBA378 /* HistoryATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		B06DE0811BB9709900BBA378 /* ATMHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B06DE07E1BB9709900BBA378 /* ATMHistory.m */; settings = {ASSET_TAGS = (); }; };
 		B06DE0851BB9712300BBA378 /* ATMHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B06DE0841BB9712300BBA378 /* ATMHistoryModel.m */; settings = {ASSET_TAGS = (); }; };
-		B0781BC21BB9263500933242 /* AddToFavorites.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BBE1BB9263500933242 /* AddToFavorites.png */; settings = {ASSET_TAGS = (); }; };
-		B0781BC31BB9263500933242 /* AddToFavorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */; settings = {ASSET_TAGS = (); }; };
-		B0781BC41BB9263500933242 /* AddToFavoritesFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */; settings = {ASSET_TAGS = (); }; };
-		B0781BC51BB9263500933242 /* AddToFavoritesFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0781BC11BB9263500933242 /* AddToFavoritesFilled@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B0781BC81BB9274300933242 /* FavoritesATM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0781BC61BB9274300933242 /* FavoritesATM.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		B0781BCD1BB9281A00933242 /* ATMFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BCA1BB9281A00933242 /* ATMFavorites.m */; settings = {ASSET_TAGS = (); }; };
 		B0781BD11BB928EA00933242 /* ATMFavoritesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -47,6 +43,12 @@
 		B09546ED1BB8F15100922945 /* Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09546EB1BB8F15100922945 /* Back@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B09546F11BB8F16600922945 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = B09546EF1BB8F16600922945 /* Home.png */; settings = {ASSET_TAGS = (); }; };
 		B09546F21BB8F16600922945 /* Home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09546F01BB8F16600922945 /* Home@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B09E3CD11BBB7B140068DD49 /* AddFavorites.png in Resources */ = {isa = PBXBuildFile; fileRef = B09E3CCF1BBB7B140068DD49 /* AddFavorites.png */; settings = {ASSET_TAGS = (); }; };
+		B09E3CD21BBB7B140068DD49 /* AddFavorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09E3CD01BBB7B140068DD49 /* AddFavorites@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B09E3CD61BBB7B2B0068DD49 /* DeleteFavorites.png in Resources */ = {isa = PBXBuildFile; fileRef = B09E3CD41BBB7B2B0068DD49 /* DeleteFavorites.png */; settings = {ASSET_TAGS = (); }; };
+		B09E3CD71BBB7B2B0068DD49 /* DeleteFavorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09E3CD51BBB7B2B0068DD49 /* DeleteFavorites@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B09E3CDA1BBB969B0068DD49 /* MarkerATM.png in Resources */ = {isa = PBXBuildFile; fileRef = B09E3CD81BBB969B0068DD49 /* MarkerATM.png */; settings = {ASSET_TAGS = (); }; };
+		B09E3CDB1BBB969B0068DD49 /* MarkerATM@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09E3CD91BBB969B0068DD49 /* MarkerATM@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B0C3644E1BB130AA0015A975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3644D1BB130AA0015A975 /* main.m */; };
 		B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C364581BB130AA0015A975 /* Assets.xcassets */; };
 		B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C3645A1BB130AA0015A975 /* LaunchScreen.storyboard */; };
@@ -105,10 +107,6 @@
 		B06DE07E1BB9709900BBA378 /* ATMHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHistory.m; sourceTree = "<group>"; };
 		B06DE0831BB9712300BBA378 /* ATMHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHistoryModel.h; sourceTree = "<group>"; };
 		B06DE0841BB9712300BBA378 /* ATMHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHistoryModel.m; sourceTree = "<group>"; };
-		B0781BBE1BB9263500933242 /* AddToFavorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddToFavorites.png; sourceTree = "<group>"; };
-		B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddToFavorites@2x.png"; sourceTree = "<group>"; };
-		B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddToFavoritesFilled.png; sourceTree = "<group>"; };
-		B0781BC11BB9263500933242 /* AddToFavoritesFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddToFavoritesFilled@2x.png"; sourceTree = "<group>"; };
 		B0781BC71BB9274300933242 /* FavoritesATM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoritesATM.xcdatamodel; sourceTree = "<group>"; };
 		B0781BC91BB9281A00933242 /* ATMFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMFavorites.h; sourceTree = "<group>"; };
 		B0781BCA1BB9281A00933242 /* ATMFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMFavorites.m; sourceTree = "<group>"; };
@@ -128,6 +126,12 @@
 		B09546EB1BB8F15100922945 /* Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Back@2x.png"; sourceTree = "<group>"; };
 		B09546EF1BB8F16600922945 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home.png; sourceTree = "<group>"; };
 		B09546F01BB8F16600922945 /* Home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home@2x.png"; sourceTree = "<group>"; };
+		B09E3CCF1BBB7B140068DD49 /* AddFavorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddFavorites.png; sourceTree = "<group>"; };
+		B09E3CD01BBB7B140068DD49 /* AddFavorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddFavorites@2x.png"; sourceTree = "<group>"; };
+		B09E3CD41BBB7B2B0068DD49 /* DeleteFavorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteFavorites.png; sourceTree = "<group>"; };
+		B09E3CD51BBB7B2B0068DD49 /* DeleteFavorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DeleteFavorites@2x.png"; sourceTree = "<group>"; };
+		B09E3CD81BBB969B0068DD49 /* MarkerATM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarkerATM.png; sourceTree = "<group>"; };
+		B09E3CD91BBB969B0068DD49 /* MarkerATM@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkerATM@2x.png"; sourceTree = "<group>"; };
 		B0C364491BB130AA0015A975 /* LookingForATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookingForATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C3644D1BB130AA0015A975 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0C364581BB130AA0015A975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 			children = (
 				B04033281BB8220A001A917F /* Marker.png */,
 				B04033291BB8220A001A917F /* Marker@2x.png */,
+				B09E3CD81BBB969B0068DD49 /* MarkerATM.png */,
+				B09E3CD91BBB969B0068DD49 /* MarkerATM@2x.png */,
 			);
 			path = Marker;
 			sourceTree = "<group>";
@@ -237,10 +243,8 @@
 		B0781BBD1BB9263500933242 /* AddFavorite */ = {
 			isa = PBXGroup;
 			children = (
-				B0781BBE1BB9263500933242 /* AddToFavorites.png */,
-				B0781BBF1BB9263500933242 /* AddToFavorites@2x.png */,
-				B0781BC01BB9263500933242 /* AddToFavoritesFilled.png */,
-				B0781BC11BB9263500933242 /* AddToFavoritesFilled@2x.png */,
+				B09E3CCF1BBB7B140068DD49 /* AddFavorites.png */,
+				B09E3CD01BBB7B140068DD49 /* AddFavorites@2x.png */,
 			);
 			path = AddFavorite;
 			sourceTree = "<group>";
@@ -300,6 +304,15 @@
 				B09546F01BB8F16600922945 /* Home@2x.png */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		B09E3CD31BBB7B2B0068DD49 /* DeleteFavorite */ = {
+			isa = PBXGroup;
+			children = (
+				B09E3CD41BBB7B2B0068DD49 /* DeleteFavorites.png */,
+				B09E3CD51BBB7B2B0068DD49 /* DeleteFavorites@2x.png */,
+			);
+			path = DeleteFavorite;
 			sourceTree = "<group>";
 		};
 		B0C364401BB130AA0015A975 = {
@@ -447,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				B0781BBD1BB9263500933242 /* AddFavorite */,
+				B09E3CD31BBB7B2B0068DD49 /* DeleteFavorite */,
 				B09546E91BB8F15100922945 /* Back */,
 				B09546E41BB8F04800922945 /* Favorites */,
 				B04033191BB8220A001A917F /* GetLocation */,
@@ -576,29 +590,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09E3CD61BBB7B2B0068DD49 /* DeleteFavorites.png in Resources */,
+				B09E3CDA1BBB969B0068DD49 /* MarkerATM.png in Resources */,
+				B09E3CD71BBB7B2B0068DD49 /* DeleteFavorites@2x.png in Resources */,
 				B04033311BB8220A001A917F /* NavBarIconSearch_white.png in Resources */,
 				B0C3645C1BB130AA0015A975 /* LaunchScreen.storyboard in Resources */,
 				B09546E81BB8F04800922945 /* Favorite@2x.png in Resources */,
 				B04033361BB8220A001A917F /* NavBarIconSearchBar_blue@2x.png in Resources */,
 				B04033301BB8220A001A917F /* NavBarIconSearch_blue@2x.png in Resources */,
 				B04033371BB8220A001A917F /* NavBarIconSearchCircle_blue.png in Resources */,
-				B0781BC31BB9263500933242 /* AddToFavorites@2x.png in Resources */,
 				B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */,
 				B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */,
+				B09E3CD21BBB7B140068DD49 /* AddFavorites@2x.png in Resources */,
 				B04033381BB8220A001A917F /* NavBarIconSearchCircle_blue@2x.png in Resources */,
-				B0781BC41BB9263500933242 /* AddToFavoritesFilled.png in Resources */,
 				B040332E1BB8220A001A917F /* GetLocation@2x.png in Resources */,
 				B0781BD81BB92C7A00933242 /* FavoritesVC.xib in Resources */,
 				B040332F1BB8220A001A917F /* NavBarIconSearch_blue.png in Resources */,
 				B09546F21BB8F16600922945 /* Home@2x.png in Resources */,
+				B09E3CDB1BBB969B0068DD49 /* MarkerATM@2x.png in Resources */,
 				B04033321BB8220A001A917F /* NavBarIconSearch_white@2x.png in Resources */,
-				B0781BC51BB9263500933242 /* AddToFavoritesFilled@2x.png in Resources */,
 				B09546F11BB8F16600922945 /* Home.png in Resources */,
 				B04033341BB8220A001A917F /* NavBarIconSearchBar2_blue@2x.png in Resources */,
 				B040332D1BB8220A001A917F /* GetLocation.png in Resources */,
 				B04033351BB8220A001A917F /* NavBarIconSearchBar_blue.png in Resources */,
+				B09E3CD11BBB7B140068DD49 /* AddFavorites.png in Resources */,
 				B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */,
-				B0781BC21BB9263500933242 /* AddToFavorites.png in Resources */,
 				B09546E71BB8F04800922945 /* Favorite.png in Resources */,
 				B040333A1BB8220A001A917F /* Marker@2x.png in Resources */,
 				B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */,

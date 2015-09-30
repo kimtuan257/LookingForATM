@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addFavoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteFavoriteButton;
 @end
 
 @implementation DetailVC
@@ -38,6 +39,7 @@
     [self directionOnmap];
 }
 
+//Check in coredata atmcurrent has or not
 -(void)viewWillAppear:(BOOL)animated {
     FavoritesVC *favorites = [FavoritesVC new];
     NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
@@ -61,8 +63,11 @@
         }
     }
     if (!flag) {
-        [_addFavoriteButton setImage:[UIImage imageNamed:@"AddToFavoritesFilled.png.png"] forState:UIControlStateNormal];
-        _addFavoriteButton.enabled = NO;
+        [_addFavoriteButton setHidden:YES];
+        [_deleteFavoriteButton setHidden:NO];
+    }else{
+        [_addFavoriteButton setHidden:NO];
+        [_deleteFavoriteButton setHidden:YES];
     }
 }
 
@@ -79,8 +84,31 @@
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Add ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
-    [_addFavoriteButton setImage:[UIImage imageNamed:@"AddToFavoritesFilled.png"] forState:UIControlStateNormal];
-    _addFavoriteButton.enabled = NO;
+    [_addFavoriteButton setHidden:YES];
+    [_deleteFavoriteButton setHidden:NO];
+}
+
+- (IBAction)deleteFavorites:(id)sender {
+    FavoritesVC *favorites = [FavoritesVC new];
+    NSArray *arrayTemp = favorites.fetchFavorite.fetchedObjects;
+    for (int i = 0; i < arrayTemp.count; i++) {
+        ATMFavorites *dataTemp = arrayTemp[i];
+        double latitudeTemp = [dataTemp.latitude doubleValue];
+        double longitudeTemp = [dataTemp.longitude doubleValue];
+        CLLocation *locationTemp = [[CLLocation alloc]initWithLatitude:latitudeTemp longitude:longitudeTemp];
+        
+        CLLocation *locationCurrent = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
+        
+        if ([locationCurrent distanceFromLocation:locationTemp] == 0) {
+            [dataTemp MR_deleteEntity];
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Remove ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [_addFavoriteButton setHidden:NO];
+            [_deleteFavoriteButton setHidden:YES];
+            break;
+        }
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -162,14 +190,14 @@
         
     annotationView.canShowCallout = YES;
     annotationView.draggable = YES;
-    annotationView.image = [UIImage imageNamed:@"Marker.png"];
+    annotationView.image = [UIImage imageNamed:@"MarkerATM.png"];
     
     return annotationView;
 }
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithOverlay:overlay];
-    render.strokeColor = [UIColor blueColor];
+    render.strokeColor = [UIColor greenColor];
     render.lineWidth = 4;
     return render;
 }

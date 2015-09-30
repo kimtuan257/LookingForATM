@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="addFavoriteButton" destination="auP-q8-c3D" id="tb0-Ne-Iof"/>
                 <outlet property="addressLabel" destination="ddc-aY-Tbq" id="S4C-IV-r7k"/>
+                <outlet property="deleteFavoriteButton" destination="Ob5-ec-s3e" id="jM0-I3-v9P"/>
                 <outlet property="distanceLabel" destination="lcv-zh-fFx" id="YDQ-XW-mth"/>
                 <outlet property="mapView" destination="IQN-bZ-Srh" id="yAl-4E-khK"/>
                 <outlet property="nameLabel" destination="kqb-me-AC9" id="r1n-C4-DAC"/>
@@ -37,9 +38,16 @@
                         <constraint firstAttribute="width" constant="24" id="3SX-9Q-mAb"/>
                         <constraint firstAttribute="height" constant="24" id="QYB-1l-ORb"/>
                     </constraints>
-                    <state key="normal" image="AddToFavorites.png"/>
+                    <state key="normal" image="AddFavorites.png"/>
                     <connections>
                         <action selector="addToFavorites:" destination="-1" eventType="touchUpInside" id="lg8-Hy-zCS"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob5-ec-s3e">
+                    <rect key="frame" x="286" y="25" width="24" height="24"/>
+                    <state key="normal" image="DeleteFavorites.png"/>
+                    <connections>
+                        <action selector="deleteFavorites:" destination="-1" eventType="touchUpInside" id="E0B-dB-Wfv"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqb-me-AC9">
@@ -69,6 +77,7 @@
             </subviews>
             <color key="backgroundColor" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="Ob5-ec-s3e" firstAttribute="centerY" secondItem="auP-q8-c3D" secondAttribute="centerY" id="4Hb-ZZ-nVF"/>
                 <constraint firstAttribute="bottom" secondItem="lcv-zh-fFx" secondAttribute="bottom" constant="15" id="4hO-kl-5CL"/>
                 <constraint firstItem="52C-Kb-f6b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="5Od-ZD-Unh"/>
                 <constraint firstItem="auP-q8-c3D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="5ZL-70-Ope"/>
@@ -86,6 +95,7 @@
                 <constraint firstItem="lcv-zh-fFx" firstAttribute="top" secondItem="ddc-aY-Tbq" secondAttribute="bottom" constant="11" id="mZ1-Wy-k3z"/>
                 <constraint firstItem="ddc-aY-Tbq" firstAttribute="top" secondItem="IQN-bZ-Srh" secondAttribute="bottom" constant="15" id="oWD-Ce-sKw"/>
                 <constraint firstAttribute="trailing" secondItem="IQN-bZ-Srh" secondAttribute="trailing" id="xjU-cg-a7H"/>
+                <constraint firstItem="Ob5-ec-s3e" firstAttribute="centerX" secondItem="auP-q8-c3D" secondAttribute="centerX" id="yle-0g-c0l"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -93,7 +103,8 @@
         </view>
     </objects>
     <resources>
-        <image name="AddToFavorites.png" width="24" height="24"/>
+        <image name="AddFavorites.png" width="24" height="24"/>
         <image name="Back.png" width="24" height="24"/>
+        <image name="DeleteFavorites.png" width="24" height="24"/>
     </resources>
 </document>
