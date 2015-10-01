@@ -257,7 +257,9 @@
 
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
     NSString *searchPlace = _searchBarINS.searchField.text;
-    [self findATMWithName:searchPlace];
+    double currentLatitude = _myAppdelegate.currentLocation.coordinate.latitude;
+    double currentLongitude = _myAppdelegate.currentLocation.coordinate.longitude;
+    [self findATMWithName:searchPlace Latitude:currentLatitude Longitude:currentLongitude];
     [_tableView reloadData];
 }
 
@@ -275,11 +277,11 @@
 }
 
 #pragma mark - Parse WebService
--(void)findATMWithName:(NSString*)name {
+-(void)findATMWithName:(NSString*)name Latitude:(double)latitude Longitude:(double)longitude {
     NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
     [_indicatorView setHidden:NO];
     [_indicatorView startAnimating];
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=16.066667,108.23333&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", nameEncoded];
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", latitude, longitude, nameEncoded];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
