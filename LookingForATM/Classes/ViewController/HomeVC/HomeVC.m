@@ -16,6 +16,7 @@
 #import "FavoritesVC.h"
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import <MapKit/MapKit.h>
 #import <MapKit/MKAnnotation.h>
 
@@ -27,7 +28,6 @@
     AppDelegate *_myAppdelegate;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) INSSearchBar *searchBarINS;
@@ -37,17 +37,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
-    [_indicatorView setHidden:YES];
-    [_indicatorView stopAnimating];
     self.navigationController.navigationBarHidden = YES;
+    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
+//    [_indicatorView setHidden:YES];
+//    [_indicatorView stopAnimating];
+    
     [_tableView setHidden:YES];
     [_mapView setHidden:YES];
+    
+    //init Search Bar
     _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
+    
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;
     
@@ -120,6 +124,10 @@
 }
 
 -(IBAction)selectActionPin:(id)sender {
+    //show progressHUD when calculator direction
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD show];
+    
     UIButton *button = (UIButton*)sender;
     Items *item = _mainList[button.tag];
     MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
@@ -144,6 +152,7 @@
             NSLog(@"ERROR!");
             return;
         }
+        [SVProgressHUD dismiss];
         _currentRoute = [response.routes firstObject];
         [self drawRouteOnMap:_currentRoute];
     }];
@@ -279,8 +288,13 @@
 #pragma mark - Parse WebService
 -(void)findATMWithName:(NSString*)name Latitude:(double)latitude Longitude:(double)longitude {
     NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
-    [_indicatorView setHidden:NO];
-    [_indicatorView startAnimating];
+//    [_indicatorView setHidden:NO];
+//    [_indicatorView startAnimating];
+    
+    //show progressHUD
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD show];
+    
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", latitude, longitude, nameEncoded];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -310,15 +324,18 @@
             item.longitude = [longitude doubleValue];
             
             [tempArray addObject:item];
-            [_indicatorView setHidden:YES];
-            [_indicatorView stopAnimating];
+//            [_indicatorView setHidden:YES];
+//            [_indicatorView stopAnimating];
+            
+            //hide progressHUD
+            [SVProgressHUD dismiss];
         }
         _mainList = [NSMutableArray arrayWithArray:tempArray];
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"ERROR!");
-        [_indicatorView setHidden:YES];
-        [_indicatorView startAnimating];
+//        [_indicatorView setHidden:YES];
+//        [_indicatorView startAnimating];
     }];
     [operation start];
 }

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE6F997D06F22C1BAAF01286"
+               BlueprintIdentifier = "A4F1504C41975888C1D530E4"
                BuildableName = "libPods-LookingForATM.a"
                BlueprintName = "Pods-LookingForATM"
                ReferencedContainer = "container:Pods.xcodeproj">

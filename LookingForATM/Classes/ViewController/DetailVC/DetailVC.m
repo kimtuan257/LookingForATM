@@ -117,9 +117,9 @@
 
 -(void)showDetailPlace {
     _nameLabel.text = [NSString stringWithFormat:@"%@", _name];
-    _addressLabel.text = [NSString stringWithFormat:@"Address : %@", _address];
+    _addressLabel.text = [NSString stringWithFormat:@"%@", _address];
     CLLocation *itemLocation = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
-    _distanceLabel.text = [NSString stringWithFormat:@"Distance : %0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
+    _distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
 }
 
 -(void)addPinToMap {
