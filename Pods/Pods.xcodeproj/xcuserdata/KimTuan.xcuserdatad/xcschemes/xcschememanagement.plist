@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,12 +32,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>198FAB6C3A88156965CF9248E54BD1BC</key>
+		<key>0CBC13E5ED62854F3FAD938E8A082D8D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>857DCF1BB09BE400414ADDB08AFFABBB</key>
+		<key>50884CAC9543B1464502A27EC4978F4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5423A39825FF6CB62E43C3D2280C0D4F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD577F8677072D4BAA7B322293A61ACB</key>
+		<key>F866CA3692FDF211569865AE7D1E6B2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

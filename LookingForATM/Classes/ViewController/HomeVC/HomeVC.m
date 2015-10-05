@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (strong, nonatomic) INSSearchBar *searchBarINS;
 @end
 
@@ -41,8 +42,8 @@
     _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
-//    [_indicatorView setHidden:YES];
-//    [_indicatorView stopAnimating];
+    [_indicatorView setHidden:YES];
+    [_indicatorView stopAnimating];
     
     [_tableView setHidden:YES];
     [_mapView setHidden:YES];
@@ -72,6 +73,7 @@
         [_mapView setHidden:NO];
     }
 }
+
 - (IBAction)actionGetLocation:(id)sender {
     [_mapView setHidden:NO];
     _mapView.showsUserLocation = YES;
@@ -121,41 +123,6 @@
     _routeOverlay = route.polyline;
     
     [_mapView addOverlay:_routeOverlay];
-}
-
--(IBAction)selectActionPin:(id)sender {
-    //show progressHUD when calculator direction
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD show];
-    
-    UIButton *button = (UIButton*)sender;
-    Items *item = _mainList[button.tag];
-    MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
-    
-    //location source
-    CLLocation *sourceLocation = _myAppdelegate.currentLocation;
-    CLLocationCoordinate2D sourceCoordinate = CLLocationCoordinate2DMake(sourceLocation.coordinate.latitude, sourceLocation.coordinate.longitude);
-    MKPlacemark *sourcePlacemark = [[MKPlacemark alloc]initWithCoordinate:sourceCoordinate addressDictionary:nil];
-    MKMapItem *source = [[MKMapItem alloc]initWithPlacemark:sourcePlacemark];
-    
-    //location destination
-    CLLocationCoordinate2D destinationCoordinate = CLLocationCoordinate2DMake(item.latitude, item.longitude);
-    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinate addressDictionary:nil];
-    MKMapItem *destination = [[MKMapItem alloc]initWithPlacemark:destinationPlacemark];
-    
-    [directionRequest setSource:source];
-    [directionRequest setDestination:destination];
-    
-    MKDirections *direction = [[MKDirections alloc]initWithRequest:directionRequest];
-    [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-        if (error) {
-            NSLog(@"ERROR!");
-            return;
-        }
-        [SVProgressHUD dismiss];
-        _currentRoute = [response.routes firstObject];
-        [self drawRouteOnMap:_currentRoute];
-    }];
 }
 
 -(IBAction)goToDetail:(id)sender {
@@ -214,6 +181,37 @@
     [_mapView setRegion:region animated:YES];
 }
 
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    FXAnnotation *annotation = view.annotation;
+    [SVProgressHUD showWithStatus:@"Calculating" maskType:SVProgressHUDMaskTypeGradient];
+    MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
+    
+    //location source
+    CLLocation *sourceLocation = _myAppdelegate.currentLocation;
+    CLLocationCoordinate2D sourceCoordinate = CLLocationCoordinate2DMake(sourceLocation.coordinate.latitude, sourceLocation.coordinate.longitude);
+    MKPlacemark *sourcePlacemark = [[MKPlacemark alloc]initWithCoordinate:sourceCoordinate addressDictionary:nil];
+    MKMapItem *source = [[MKMapItem alloc]initWithPlacemark:sourcePlacemark];
+    
+    //location destination
+    CLLocationCoordinate2D destinationCoordinate = CLLocationCoordinate2DMake(annotation.coordinate.latitude, annotation.coordinate.longitude);
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinate addressDictionary:nil];
+    MKMapItem *destination = [[MKMapItem alloc]initWithPlacemark:destinationPlacemark];
+    
+    [directionRequest setSource:source];
+    [directionRequest setDestination:destination];
+    
+    MKDirections *direction = [[MKDirections alloc]initWithRequest:directionRequest];
+    [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"ERROR!");
+            return;
+        }
+        _currentRoute = [response.routes firstObject];
+        [self drawRouteOnMap:_currentRoute];
+        [SVProgressHUD dismiss];
+    }];
+}
+
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -236,15 +234,9 @@
         
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         rightButton.tag = fxAnnotation.index;
-        [rightButton addTarget:self action:@selector(selectActionPin:) forControlEvents:UIControlEventTouchUpInside];
+        [rightButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
         [rightButton setTitle:annotation.title forState:UIControlStateNormal];
         annotationView.rightCalloutAccessoryView = rightButton;
-        annotationView.canShowCallout = YES;
-        
-        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        leftButton.tag = fxAnnotation.index;
-        [leftButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
-        annotationView.leftCalloutAccessoryView = leftButton;
         annotationView.canShowCallout = YES;
     }else{
         [mapView.userLocation setTitle:@"I am here"];
@@ -288,12 +280,8 @@
 #pragma mark - Parse WebService
 -(void)findATMWithName:(NSString*)name Latitude:(double)latitude Longitude:(double)longitude {
     NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
-//    [_indicatorView setHidden:NO];
-//    [_indicatorView startAnimating];
-    
-    //show progressHUD
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD show];
+    [_indicatorView setHidden:NO];
+    [_indicatorView startAnimating];
     
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", latitude, longitude, nameEncoded];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -324,18 +312,13 @@
             item.longitude = [longitude doubleValue];
             
             [tempArray addObject:item];
-//            [_indicatorView setHidden:YES];
-//            [_indicatorView stopAnimating];
-            
-            //hide progressHUD
-            [SVProgressHUD dismiss];
+            [_indicatorView setHidden:YES];
+            [_indicatorView stopAnimating];
         }
         _mainList = [NSMutableArray arrayWithArray:tempArray];
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"ERROR!");
-//        [_indicatorView setHidden:YES];
-//        [_indicatorView startAnimating];
     }];
     [operation start];
 }

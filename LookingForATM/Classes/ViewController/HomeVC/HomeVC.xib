@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC">
             <connections>
+                <outlet property="indicatorView" destination="RcE-wH-387" id="cMf-QV-jPX"/>
                 <outlet property="mapView" destination="MhB-gz-8UD" id="BCU-K4-EPp"/>
                 <outlet property="segmentControl" destination="1jm-6c-qFM" id="6kK-W9-eW9"/>
                 <outlet property="tableView" destination="BC6-cx-FvU" id="uWd-kr-KCG"/>
@@ -62,6 +63,10 @@
                         <outlet property="delegate" destination="-1" id="V6v-aA-n04"/>
                     </connections>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RcE-wH-387">
+                    <rect key="frame" x="142" y="265" width="37" height="37"/>
+                    <color key="color" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MhB-gz-8UD">
                     <rect key="frame" x="0.0" y="93" width="320" height="475"/>
                 </mapView>
@@ -69,12 +74,16 @@
             <color key="backgroundColor" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="3tV-fi-dUx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="5Bc-RG-SCK"/>
+                <constraint firstItem="RcE-wH-387" firstAttribute="top" secondItem="1jm-6c-qFM" secondAttribute="bottom" constant="180" id="6Zb-3c-VSJ"/>
                 <constraint firstItem="MhB-gz-8UD" firstAttribute="top" secondItem="1jm-6c-qFM" secondAttribute="bottom" constant="8" id="CDg-Cp-LB1"/>
                 <constraint firstAttribute="trailing" secondItem="MhB-gz-8UD" secondAttribute="trailing" id="DMm-CB-QNB"/>
+                <constraint firstAttribute="bottom" secondItem="RcE-wH-387" secondAttribute="bottom" constant="266" id="GCv-4i-n7r"/>
                 <constraint firstAttribute="bottom" secondItem="MhB-gz-8UD" secondAttribute="bottom" id="Hmj-4u-Jbd"/>
                 <constraint firstAttribute="trailing" secondItem="BYt-tY-qKm" secondAttribute="trailing" constant="10" id="KBt-WG-aLP"/>
                 <constraint firstItem="MhB-gz-8UD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SW8-1Z-dLJ"/>
+                <constraint firstAttribute="trailing" secondItem="RcE-wH-387" secondAttribute="trailing" constant="141" id="SdI-UD-ghu"/>
                 <constraint firstAttribute="trailing" secondItem="BC6-cx-FvU" secondAttribute="trailing" id="Tu1-Jn-mnZ"/>
+                <constraint firstItem="RcE-wH-387" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="142" id="VwS-lg-7b0"/>
                 <constraint firstItem="BYt-tY-qKm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="b4x-5w-UQy"/>
                 <constraint firstItem="3tV-fi-dUx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="bv6-Wy-xoF"/>
                 <constraint firstItem="1jm-6c-qFM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="57" id="bvC-x6-ghX"/>

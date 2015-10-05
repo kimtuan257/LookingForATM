@@ -116,6 +116,16 @@
 }
 
 -(void)showDetailPlace {
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
+    MKCoordinateRegion region;
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    MKCoordinateSpan          span;
+    span.latitudeDelta      = 0.02;
+    span.longitudeDelta     = 0.02;
+    region.span             = span;
+    [_mapView setRegion:region animated:YES];
+    
     _nameLabel.text = [NSString stringWithFormat:@"%@", _name];
     _addressLabel.text = [NSString stringWithFormat:@"%@", _address];
     CLLocation *itemLocation = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
@@ -164,18 +174,6 @@
 
 
 #pragma mark - MapView Delegate
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
-    MKCoordinateRegion region;
-    region.center.latitude  = location.coordinate.latitude;
-    region.center.longitude = location.coordinate.longitude;
-    MKCoordinateSpan          span;
-    span.latitudeDelta      = 0.02;
-    span.longitudeDelta     = 0.02;
-    region.span             = span;
-    [_mapView setRegion:region animated:YES];
-}
-
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
