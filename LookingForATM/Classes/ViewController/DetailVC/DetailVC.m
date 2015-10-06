@@ -174,6 +174,11 @@
 
 
 #pragma mark - MapView Delegate
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    [self directionOnmap];
+    [self showDetailPlace];
+}
+
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {

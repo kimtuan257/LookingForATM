@@ -42,11 +42,12 @@
     _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
-    [_indicatorView setHidden:YES];
-    [_indicatorView stopAnimating];
     
     [_tableView setHidden:YES];
     [_mapView setHidden:YES];
+    
+    [_indicatorView setHidden:YES];
+    [_indicatorView stopAnimating];
     
     //init Search Bar
     _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34)];
@@ -170,7 +171,7 @@
 
 #pragma mark - MapView Delegate
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    CLLocation *location = _mapView.userLocation.location;
+    CLLocation *location = userLocation.location;
     MKCoordinateRegion region;
     region.center.latitude  = location.coordinate.latitude;
     region.center.longitude = location.coordinate.longitude;
@@ -179,12 +180,15 @@
     span.longitudeDelta     = 0.02;
     region.span             = span;
     [_mapView setRegion:region animated:YES];
+    [self searchBarTextDidChange:_searchBarINS];
+    if (_routeOverlay) {
+        [_mapView removeOverlay:_routeOverlay];
+    }
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     FXAnnotation *annotation = view.annotation;
     [SVProgressHUD showWithStatus:@"Calculating" maskType:SVProgressHUDMaskTypeGradient];
-    MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
     
     //location source
     CLLocation *sourceLocation = _myAppdelegate.currentLocation;
@@ -197,6 +201,7 @@
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinate addressDictionary:nil];
     MKMapItem *destination = [[MKMapItem alloc]initWithPlacemark:destinationPlacemark];
     
+    MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
     [directionRequest setSource:source];
     [directionRequest setDestination:destination];
     
@@ -257,7 +262,7 @@
 }
 
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
-    NSString *searchPlace = _searchBarINS.searchField.text;
+    NSString *searchPlace = searchBar.searchField.text;
     double currentLatitude = _myAppdelegate.currentLocation.coordinate.latitude;
     double currentLongitude = _myAppdelegate.currentLocation.coordinate.longitude;
     [self findATMWithName:searchPlace Latitude:currentLatitude Longitude:currentLongitude];
@@ -265,7 +270,7 @@
 }
 
 -(void)searchBarDidTapReturn:(INSSearchBar *)searchBar {
-    [_searchBarINS.searchField resignFirstResponder];
+    [searchBar.searchField resignFirstResponder];
     [self addPinToMap];
 }
 
@@ -279,10 +284,9 @@
 
 #pragma mark - Parse WebService
 -(void)findATMWithName:(NSString*)name Latitude:(double)latitude Longitude:(double)longitude {
-    NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
     [_indicatorView setHidden:NO];
     [_indicatorView startAnimating];
-    
+    NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", latitude, longitude, nameEncoded];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
