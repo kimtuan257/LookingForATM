@@ -100,7 +100,7 @@
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="2112" y="-174"/>
+            <point key="canvasLocation" x="1607" y="-163"/>
         </view>
     </objects>
     <resources>
