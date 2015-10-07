@@ -10,7 +10,7 @@
 #import "ATMFavorites.h"
 
 @implementation ATMFavoritesModel
-+(NSFetchedResultsController *)fetchDataWithDelegate:(id)delegate {
++(NSFetchedResultsController *)fetchFavoriteWithDelegate:(id)delegate {
     return [ATMFavorites MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"name != nil"] groupBy:nil delegate:delegate];
 }
 @end

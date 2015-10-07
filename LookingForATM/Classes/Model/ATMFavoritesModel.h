@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ATMFavoritesModel : NSObject
-+(NSFetchedResultsController*)fetchDataWithDelegate:(id)delegate;
++(NSFetchedResultsController*)fetchFavoriteWithDelegate:(id)delegate;
 @end

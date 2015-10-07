@@ -11,10 +11,12 @@
 #import "Items.h"
 #import "INSSearchBar.h"
 #import "FXAnnotation.h"
-#import "PlaceHistory.h"
+#import "ATMHistory.h"
 #import "DetailVC.h"
+#import "FavoritesVC.h"
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import <MapKit/MapKit.h>
 #import <MapKit/MKAnnotation.h>
 
@@ -26,9 +28,9 @@
     AppDelegate *_myAppdelegate;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (strong, nonatomic) INSSearchBar *searchBarINS;
 @end
 
@@ -36,17 +38,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
-    [_indicatorView setHidden:YES];
-    [_indicatorView stopAnimating];
     self.navigationController.navigationBarHidden = YES;
+    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
+    
     [_tableView setHidden:YES];
     [_mapView setHidden:YES];
-    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 5, CGRectGetWidth(self.view.bounds) - 70, 34)];
+    
+    [_indicatorView setHidden:YES];
+    [_indicatorView stopAnimating];
+    
+    //init Search Bar
+    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
+    
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;
     
@@ -54,8 +61,8 @@
     _pins = [NSMutableArray new];
 }
 
--(BOOL)prefersStatusBarHidden {
-    return YES;
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (IBAction)segmentAction:(id)sender {
@@ -67,6 +74,7 @@
         [_mapView setHidden:NO];
     }
 }
+
 - (IBAction)actionGetLocation:(id)sender {
     [_mapView setHidden:NO];
     _mapView.showsUserLocation = YES;
@@ -79,6 +87,11 @@
     span.longitudeDelta     = 0.02;
     region.span             = span;
     [_mapView setRegion:region animated:YES];
+}
+
+- (IBAction)goToFavorites:(id)sender {
+    FavoritesVC *favoriteVC = [FavoritesVC new];
+    [self.navigationController pushViewController:favoriteVC animated:YES];
 }
 
 -(void)addPinToMap {
@@ -113,10 +126,69 @@
     [_mapView addOverlay:_routeOverlay];
 }
 
--(IBAction)selectActionPin:(id)sender {
+-(IBAction)goToDetail:(id)sender {
+    ATMHistory *history = [ATMHistory MR_createEntity];
+    DetailVC *detailVC = [DetailVC new];
+    FavoritesVC *favorite = [FavoritesVC new];
     UIButton *button = (UIButton*)sender;
     Items *item = _mainList[button.tag];
-    MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
+    
+    //Check in coredata atmcurrent has or not
+    BOOL flag = YES;
+    for (int i = 0; i < favorite.fetchHistory.fetchedObjects.count; i++) {
+        ATMHistory *dataTemp = favorite.fetchHistory.fetchedObjects[i];
+        
+        //Get location atm in coredata
+        double latitudeATMCoreData = [dataTemp.latitude doubleValue];
+        double longitudeATMCoreData = [dataTemp.longitude doubleValue];
+        CLLocation *locationATMCoreData = [[CLLocation alloc]initWithLatitude:latitudeATMCoreData longitude:longitudeATMCoreData];
+        
+        //Get location atm current
+        double latitudeATMCurrent = item.latitude;
+        double longitudeATMCurrent = item.longitude;
+        CLLocation *locationATMCurrent = [[CLLocation alloc]initWithLatitude:latitudeATMCurrent longitude:longitudeATMCurrent];
+        
+        //Compare location of atm in coredata and current by calculator distance between 2 locations
+        float distance = [locationATMCurrent distanceFromLocation:locationATMCoreData];
+        if (distance == 0) {
+            flag = NO;
+            break;
+        }
+    }
+    if (flag) {
+        history.name = item.name;
+        history.address = item.address;
+        history.latitude = [NSNumber numberWithDouble:item.latitude];
+        history.longitude = [NSNumber numberWithDouble:item.longitude];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    }
+    [self.navigationController pushViewController:detailVC animated:YES];
+    detailVC.name = item.name;
+    detailVC.address = item.address;
+    detailVC.latitude = item.latitude;
+    detailVC.longitude = item.longitude;
+}
+
+#pragma mark - MapView Delegate
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    CLLocation *location = userLocation.location;
+    MKCoordinateRegion region;
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    MKCoordinateSpan          span;
+    span.latitudeDelta      = 0.02;
+    span.longitudeDelta     = 0.02;
+    region.span             = span;
+    [_mapView setRegion:region animated:YES];
+    [self searchBarTextDidChange:_searchBarINS];
+    if (_routeOverlay) {
+        [_mapView removeOverlay:_routeOverlay];
+    }
+}
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    FXAnnotation *annotation = view.annotation;
+    [SVProgressHUD showWithStatus:@"Calculating" maskType:SVProgressHUDMaskTypeGradient];
     
     //location source
     CLLocation *sourceLocation = _myAppdelegate.currentLocation;
@@ -125,10 +197,11 @@
     MKMapItem *source = [[MKMapItem alloc]initWithPlacemark:sourcePlacemark];
     
     //location destination
-    CLLocationCoordinate2D destinationCoordinate = CLLocationCoordinate2DMake(item.latitude, item.longitude);
+    CLLocationCoordinate2D destinationCoordinate = CLLocationCoordinate2DMake(annotation.coordinate.latitude, annotation.coordinate.longitude);
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinate addressDictionary:nil];
     MKMapItem *destination = [[MKMapItem alloc]initWithPlacemark:destinationPlacemark];
     
+    MKDirectionsRequest *directionRequest = [MKDirectionsRequest new];
     [directionRequest setSource:source];
     [directionRequest setDestination:destination];
     
@@ -140,37 +213,8 @@
         }
         _currentRoute = [response.routes firstObject];
         [self drawRouteOnMap:_currentRoute];
+        [SVProgressHUD dismiss];
     }];
-}
-
--(IBAction)goToDetail:(id)sender {
-//    PlaceHistory *history = [PlaceHistory MR_createEntity];
-    DetailVC *detailVC = [DetailVC new];
-    UIButton *button = (UIButton*)sender;
-    Items *item = _mainList[button.tag];
-//    history.name = item.name;
-//    history.address = item.address;
-//    history.latitude = [NSNumber numberWithDouble:item.latitude];
-//    history.longitude = [NSNumber numberWithDouble:item.longitude];
-//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-    [self.navigationController pushViewController:detailVC animated:YES];
-    detailVC.name = item.name;
-    detailVC.address = item.address;
-    detailVC.latitude = item.latitude;
-    detailVC.longitude = item.longitude;
-}
-
-#pragma mark - MapView Delegate
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    CLLocation *location = _mapView.userLocation.location;
-    MKCoordinateRegion region;
-    region.center.latitude  = location.coordinate.latitude;
-    region.center.longitude = location.coordinate.longitude;
-    MKCoordinateSpan          span;
-    span.latitudeDelta      = 0.02;
-    span.longitudeDelta     = 0.02;
-    region.span             = span;
-    [_mapView setRegion:region animated:YES];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -191,19 +235,13 @@
         
         annotationView.canShowCallout = YES;
         annotationView.draggable = YES;
-        annotationView.image = [UIImage imageNamed:@"Marker.png"];
+        annotationView.image = [UIImage imageNamed:@"MarkerATM.png"];
         
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         rightButton.tag = fxAnnotation.index;
-        [rightButton addTarget:self action:@selector(selectActionPin:) forControlEvents:UIControlEventTouchUpInside];
+        [rightButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
         [rightButton setTitle:annotation.title forState:UIControlStateNormal];
         annotationView.rightCalloutAccessoryView = rightButton;
-        annotationView.canShowCallout = YES;
-        
-        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        leftButton.tag = fxAnnotation.index;
-        [leftButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
-        annotationView.leftCalloutAccessoryView = leftButton;
         annotationView.canShowCallout = YES;
     }else{
         [mapView.userLocation setTitle:@"I am here"];
@@ -213,24 +251,26 @@
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithPolyline:overlay];
-    render.strokeColor = [UIColor blueColor];
+    render.strokeColor = [UIColor greenColor];
     render.lineWidth = 4;
     return render;
 }
 
 #pragma mark - Search Bar Delegate
 -(CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
-    return CGRectMake(35, 5, CGRectGetWidth(self.view.bounds) - 70, 34);
+    return CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34);
 }
 
 -(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
-    NSString *searchPlace = _searchBarINS.searchField.text;
-    [self findATMWithName:searchPlace];
+    NSString *searchPlace = searchBar.searchField.text;
+    double currentLatitude = _myAppdelegate.currentLocation.coordinate.latitude;
+    double currentLongitude = _myAppdelegate.currentLocation.coordinate.longitude;
+    [self findATMWithName:searchPlace Latitude:currentLatitude Longitude:currentLongitude];
     [_tableView reloadData];
 }
 
 -(void)searchBarDidTapReturn:(INSSearchBar *)searchBar {
-    [_searchBarINS.searchField resignFirstResponder];
+    [searchBar.searchField resignFirstResponder];
     [self addPinToMap];
 }
 
@@ -243,11 +283,11 @@
 }
 
 #pragma mark - Parse WebService
--(void)findATMWithName:(NSString*)name {
-    NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
+-(void)findATMWithName:(NSString*)name Latitude:(double)latitude Longitude:(double)longitude {
     [_indicatorView setHidden:NO];
     [_indicatorView startAnimating];
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=16.066667,108.23333&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", nameEncoded];
+    NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", latitude, longitude, nameEncoded];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
@@ -283,8 +323,6 @@
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"ERROR!");
-        [_indicatorView setHidden:YES];
-        [_indicatorView startAnimating];
     }];
     [operation start];
 }
@@ -310,14 +348,40 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //Check in coredata atmcurrent has or not
     DetailVC *detailVC = [DetailVC new];
-//    PlaceHistory *history = [PlaceHistory MR_createEntity];
+    ATMHistory *history = [ATMHistory MR_createEntity];
+    FavoritesVC *favorite = [FavoritesVC new];
     Items *item = _mainList[indexPath.row];
-//    history.name = item.name;
-//    history.address = item.address;
-//    history.latitude = [NSNumber numberWithDouble:item.latitude];
-//    history.longitude = [NSNumber numberWithDouble:item.longitude];
-//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    BOOL flag = YES;
+    for (int i = 0; i < favorite.fetchHistory.fetchedObjects.count; i++) {
+        ATMHistory *dataTemp = favorite.fetchHistory.fetchedObjects[i];
+        
+        //Get location of ATM in CoreData
+        double latitudeATMCoreData = [dataTemp.latitude doubleValue];
+        double longitudeATMCoreData = [dataTemp.longitude doubleValue];
+        CLLocation *locationATMCoreData = [[CLLocation alloc]initWithLatitude:latitudeATMCoreData longitude:longitudeATMCoreData];
+        
+        //Get location of ATM current
+        double latitudeATMCurrent = item.latitude;
+        double longitudeATMCurrent = item.longitude;
+        CLLocation *locationATMCurrent = [[CLLocation alloc]initWithLatitude:latitudeATMCurrent longitude:longitudeATMCurrent];
+        
+        //Compare location of ATM in coredata and current by calculator distance between 2 locations
+        float distance = [locationATMCurrent distanceFromLocation:locationATMCoreData];
+        if (distance == 0) {
+            flag = NO;
+            break;
+        }
+    }
+    if (flag) {
+        history.name = item.name;
+        history.address = item.address;
+        history.latitude = [NSNumber numberWithDouble:item.latitude];
+        history.longitude = [NSNumber numberWithDouble:item.longitude];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    }
     [self.navigationController pushViewController:detailVC animated:YES];
     detailVC.name = item.name;
     detailVC.address = item.address;

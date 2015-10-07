@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesVC">
+            <connections>
+                <outlet property="favoritesTableView" destination="dq3-LP-sfY" id="1ur-6X-shl"/>
+                <outlet property="historyTableView" destination="GhF-fC-wAZ" id="QcS-Vb-BSF"/>
+                <outlet property="segmentedControl" destination="8rX-Vv-2xB" id="IDx-7W-h7G"/>
+                <outlet property="titleLabel" destination="XFU-Jv-08X" id="E5e-cV-GGl"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlB-vd-ME0">
+                    <rect key="frame" x="10" y="25" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="SCv-XS-hqf"/>
+                        <constraint firstAttribute="height" constant="24" id="dcA-PT-Weu"/>
+                    </constraints>
+                    <state key="normal" image="Back.png"/>
+                    <connections>
+                        <action selector="backButton:" destination="-1" eventType="touchUpInside" id="fwv-uT-aEN"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFU-Jv-08X">
+                    <rect key="frame" x="42" y="19" width="236" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Ttx-kZ-vh6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dq3-LP-sfY">
+                    <rect key="frame" x="0.0" y="93" width="320" height="475"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="qMD-Ip-a4y"/>
+                        <outlet property="delegate" destination="-1" id="LvK-RE-BgK"/>
+                    </connections>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GhF-fC-wAZ">
+                    <rect key="frame" x="0.0" y="93" width="320" height="475"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="bi4-Qq-65t"/>
+                        <outlet property="delegate" destination="-1" id="tnn-Vu-5IL"/>
+                    </connections>
+                </tableView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8rX-Vv-2xB">
+                    <rect key="frame" x="8" y="57" width="304" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="ebu-io-Pzv"/>
+                    </constraints>
+                    <segments>
+                        <segment title="HISTORY"/>
+                        <segment title="FAVORITES"/>
+                    </segments>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="segmentAction:" destination="-1" eventType="valueChanged" id="Ft7-9Q-uRW"/>
+                    </connections>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="8rX-Vv-2xB" secondAttribute="trailing" constant="8" id="1f1-aG-IXo"/>
+                <constraint firstItem="8rX-Vv-2xB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="4ee-2K-ePQ"/>
+                <constraint firstItem="8rX-Vv-2xB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="57" id="AgO-4S-3QL"/>
+                <constraint firstAttribute="bottom" secondItem="GhF-fC-wAZ" secondAttribute="bottom" id="Ayy-w7-LWC"/>
+                <constraint firstItem="MlB-vd-ME0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Bs2-0m-gkg"/>
+                <constraint firstItem="MlB-vd-ME0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="GvB-PJ-zO0"/>
+                <constraint firstItem="XFU-Jv-08X" firstAttribute="leading" secondItem="MlB-vd-ME0" secondAttribute="trailing" constant="8" id="IUB-dM-Pxp"/>
+                <constraint firstAttribute="trailing" secondItem="dq3-LP-sfY" secondAttribute="trailing" id="Pul-7H-rZR"/>
+                <constraint firstItem="dq3-LP-sfY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QCd-C2-e9s"/>
+                <constraint firstAttribute="bottom" secondItem="dq3-LP-sfY" secondAttribute="bottom" id="UOP-I9-eX6"/>
+                <constraint firstItem="GhF-fC-wAZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bKq-qM-Bn5"/>
+                <constraint firstAttribute="trailing" secondItem="XFU-Jv-08X" secondAttribute="trailing" constant="42" id="foS-0T-E4a"/>
+                <constraint firstItem="dq3-LP-sfY" firstAttribute="top" secondItem="8rX-Vv-2xB" secondAttribute="bottom" constant="8" id="hKP-t0-3di"/>
+                <constraint firstItem="XFU-Jv-08X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="19" id="nTZ-7O-ys9"/>
+                <constraint firstAttribute="trailing" secondItem="GhF-fC-wAZ" secondAttribute="trailing" id="uhi-mb-g57"/>
+                <constraint firstItem="GhF-fC-wAZ" firstAttribute="top" secondItem="8rX-Vv-2xB" secondAttribute="bottom" constant="8" id="wBS-v9-bn6"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="1462" y="81"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Back.png" width="24" height="24"/>
+    </resources>
+</document>

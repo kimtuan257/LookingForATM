@@ -26,6 +26,9 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
     
     //get current location
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        [self openSetting];
+    }
     _locationManager = [CLLocationManager new];
     _locationManager.delegate = self;
     if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
@@ -36,6 +39,31 @@
     [_locationManager startUpdatingLocation];
     
     return YES;
+}
+
+-(void)openSetting {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+        UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"This app does not have access to Location service"
+                                                        message:@"You can enable access in Settings"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert1 show];
+    }else{
+        UIAlertView *alert2 = [[UIAlertView alloc]initWithTitle:@"This app does not have access to Location service"
+                                                        message:@"You can enable access in Settings"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:@"Settings", nil];
+        alert2.tag = 121;
+        [alert2 show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 121 && buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {

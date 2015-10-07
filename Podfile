@@ -4,6 +4,7 @@ platform :ios, '8.0'
 target 'LookingForATM' do
 pod "AFNetworking", "~> 2.0"
 pod "MagicalRecord"
+pod "SVProgressHUD"
 end
 
 target 'LookingForATMTests' do

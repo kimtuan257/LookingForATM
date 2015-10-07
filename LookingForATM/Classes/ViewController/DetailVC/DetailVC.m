@@ -9,6 +9,8 @@
 #import "DetailVC.h"
 #import "AppDelegate.h"
 #import "FXAnnotation.h"
+#import "ATMFavorites.h"
+#import "FavoritesVC.h"
 #import <MapKit/MapKit.h>
 
 @interface DetailVC ()<MKMapViewDelegate> {
@@ -20,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addFavoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteFavoriteButton;
 @end
 
 @implementation DetailVC
@@ -35,23 +39,97 @@
     [self directionOnmap];
 }
 
-- (IBAction)backHomeVC:(id)sender {
+//Check in coredata atmcurrent has or not
+-(void)viewWillAppear:(BOOL)animated {
+    FavoritesVC *favorites = [FavoritesVC new];
+    NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
+    BOOL flag = YES;
+    for (int i = 0; i < tempArray.count; i++) {
+        ATMFavorites *dataTemp = tempArray[i];
+        
+        //Get location of atm current
+        CLLocation *locationATMCurrent = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
+        
+        //Get location of atm in coredata
+        double latitudeATMCoreData = [dataTemp.latitude doubleValue];
+        double longitudeATMCoreData = [dataTemp.longitude doubleValue];
+        CLLocation *locationATMCoreData = [[CLLocation alloc]initWithLatitude:latitudeATMCoreData longitude:longitudeATMCoreData];
+        
+        //Compare 2 locatios by calculator distance between 2 locations
+        float distance = [locationATMCurrent distanceFromLocation:locationATMCoreData];
+        if (distance == 0) {
+            flag = NO;
+            break;
+        }
+    }
+    if (!flag) {
+        [_addFavoriteButton setHidden:YES];
+        [_deleteFavoriteButton setHidden:NO];
+    }else{
+        [_addFavoriteButton setHidden:NO];
+        [_deleteFavoriteButton setHidden:YES];
+    }
+}
+
+- (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)addToFavorites:(id)sender {
-    
+    ATMFavorites *atm = [ATMFavorites MR_createEntity];
+    atm.name = _name;
+    atm.address = _address;
+    atm.latitude = [NSNumber numberWithDouble:_latitude];
+    atm.longitude = [NSNumber numberWithDouble:_longitude];
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Add ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [_addFavoriteButton setHidden:YES];
+    [_deleteFavoriteButton setHidden:NO];
 }
 
--(BOOL)prefersStatusBarHidden {
-    return YES;
+- (IBAction)deleteFavorites:(id)sender {
+    FavoritesVC *favorites = [FavoritesVC new];
+    NSArray *arrayTemp = favorites.fetchFavorite.fetchedObjects;
+    for (int i = 0; i < arrayTemp.count; i++) {
+        ATMFavorites *dataTemp = arrayTemp[i];
+        double latitudeTemp = [dataTemp.latitude doubleValue];
+        double longitudeTemp = [dataTemp.longitude doubleValue];
+        CLLocation *locationTemp = [[CLLocation alloc]initWithLatitude:latitudeTemp longitude:longitudeTemp];
+        
+        CLLocation *locationCurrent = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
+        
+        if ([locationCurrent distanceFromLocation:locationTemp] == 0) {
+            [dataTemp MR_deleteEntity];
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Remove ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [_addFavoriteButton setHidden:NO];
+            [_deleteFavoriteButton setHidden:YES];
+            break;
+        }
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 -(void)showDetailPlace {
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
+    MKCoordinateRegion region;
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    MKCoordinateSpan          span;
+    span.latitudeDelta      = 0.02;
+    span.longitudeDelta     = 0.02;
+    region.span             = span;
+    [_mapView setRegion:region animated:YES];
+    
     _nameLabel.text = [NSString stringWithFormat:@"%@", _name];
-    _addressLabel.text = [NSString stringWithFormat:@"Address : %@", _address];
+    _addressLabel.text = [NSString stringWithFormat:@"%@", _address];
     CLLocation *itemLocation = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
-    _distanceLabel.text = [NSString stringWithFormat:@"Distance : %0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
+    _distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
 }
 
 -(void)addPinToMap {
@@ -97,15 +175,8 @@
 
 #pragma mark - MapView Delegate
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
-    MKCoordinateRegion region;
-    region.center.latitude  = location.coordinate.latitude;
-    region.center.longitude = location.coordinate.longitude;
-    MKCoordinateSpan          span;
-    span.latitudeDelta      = 0.02;
-    span.longitudeDelta     = 0.02;
-    region.span             = span;
-    [_mapView setRegion:region animated:YES];
+    [self directionOnmap];
+    [self showDetailPlace];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -122,14 +193,14 @@
         
     annotationView.canShowCallout = YES;
     annotationView.draggable = YES;
-    annotationView.image = [UIImage imageNamed:@"Marker.png"];
+    annotationView.image = [UIImage imageNamed:@"MarkerATM.png"];
     
     return annotationView;
 }
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithOverlay:overlay];
-    render.strokeColor = [UIColor blueColor];
+    render.strokeColor = [UIColor greenColor];
     render.lineWidth = 4;
     return render;
 }
