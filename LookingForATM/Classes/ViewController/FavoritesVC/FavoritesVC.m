@@ -65,7 +65,7 @@
 }
 
 #pragma mark - getter ATMFavoritesModel
--(NSFetchedResultsController*)fetchFavorite {
+- (NSFetchedResultsController*)fetchFavorite {
     if (!_fetchFavorite) {
         _fetchFavorite = [ATMFavoritesModel fetchFavoriteWithDelegate:self];
     }
@@ -73,7 +73,7 @@
 }
 
 #pragma mark - getter ATMHistoryModel
--(NSFetchedResultsController*)fetchHistory {
+- (NSFetchedResultsController*)fetchHistory {
     if (!_fetchHistory) {
         _fetchHistory = [ATMHistoryModel fetchHistoryWithDelegate:self];
     }
@@ -81,19 +81,19 @@
 }
 
 #pragma mark - NSFetchResultController
--(void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [_favoritesTableView reloadData];
     [_historyTableView reloadData];
 }
 
 #pragma mark - Location Manager Delegate
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     [_historyTableView reloadData];
     [_favoritesTableView reloadData];
 }
 
 #pragma mark - TableView DataSource and Delegate
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.favoritesTableView) {
         return self.fetchFavorite.fetchedObjects.count;
     }else{
@@ -101,7 +101,7 @@
     }
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell" forIndexPath:indexPath];
     if (tableView == _favoritesTableView) {
         ATMFavorites *favorites = self.fetchFavorite.fetchedObjects[indexPath.row];
@@ -124,11 +124,11 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;
 }
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _favoritesTableView) {
         ATMFavorites *favorites = self.fetchFavorite.fetchedObjects[indexPath.row];
         [favorites MR_deleteEntity];
@@ -142,7 +142,7 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _favoritesTableView) {
         [_favoritesTableView deselectRowAtIndexPath:indexPath animated:YES];
         DetailVC *vc = [DetailVC new];

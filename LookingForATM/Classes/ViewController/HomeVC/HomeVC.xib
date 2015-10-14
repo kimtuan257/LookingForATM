@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC">
             <connections>
-                <outlet property="indicatorView" destination="RcE-wH-387" id="cMf-QV-jPX"/>
+                <outlet property="indicatorView" destination="RcE-wH-387" id="xWs-ic-eg2"/>
                 <outlet property="mapView" destination="MhB-gz-8UD" id="BCU-K4-EPp"/>
                 <outlet property="segmentControl" destination="1jm-6c-qFM" id="6kK-W9-eW9"/>
                 <outlet property="tableView" destination="BC6-cx-FvU" id="uWd-kr-KCG"/>

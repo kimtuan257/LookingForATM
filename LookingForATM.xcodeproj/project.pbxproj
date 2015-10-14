@@ -50,6 +50,7 @@
 		B0781BD81BB92C7A00933242 /* FavoritesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0781BD61BB92C7A00933242 /* FavoritesVC.xib */; settings = {ASSET_TAGS = (); }; };
 		B07E6D021BB7D72A00623AC0 /* DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B07E6D001BB7D72A00623AC0 /* DetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B07E6D011BB7D72A00623AC0 /* DetailVC.xib */; settings = {ASSET_TAGS = (); }; };
+		B0867BD91BCDFE85005974CF /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = B0867BD81BCDFE85005974CF /* WebService.m */; settings = {ASSET_TAGS = (); }; };
 		B08F89E11BB78AAC004D7107 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F89E01BB78AAC004D7107 /* CoreData.framework */; };
 		B0C3644E1BB130AA0015A975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3644D1BB130AA0015A975 /* main.m */; };
 		B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C364581BB130AA0015A975 /* Assets.xcassets */; };
@@ -133,6 +134,8 @@
 		B07E6CFF1BB7D72A00623AC0 /* DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVC.h; sourceTree = "<group>"; };
 		B07E6D001BB7D72A00623AC0 /* DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVC.m; sourceTree = "<group>"; };
 		B07E6D011BB7D72A00623AC0 /* DetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
+		B0867BD71BCDFE85005974CF /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
+		B0867BD81BCDFE85005974CF /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		B08F89E01BB78AAC004D7107 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B08F89ED1BB792AD004D7107 /* LookingForATM.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookingForATM.pch; sourceTree = SOURCE_ROOT; };
 		B0C364491BB130AA0015A975 /* LookingForATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookingForATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -324,6 +327,8 @@
 		B023E5AA1BCDED4D004BCD7B /* WebService */ = {
 			isa = PBXGroup;
 			children = (
+				B0867BD71BCDFE85005974CF /* WebService.h */,
+				B0867BD81BCDFE85005974CF /* WebService.m */,
 			);
 			path = WebService;
 			sourceTree = "<group>";
@@ -708,6 +713,7 @@
 				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
 				B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */,
 				B0C364951BB13C190015A975 /* Items.m in Sources */,
+				B0867BD91BCDFE85005974CF /* WebService.m in Sources */,
 				B023E5B01BCDEDF0004BCD7B /* ATMHistory.m in Sources */,
 				B023E5AF1BCDEDF0004BCD7B /* ATMFavorites.m in Sources */,
 				B023E5A41BCDED04004BCD7B /* FavoritesATM.xcdatamodeld in Sources */,

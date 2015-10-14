@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ATMHistoryModel : NSObject
-+(NSFetchedResultsController*)fetchHistoryWithDelegate:(id)delegate;
++ (NSFetchedResultsController*)fetchHistoryWithDelegate:(id)delegate;
 @end

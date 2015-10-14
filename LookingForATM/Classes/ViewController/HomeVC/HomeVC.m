@@ -15,17 +15,19 @@
 #import "DetailVC.h"
 #import "FavoritesVC.h"
 #import "AppDelegate.h"
+#import "WebService.h"
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <MapKit/MapKit.h>
 #import <MapKit/MKAnnotation.h>
 
-@interface HomeVC ()<UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, INSSearchBarDelegate> {
+@interface HomeVC ()<UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, INSSearchBarDelegate, WebServiceDelegate> {
     NSMutableArray *_mainList;
     NSMutableArray *_pins;
     MKPolyline *_routeOverlay;
     MKRoute *_currentRoute;
     AppDelegate *_myAppdelegate;
+    WebService *_loadDataWebService;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -94,7 +96,7 @@
     [self.navigationController pushViewController:favoriteVC animated:YES];
 }
 
--(void)addPinToMap {
+- (void)addPinToMap {
     if (_pins) {
         //remove all overlay and annotation
         [_mapView removeOverlay:_routeOverlay];
@@ -117,7 +119,7 @@
     [_mapView addAnnotations:_pins];
 }
 
--(void)drawRouteOnMap: (MKRoute*)route {
+- (void)drawRouteOnMap: (MKRoute*)route {
     if (_routeOverlay) {
         [_mapView removeOverlay:_routeOverlay];
     }
@@ -126,7 +128,7 @@
     [_mapView addOverlay:_routeOverlay];
 }
 
--(IBAction)goToDetail:(id)sender {
+- (IBAction)goToDetail:(id)sender {
     ATMHistory *history = [ATMHistory MR_createEntity];
     DetailVC *detailVC = [DetailVC new];
     FavoritesVC *favorite = [FavoritesVC new];
@@ -170,7 +172,7 @@
 }
 
 #pragma mark - MapView Delegate
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     CLLocation *location = userLocation.location;
     MKCoordinateRegion region;
     region.center.latitude  = location.coordinate.latitude;
@@ -186,7 +188,7 @@
     }
 }
 
--(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     FXAnnotation *annotation = view.annotation;
     [SVProgressHUD showWithStatus:@"Calculating" maskType:SVProgressHUDMaskTypeGradient];
     
@@ -217,7 +219,7 @@
     }];
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
@@ -249,104 +251,71 @@
     return annotationView;
 }
 
--(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithPolyline:overlay];
     render.strokeColor = [UIColor greenColor];
-    render.lineWidth = 4;
+    render.lineWidth = 3;
     return render;
 }
 
-#pragma mark - Search Bar Delegate
--(CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
-    return CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34);
-}
-
--(void)searchBarTextDidChange:(INSSearchBar *)searchBar {
-    NSString *searchPlace = searchBar.searchField.text;
-    double currentLatitude = _myAppdelegate.currentLocation.coordinate.latitude;
-    double currentLongitude = _myAppdelegate.currentLocation.coordinate.longitude;
-    [self findATMWithName:searchPlace Latitude:currentLatitude Longitude:currentLongitude];
+#pragma mark - WebService Delegate
+- (void)sendListATMDelegate:(NSMutableArray *)listATM {
+    [_mainList removeAllObjects];
+    _mainList = [NSMutableArray arrayWithArray:listATM];
     [_tableView reloadData];
 }
 
--(void)searchBarDidTapReturn:(INSSearchBar *)searchBar {
+#pragma mark - Search Bar Delegate
+- (CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
+    return CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34);
+}
+
+- (void)searchBarTextDidChange:(INSSearchBar *)searchBar {
+    [_indicatorView setHidden:NO];
+    [_indicatorView startAnimating];
+    NSString *searchText = searchBar.searchField.text;
+    double currentLatitude = _myAppdelegate.currentLocation.coordinate.latitude;
+    double currentLongitude = _myAppdelegate.currentLocation.coordinate.longitude;
+    _loadDataWebService = [WebService new];
+    _loadDataWebService.delegate = self;
+    [_loadDataWebService findATMWithName:searchText latitude:currentLatitude longitude:currentLongitude];
+}
+
+- (void)searchBarDidTapReturn:(INSSearchBar *)searchBar {
     [searchBar.searchField resignFirstResponder];
     [self addPinToMap];
 }
 
--(void)searchBar:(INSSearchBar *)searchBar willStartTransitioningToState:(INSSearchBarState)destinationState {
+- (void)searchBar:(INSSearchBar *)searchBar willStartTransitioningToState:(INSSearchBarState)destinationState {
     
 }
 
--(void)searchBar:(INSSearchBar *)searchBar didEndTransitioningFromState:(INSSearchBarState)previousState {
+- (void)searchBar:(INSSearchBar *)searchBar didEndTransitioningFromState:(INSSearchBarState)previousState {
     
-}
-
-#pragma mark - Parse WebService
--(void)findATMWithName:(NSString*)name Latitude:(double)latitude Longitude:(double)longitude {
-    [_indicatorView setHidden:NO];
-    [_indicatorView startAnimating];
-    NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//encoding UTF8 "dong a->dong%20a"
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", latitude, longitude, nameEncoded];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableArray *tempArray = [NSMutableArray new];
-        NSDictionary *dic = (NSDictionary*)(responseObject);
-        NSArray *results = [dic objectForKey:@"results"];
-        for (NSDictionary *objectResult in results) {
-            Items *item = [Items new];
-            
-            //parse name's bank atm
-            NSString *name = [objectResult objectForKey:@"name"];
-            item.name = name;
-            
-            //parse address atm
-            NSString *address = [objectResult objectForKey:@"vicinity"];
-            item.address = address;
-            
-            //parse location atm
-            NSDictionary *geometry = [objectResult objectForKey:@"geometry"];
-            NSDictionary *location = [geometry objectForKey:@"location"];
-            NSString *latitude = [location objectForKey:@"lat"];
-            NSString *longitude = [location objectForKey:@"lng"];
-            item.latitude = [latitude doubleValue];
-            item.longitude = [longitude doubleValue];
-            
-            [tempArray addObject:item];
-            [_indicatorView setHidden:YES];
-            [_indicatorView stopAnimating];
-        }
-        _mainList = [NSMutableArray arrayWithArray:tempArray];
-        [_tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"ERROR!");
-    }];
-    [operation start];
 }
 
 #pragma mark - TableViewDelegate and TableViewDataSource
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _mainList.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell" forIndexPath:indexPath];
     Items *item = _mainList[indexPath.row];
     cell.nameLabel.text = item.name;
     cell.addressLabel.text = item.address;
     CLLocation *itemLocation = [[CLLocation alloc]initWithLatitude:item.latitude longitude:item.longitude];
     cell.distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
+    [_indicatorView setHidden:YES];
+    [_indicatorView stopAnimating];
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     //Check in coredata atmcurrent has or not

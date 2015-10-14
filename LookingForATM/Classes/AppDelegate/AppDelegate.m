@@ -41,7 +41,7 @@
     return YES;
 }
 
--(void)openSetting {
+- (void)openSetting {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
         UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"This app does not have access to Location service"
                                                         message:@"You can enable access in Settings"
@@ -60,13 +60,13 @@
     }
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 121 && buttonIndex == 1) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     _currentLocation = newLocation;
 }
 

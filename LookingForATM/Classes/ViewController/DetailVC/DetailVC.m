@@ -40,7 +40,7 @@
 }
 
 //Check in coredata atmcurrent has or not
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     FavoritesVC *favorites = [FavoritesVC new];
     NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
     BOOL flag = YES;
@@ -115,7 +115,7 @@
     return UIStatusBarStyleLightContent;
 }
 
--(void)showDetailPlace {
+- (void)showDetailPlace {
     CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
     MKCoordinateRegion region;
     region.center.latitude  = location.coordinate.latitude;
@@ -132,7 +132,7 @@
     _distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
 }
 
--(void)addPinToMap {
+- (void)addPinToMap {
     FXAnnotation *pin = [FXAnnotation new];
     pin.title = _name;
     pin.subtitle = _address;
@@ -140,7 +140,7 @@
     [_mapView addAnnotation:pin];
 }
 
--(void)drawRouteOnMap:(MKRoute*)route {
+- (void)drawRouteOnMap:(MKRoute*)route {
     if (_routeOverlay) {
         [_mapView removeOverlay:_routeOverlay];
     }
@@ -148,7 +148,7 @@
     [_mapView addOverlay:_routeOverlay];
 }
 
--(void)directionOnmap {
+- (void)directionOnmap {
     CLLocation *currentLocation = _myAppdelegate.currentLocation;
     CLLocationCoordinate2D currentCoord = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
     MKPlacemark *currentPlacemark = [[MKPlacemark alloc]initWithCoordinate:currentCoord addressDictionary:nil];
@@ -174,12 +174,12 @@
 
 
 #pragma mark - MapView Delegate
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     [self directionOnmap];
     [self showDetailPlace];
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
@@ -198,10 +198,10 @@
     return annotationView;
 }
 
--(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithOverlay:overlay];
     render.strokeColor = [UIColor greenColor];
-    render.lineWidth = 4;
+    render.lineWidth = 3;
     return render;
 }
 
