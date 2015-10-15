@@ -14,6 +14,7 @@
 // cac property bat buoc
 @property (nonatomic, copy) NSString                    *title;
 @property (nonatomic, copy) NSString                    *subtitle;
+@property (nonatomic, copy) NSString                    *type;
 @property (nonatomic, assign) CLLocationCoordinate2D    coordinate;
 
 // cac property tu them vao

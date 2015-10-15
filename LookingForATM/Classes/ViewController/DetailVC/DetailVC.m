@@ -28,10 +28,12 @@
 
 @implementation DetailVC
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    _myAppdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
     [self showDetailPlace];
@@ -44,7 +46,8 @@
     FavoritesVC *favorites = [FavoritesVC new];
     NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
     BOOL flag = YES;
-    for (int i = 0; i < tempArray.count; i++) {
+    NSInteger tempArrayCount = [tempArray count];
+    for (int i = 0; i < tempArrayCount; i++) {
         ATMFavorites *dataTemp = tempArray[i];
         
         //Get location of atm current
@@ -65,11 +68,17 @@
     if (!flag) {
         [_addFavoriteButton setHidden:YES];
         [_deleteFavoriteButton setHidden:NO];
-    }else{
+    } else {
         [_addFavoriteButton setHidden:NO];
         [_deleteFavoriteButton setHidden:YES];
     }
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - IBActions
 
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -90,9 +99,10 @@
 
 - (IBAction)deleteFavorites:(id)sender {
     FavoritesVC *favorites = [FavoritesVC new];
-    NSArray *arrayTemp = favorites.fetchFavorite.fetchedObjects;
-    for (int i = 0; i < arrayTemp.count; i++) {
-        ATMFavorites *dataTemp = arrayTemp[i];
+    NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
+    NSInteger tempArrayCount = [tempArray count];
+    for (int i = 0; i < tempArrayCount; i++) {
+        ATMFavorites *dataTemp = tempArray[i];
         double latitudeTemp = [dataTemp.latitude doubleValue];
         double longitudeTemp = [dataTemp.longitude doubleValue];
         CLLocation *locationTemp = [[CLLocation alloc]initWithLatitude:latitudeTemp longitude:longitudeTemp];
@@ -111,9 +121,7 @@
     }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+#pragma mark - Private
 
 - (void)showDetailPlace {
     CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
@@ -172,8 +180,8 @@
     }];
 }
 
+#pragma mark - MKMapViewDelegate
 
-#pragma mark - MapView Delegate
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     [self directionOnmap];
     [self showDetailPlace];

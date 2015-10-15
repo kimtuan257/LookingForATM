@@ -29,11 +29,13 @@
 
 @implementation FavoritesVC
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_titleLabel setText:@"ATM Searched"];
     [_favoritesTableView setHidden:YES];
-    _myAppDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    _myAppDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [_favoritesTableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
     [_historyTableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
     
@@ -48,12 +50,14 @@
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark - IBActions
+
 - (IBAction)segmentAction:(id)sender {
     if (_segmentedControl.selectedSegmentIndex == 0) {
         [_titleLabel setText:@"ATM Searched"];
         [_historyTableView setHidden:NO];
         [_favoritesTableView setHidden:YES];
-    }else{
+    } else {
         [_titleLabel setText:@"ATM Favorites"];
         [_historyTableView setHidden:YES];
         [_favoritesTableView setHidden:NO];
@@ -65,6 +69,7 @@
 }
 
 #pragma mark - getter ATMFavoritesModel
+
 - (NSFetchedResultsController*)fetchFavorite {
     if (!_fetchFavorite) {
         _fetchFavorite = [ATMFavoritesModel fetchFavoriteWithDelegate:self];
@@ -73,6 +78,7 @@
 }
 
 #pragma mark - getter ATMHistoryModel
+
 - (NSFetchedResultsController*)fetchHistory {
     if (!_fetchHistory) {
         _fetchHistory = [ATMHistoryModel fetchHistoryWithDelegate:self];
@@ -81,23 +87,26 @@
 }
 
 #pragma mark - NSFetchResultController
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [_favoritesTableView reloadData];
     [_historyTableView reloadData];
 }
 
-#pragma mark - Location Manager Delegate
+#pragma mark - CLLocationManagerDelegate
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     [_historyTableView reloadData];
     [_favoritesTableView reloadData];
 }
 
-#pragma mark - TableView DataSource and Delegate
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.favoritesTableView) {
-        return self.fetchFavorite.fetchedObjects.count;
-    }else{
-        return self.fetchHistory.fetchedObjects.count;
+        return [self.fetchFavorite.fetchedObjects count];
+    } else {
+        return [self.fetchHistory.fetchedObjects count];
     }
 }
 
@@ -112,7 +121,7 @@
         CLLocation *atmLocation = [[CLLocation alloc]initWithLatitude:atmLatitude longitude:atmLongitude];
         cell.distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppDelegate.currentLocation distanceFromLocation:atmLocation]/1000];
         return cell;
-    }else{
+    } else {
         ATMHistory *history = self.fetchHistory.fetchedObjects[indexPath.row];
         cell.nameLabel.text = history.name;
         cell.addressLabel.text = history.address;
@@ -124,22 +133,24 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 90;
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _favoritesTableView) {
         ATMFavorites *favorites = self.fetchFavorite.fetchedObjects[indexPath.row];
         [favorites MR_deleteEntity];
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [_favoritesTableView reloadData];
-    }else{
+    } else {
         ATMHistory *history = self.fetchHistory.fetchedObjects[indexPath.row];
         [history MR_deleteEntity];
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [_historyTableView reloadData];
     }
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 90;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -152,7 +163,7 @@
         vc.address = favorite.address;
         vc.latitude = [favorite.latitude doubleValue];
         vc.longitude = [favorite.longitude doubleValue];
-    }else{
+    } else {
         [_historyTableView deselectRowAtIndexPath:indexPath animated:YES];
         DetailVC *vc = [DetailVC new];
         ATMHistory *history = self.fetchHistory.fetchedObjects[indexPath.row];

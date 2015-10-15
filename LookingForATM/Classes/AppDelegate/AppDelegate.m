@@ -49,7 +49,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil, nil];
         [alert1 show];
-    }else{
+    } else {
         UIAlertView *alert2 = [[UIAlertView alloc]initWithTitle:@"This app does not have access to Location service"
                                                         message:@"You can enable access in Settings"
                                                        delegate:self

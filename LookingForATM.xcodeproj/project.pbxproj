@@ -44,6 +44,9 @@
 		B041820E1BB3FEA900F367BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B041820D1BB3FEA900F367BA /* MapKit.framework */; };
 		B04182111BB3FFC000F367BA /* FXAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B04182101BB3FFC000F367BA /* FXAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B04867791BB23E0E007FB1C8 /* INSSearchBar.m */; settings = {ASSET_TAGS = (); }; };
+		B065DCBD1BCF4AAA001D2A19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B065DCB91BCF4AAA001D2A19 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
+		B065DCBE1BCF4AAA001D2A19 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B065DCBA1BCF4AAA001D2A19 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		B065DCBF1BCF4AAA001D2A19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B065DCBC1BCF4AAA001D2A19 /* main.m */; settings = {ASSET_TAGS = (); }; };
 		B06DE0851BB9712300BBA378 /* ATMHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B06DE0841BB9712300BBA378 /* ATMHistoryModel.m */; settings = {ASSET_TAGS = (); }; };
 		B0781BD11BB928EA00933242 /* ATMFavoritesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BD01BB928EA00933242 /* ATMFavoritesModel.m */; settings = {ASSET_TAGS = (); }; };
 		B0781BD71BB92C7A00933242 /* FavoritesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0781BD51BB92C7A00933242 /* FavoritesVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -52,8 +55,8 @@
 		B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B07E6D011BB7D72A00623AC0 /* DetailVC.xib */; settings = {ASSET_TAGS = (); }; };
 		B0867BD91BCDFE85005974CF /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = B0867BD81BCDFE85005974CF /* WebService.m */; settings = {ASSET_TAGS = (); }; };
 		B08F89E11BB78AAC004D7107 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F89E01BB78AAC004D7107 /* CoreData.framework */; };
-		B0C3644E1BB130AA0015A975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3644D1BB130AA0015A975 /* main.m */; };
-		B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C364581BB130AA0015A975 /* Assets.xcassets */; };
+		B0A5E9311BCF8896007D8A77 /* MarkerCurrent.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5E92F1BCF8896007D8A77 /* MarkerCurrent.png */; settings = {ASSET_TAGS = (); }; };
+		B0A5E9321BCF8896007D8A77 /* MarkerCurrent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A5E9301BCF8896007D8A77 /* MarkerCurrent@2x.png */; settings = {ASSET_TAGS = (); }; };
 		B0C364671BB130AA0015A975 /* LookingForATMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364661BB130AA0015A975 /* LookingForATMTests.m */; };
 		B0C364721BB130AA0015A975 /* LookingForATMUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364711BB130AA0015A975 /* LookingForATMUITests.m */; };
 		B0C3648B1BB133310015A975 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364891BB133310015A975 /* HomeVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -124,6 +127,10 @@
 		B04182101BB3FFC000F367BA /* FXAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXAnnotation.m; sourceTree = "<group>"; };
 		B04867781BB23E0E007FB1C8 /* INSSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSSearchBar.h; sourceTree = "<group>"; };
 		B04867791BB23E0E007FB1C8 /* INSSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSSearchBar.m; sourceTree = "<group>"; };
+		B065DCB91BCF4AAA001D2A19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B065DCBA1BCF4AAA001D2A19 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B065DCBB1BCF4AAA001D2A19 /* LookingForATM.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookingForATM.pch; sourceTree = "<group>"; };
+		B065DCBC1BCF4AAA001D2A19 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B06DE0831BB9712300BBA378 /* ATMHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHistoryModel.h; sourceTree = "<group>"; };
 		B06DE0841BB9712300BBA378 /* ATMHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHistoryModel.m; sourceTree = "<group>"; };
 		B0781BCF1BB928EA00933242 /* ATMFavoritesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMFavoritesModel.h; sourceTree = "<group>"; };
@@ -137,11 +144,9 @@
 		B0867BD71BCDFE85005974CF /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		B0867BD81BCDFE85005974CF /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		B08F89E01BB78AAC004D7107 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B08F89ED1BB792AD004D7107 /* LookingForATM.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookingForATM.pch; sourceTree = SOURCE_ROOT; };
+		B0A5E92F1BCF8896007D8A77 /* MarkerCurrent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarkerCurrent.png; sourceTree = "<group>"; };
+		B0A5E9301BCF8896007D8A77 /* MarkerCurrent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkerCurrent@2x.png"; sourceTree = "<group>"; };
 		B0C364491BB130AA0015A975 /* LookingForATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookingForATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0C3644D1BB130AA0015A975 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B0C364581BB130AA0015A975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B0C3645D1BB130AA0015A975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0C364621BB130AA0015A975 /* LookingForATMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LookingForATMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C364661BB130AA0015A975 /* LookingForATMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookingForATMTests.m; sourceTree = "<group>"; };
 		B0C364681BB130AA0015A975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -201,6 +206,10 @@
 			isa = PBXGroup;
 			children = (
 				B023E5621BCDECB9004BCD7B /* Image */,
+				B065DCB91BCF4AAA001D2A19 /* Assets.xcassets */,
+				B065DCBA1BCF4AAA001D2A19 /* Info.plist */,
+				B065DCBB1BCF4AAA001D2A19 /* LookingForATM.pch */,
+				B065DCBC1BCF4AAA001D2A19 /* main.m */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -298,6 +307,8 @@
 				B023E5821BCDECB9004BCD7B /* Marker@2x.png */,
 				B023E5831BCDECB9004BCD7B /* MarkerATM.png */,
 				B023E5841BCDECB9004BCD7B /* MarkerATM@2x.png */,
+				B0A5E92F1BCF8896007D8A77 /* MarkerCurrent.png */,
+				B0A5E9301BCF8896007D8A77 /* MarkerCurrent@2x.png */,
 			);
 			path = Marker;
 			sourceTree = "<group>";
@@ -397,9 +408,6 @@
 			children = (
 				B0C3647F1BB131320015A975 /* Classes */,
 				B023E5611BCDECB9004BCD7B /* Resources */,
-				B0C364581BB130AA0015A975 /* Assets.xcassets */,
-				B0C3645D1BB130AA0015A975 /* Info.plist */,
-				B08F89ED1BB792AD004D7107 /* LookingForATM.pch */,
 				B0C3644C1BB130AA0015A975 /* Supporting Files */,
 				B023E5B11BCDEEF1004BCD7B /* Base.lproj */,
 			);
@@ -409,7 +417,6 @@
 		B0C3644C1BB130AA0015A975 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B0C3644D1BB130AA0015A975 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -626,14 +633,17 @@
 				B023E5931BCDECB9004BCD7B /* NavBarIconSearch_white.png in Resources */,
 				B023E59B1BCDECB9004BCD7B /* Marker.png in Resources */,
 				B023E58A1BCDECB9004BCD7B /* DeleteFavorites@2x.png in Resources */,
+				B065DCBE1BCF4AAA001D2A19 /* Info.plist in Resources */,
 				B023E5911BCDECB9004BCD7B /* NavBarIconSearch_blue.png in Resources */,
 				B023E5B41BCDEEF1004BCD7B /* LaunchScreen.storyboard in Resources */,
 				B023E58C1BCDECB9004BCD7B /* Favorite@2x.png in Resources */,
 				B023E59A1BCDECB9004BCD7B /* NavBarIconSearchCircle_blue@2x.png in Resources */,
 				B023E5941BCDECB9004BCD7B /* NavBarIconSearch_white@2x.png in Resources */,
 				B023E5851BCDECB9004BCD7B /* AddFavorites.png in Resources */,
+				B0A5E9311BCF8896007D8A77 /* MarkerCurrent.png in Resources */,
 				B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */,
 				B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */,
+				B0A5E9321BCF8896007D8A77 /* MarkerCurrent@2x.png in Resources */,
 				B023E58E1BCDECB9004BCD7B /* GetLocation@2x.png in Resources */,
 				B023E59E1BCDECB9004BCD7B /* MarkerATM@2x.png in Resources */,
 				B023E5861BCDECB9004BCD7B /* AddFavorites@2x.png in Resources */,
@@ -647,8 +657,8 @@
 				B023E5881BCDECB9004BCD7B /* Back@2x.png in Resources */,
 				B023E58B1BCDECB9004BCD7B /* Favorite.png in Resources */,
 				B023E5991BCDECB9004BCD7B /* NavBarIconSearchCircle_blue.png in Resources */,
-				B0C364591BB130AA0015A975 /* Assets.xcassets in Resources */,
 				B07E6D031BB7D72A00623AC0 /* DetailVC.xib in Resources */,
+				B065DCBD1BCF4AAA001D2A19 /* Assets.xcassets in Resources */,
 				B023E5901BCDECB9004BCD7B /* Home@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,6 +723,7 @@
 				B0C3648B1BB133310015A975 /* HomeVC.m in Sources */,
 				B048677A1BB23E0E007FB1C8 /* INSSearchBar.m in Sources */,
 				B0C364951BB13C190015A975 /* Items.m in Sources */,
+				B065DCBF1BCF4AAA001D2A19 /* main.m in Sources */,
 				B0867BD91BCDFE85005974CF /* WebService.m in Sources */,
 				B023E5B01BCDEDF0004BCD7B /* ATMHistory.m in Sources */,
 				B023E5AF1BCDEDF0004BCD7B /* ATMFavorites.m in Sources */,
@@ -720,7 +731,6 @@
 				B0C364911BB1389E0015A975 /* HomeCell.m in Sources */,
 				B023E5A51BCDED04004BCD7B /* HistoryATM.xcdatamodeld in Sources */,
 				B06DE0851BB9712300BBA378 /* ATMHistoryModel.m in Sources */,
-				B0C3644E1BB130AA0015A975 /* main.m in Sources */,
 				B0781BD71BB92C7A00933242 /* FavoritesVC.m in Sources */,
 				B023E5A91BCDED11004BCD7B /* AppDelegate.m in Sources */,
 			);
@@ -855,8 +865,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/KimTuan/Desktop/LookingForATM/LookingForATM.pch;
-				INFOPLIST_FILE = LookingForATM/Info.plist;
+				GCC_PREFIX_HEADER = LookingForATM/Resources/LookingForATM.pch;
+				INFOPLIST_FILE = LookingForATM/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATM;
@@ -870,8 +880,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/KimTuan/Desktop/LookingForATM/LookingForATM.pch;
-				INFOPLIST_FILE = LookingForATM/Info.plist;
+				GCC_PREFIX_HEADER = LookingForATM/Resources/LookingForATM.pch;
+				INFOPLIST_FILE = LookingForATM/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.LookingForATM;

@@ -28,6 +28,7 @@
     MKRoute *_currentRoute;
     AppDelegate *_myAppdelegate;
     WebService *_loadDataWebService;
+    FXAnnotation *_pickAnnotation;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -38,10 +39,12 @@
 
 @implementation HomeVC
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
-    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    _myAppdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [_tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
     
@@ -61,17 +64,23 @@
     
     //init array annotation
     _pins = [NSMutableArray new];
+    
+    _pickAnnotation = [FXAnnotation new];
+    
+    [self getLocationByTouchOnMap];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark - IBActions
+
 - (IBAction)segmentAction:(id)sender {
     if (_segmentControl.selectedSegmentIndex == 1) {
         [_mapView setHidden:YES];
         [_tableView setHidden:NO];
-    }else{
+    } else {
         [_tableView setHidden:YES];
         [_mapView setHidden:NO];
     }
@@ -94,38 +103,6 @@
 - (IBAction)goToFavorites:(id)sender {
     FavoritesVC *favoriteVC = [FavoritesVC new];
     [self.navigationController pushViewController:favoriteVC animated:YES];
-}
-
-- (void)addPinToMap {
-    if (_pins) {
-        //remove all overlay and annotation
-        [_mapView removeOverlay:_routeOverlay];
-        [_mapView removeAnnotations:_pins];
-        
-        //remove old object in array pins
-        [_pins removeAllObjects];
-    }
-    for (int i = 0; i < _mainList.count; i++) {
-        FXAnnotation *pin = [FXAnnotation new];
-        Items *item = _mainList[i];
-        pin.title = item.name;
-        pin.subtitle = item.address;
-        pin.coordinate = CLLocationCoordinate2DMake(item.latitude, item.longitude);
-        pin.index = i;
-        
-        [_pins addObject:pin];
-    }
-    //add annotation for map
-    [_mapView addAnnotations:_pins];
-}
-
-- (void)drawRouteOnMap: (MKRoute*)route {
-    if (_routeOverlay) {
-        [_mapView removeOverlay:_routeOverlay];
-    }
-    _routeOverlay = route.polyline;
-    
-    [_mapView addOverlay:_routeOverlay];
 }
 
 - (IBAction)goToDetail:(id)sender {
@@ -171,7 +148,68 @@
     detailVC.longitude = item.longitude;
 }
 
-#pragma mark - MapView Delegate
+#pragma mark - Private Method
+
+- (void)addPinToMap {
+    if (_pins) {
+        //remove all overlay and annotation
+        [_mapView removeOverlay:_routeOverlay];
+        [_mapView removeAnnotations:_pins];
+        
+        //remove old object in array pins
+        [_pins removeAllObjects];
+    }
+    for (int i = 0; i < _mainList.count; i++) {
+        FXAnnotation *pin = [FXAnnotation new];
+        Items *item = _mainList[i];
+        pin.title = item.name;
+        pin.subtitle = item.address;
+        pin.coordinate = CLLocationCoordinate2DMake(item.latitude, item.longitude);
+        pin.type = item.type;
+        pin.index = i;
+        
+        [_pins addObject:pin];
+    }
+    //add annotation for map
+    [_mapView addAnnotations:_pins];
+}
+
+- (void)drawRouteOnMap: (MKRoute*)route {
+    if (_routeOverlay) {
+        [_mapView removeOverlay:_routeOverlay];
+    }
+    _routeOverlay = route.polyline;
+    
+    [_mapView addOverlay:_routeOverlay];
+}
+
+- (void)getLocationByTouchOnMap {
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 0.5;
+    [_mapView addGestureRecognizer:longPress];
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer .state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+    CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
+    if (_pickAnnotation) {
+        [_mapView removeAnnotation:_pickAnnotation];
+    }
+    _pickAnnotation.coordinate = touchMapCoordinate;
+    NSString *searchPlace = _searchBarINS.searchField.text;
+    _loadDataWebService = [WebService new];
+    _loadDataWebService.delegate = self;
+    [_loadDataWebService findATMWithName:searchPlace latitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
+    [_mapView addAnnotation:_pickAnnotation];
+    [SVProgressHUD showWithStatus:@"Searching ATM" maskType:SVProgressHUDMaskTypeGradient];
+}
+
+#pragma mark - MKMapViewDelegate
+
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     CLLocation *location = userLocation.location;
     MKCoordinateRegion region;
@@ -190,10 +228,15 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     FXAnnotation *annotation = view.annotation;
-    [SVProgressHUD showWithStatus:@"Calculating" maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Calculating direction" maskType:SVProgressHUDMaskTypeGradient];
     
     //location source
-    CLLocation *sourceLocation = _myAppdelegate.currentLocation;
+    CLLocation *sourceLocation;
+    if (_myAppdelegate.currentLocation) {
+        sourceLocation = _myAppdelegate.currentLocation;
+    } else {
+        sourceLocation = [[CLLocation alloc] initWithLatitude:_pickAnnotation.coordinate.latitude longitude:_pickAnnotation.coordinate.longitude];
+    }
     CLLocationCoordinate2D sourceCoordinate = CLLocationCoordinate2DMake(sourceLocation.coordinate.latitude, sourceLocation.coordinate.longitude);
     MKPlacemark *sourcePlacemark = [[MKPlacemark alloc]initWithCoordinate:sourceCoordinate addressDictionary:nil];
     MKMapItem *source = [[MKMapItem alloc]initWithPlacemark:sourcePlacemark];
@@ -211,6 +254,13 @@
     [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         if (error) {
             NSLog(@"ERROR!");
+            [SVProgressHUD dismiss];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING"
+                                                            message:@"ERROR"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
             return;
         }
         _currentRoute = [response.routes firstObject];
@@ -220,32 +270,41 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
+    MKAnnotationView *annotationView = [[MKAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
     //check use location pin
     if(annotation != mapView.userLocation) {
         FXAnnotation *fxAnnotation = (FXAnnotation*)annotation;
-        // set reuseable
-        static NSString *defaultPinID = @"mypin";
-        
-        annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
-        if (!annotationView){
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID];
+        if ([fxAnnotation.type isEqualToString:@"atm"]) {
+            // set reuseable
+            static NSString *atmPinID = @"atmpin";
+            
+            annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:atmPinID];
+            if (!annotationView){
+                annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:atmPinID];
+            }
+            
+            annotationView.canShowCallout = YES;
+            annotationView.draggable = YES;
+            annotationView.image = [UIImage imageNamed:@"MarkerATM.png"];
+            
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            rightButton.tag = fxAnnotation.index;
+            [rightButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
+            [rightButton setTitle:annotation.title forState:UIControlStateNormal];
+            annotationView.rightCalloutAccessoryView = rightButton;
+            annotationView.canShowCallout = YES;
+        } else {
+            static NSString *pickPinID = @"pickpin";
+            annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pickPinID];
+            if (!annotationView) {
+                annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pickPinID];
+            }
+            annotationView.image = [UIImage imageNamed:@"MarkerCurrent.png"];
         }
-        
-        annotationView.canShowCallout = YES;
-        annotationView.draggable = YES;
-        annotationView.image = [UIImage imageNamed:@"MarkerATM.png"];
-        
-        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        rightButton.tag = fxAnnotation.index;
-        [rightButton addTarget:self action:@selector(goToDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [rightButton setTitle:annotation.title forState:UIControlStateNormal];
-        annotationView.rightCalloutAccessoryView = rightButton;
-        annotationView.canShowCallout = YES;
-    }else{
+    } else {
         [mapView.userLocation setTitle:@"I am here"];
     }
     return annotationView;
@@ -258,14 +317,14 @@
     return render;
 }
 
-#pragma mark - WebService Delegate
+#pragma mark - WebServiceDelegate
 - (void)sendListATMDelegate:(NSMutableArray *)listATM {
     [_mainList removeAllObjects];
     _mainList = [NSMutableArray arrayWithArray:listATM];
     [_tableView reloadData];
 }
 
-#pragma mark - Search Bar Delegate
+#pragma mark - INSSearchBarDelegate
 - (CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
     return CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34);
 }
@@ -294,9 +353,10 @@
     
 }
 
-#pragma mark - TableViewDelegate and TableViewDataSource
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _mainList.count;
+    return [_mainList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -308,8 +368,12 @@
     cell.distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
     [_indicatorView setHidden:YES];
     [_indicatorView stopAnimating];
+    [self addPinToMap];
+    [SVProgressHUD dismiss];
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;

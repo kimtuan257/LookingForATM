@@ -11,6 +11,7 @@
 @interface Items : NSObject
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *address;
+@property (strong, nonatomic) NSString *type;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @end
