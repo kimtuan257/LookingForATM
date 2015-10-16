@@ -98,6 +98,7 @@
     span.longitudeDelta     = 0.02;
     region.span             = span;
     [_mapView setRegion:region animated:YES];
+    [self searchBarTextDidChange:_searchBarINS];
 }
 
 - (IBAction)goToFavorites:(id)sender {
@@ -191,7 +192,7 @@
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer .state != UIGestureRecognizerStateBegan) {
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
         return;
     }
     CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
@@ -231,18 +232,13 @@
     [SVProgressHUD showWithStatus:@"Calculating direction" maskType:SVProgressHUDMaskTypeGradient];
     
     //location source
-    CLLocation *sourceLocation;
-    if (_myAppdelegate.currentLocation) {
-        sourceLocation = _myAppdelegate.currentLocation;
-    } else {
-        sourceLocation = [[CLLocation alloc] initWithLatitude:_pickAnnotation.coordinate.latitude longitude:_pickAnnotation.coordinate.longitude];
-    }
-    CLLocationCoordinate2D sourceCoordinate = CLLocationCoordinate2DMake(sourceLocation.coordinate.latitude, sourceLocation.coordinate.longitude);
+    CLLocation *sourceLocation = _myAppdelegate.currentLocation;
+    CLLocationCoordinate2D sourceCoordinate = sourceLocation.coordinate;
     MKPlacemark *sourcePlacemark = [[MKPlacemark alloc]initWithCoordinate:sourceCoordinate addressDictionary:nil];
     MKMapItem *source = [[MKMapItem alloc]initWithPlacemark:sourcePlacemark];
     
     //location destination
-    CLLocationCoordinate2D destinationCoordinate = CLLocationCoordinate2DMake(annotation.coordinate.latitude, annotation.coordinate.longitude);
+    CLLocationCoordinate2D destinationCoordinate = annotation.coordinate;
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinate addressDictionary:nil];
     MKMapItem *destination = [[MKMapItem alloc]initWithPlacemark:destinationPlacemark];
     
@@ -253,10 +249,9 @@
     MKDirections *direction = [[MKDirections alloc]initWithRequest:directionRequest];
     [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         if (error) {
-            NSLog(@"ERROR!");
             [SVProgressHUD dismiss];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING"
-                                                            message:@"ERROR"
+                                                            message:@"Error not found direction"
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil, nil];
