@@ -15,6 +15,7 @@
 #pragma mark - Public
 
 - (void)findATMWithName:(NSString *)name latitude:(double)latitude longitude:(double)longitude {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&types=atm&name=%@&key=AIzaSyADSGUtQ4ssp4Z6pszLMcpL24W3eobN8jo", latitude, longitude, nameEncoded];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -48,6 +49,7 @@
             [arrayPlace addObject:item];
         }
         [_delegate sendListATMDelegate:arrayPlace];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"ERROR!");
     }];

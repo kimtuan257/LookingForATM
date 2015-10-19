@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C3334F5A26E3D248FF1DAFD"
-               BuildableName = "libPods-LookingForATM.a"
-               BlueprintName = "Pods-LookingForATM"
+               BlueprintIdentifier = "032ACBB532C4FCFF088BFBAB"
+               BuildableName = "libDZNEmptyDataSet.a"
+               BlueprintName = "DZNEmptyDataSet"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

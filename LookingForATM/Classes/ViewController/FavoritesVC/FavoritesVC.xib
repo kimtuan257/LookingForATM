@@ -57,9 +57,6 @@
                 </tableView>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8rX-Vv-2xB">
                     <rect key="frame" x="8" y="57" width="304" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="ebu-io-Pzv"/>
-                    </constraints>
                     <segments>
                         <segment title="HISTORY"/>
                         <segment title="FAVORITES"/>

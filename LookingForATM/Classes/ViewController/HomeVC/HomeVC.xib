@@ -43,9 +43,6 @@
                 </button>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1jm-6c-qFM">
                     <rect key="frame" x="8" y="57" width="304" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="JHQ-SQ-nJU"/>
-                    </constraints>
                     <segments>
                         <segment title="MAP"/>
                         <segment title="LIST"/>
@@ -74,20 +71,19 @@
             <color key="backgroundColor" red="0.33354592910000003" green="0.74942488510000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="3tV-fi-dUx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="5Bc-RG-SCK"/>
-                <constraint firstItem="RcE-wH-387" firstAttribute="top" secondItem="1jm-6c-qFM" secondAttribute="bottom" constant="180" id="6Zb-3c-VSJ"/>
+                <constraint firstItem="BC6-cx-FvU" firstAttribute="top" secondItem="RcE-wH-387" secondAttribute="bottom" constant="-209" id="8qB-se-bd4"/>
                 <constraint firstItem="MhB-gz-8UD" firstAttribute="top" secondItem="1jm-6c-qFM" secondAttribute="bottom" constant="8" id="CDg-Cp-LB1"/>
                 <constraint firstAttribute="trailing" secondItem="MhB-gz-8UD" secondAttribute="trailing" id="DMm-CB-QNB"/>
-                <constraint firstAttribute="bottom" secondItem="RcE-wH-387" secondAttribute="bottom" constant="266" id="GCv-4i-n7r"/>
                 <constraint firstAttribute="bottom" secondItem="MhB-gz-8UD" secondAttribute="bottom" id="Hmj-4u-Jbd"/>
                 <constraint firstAttribute="trailing" secondItem="BYt-tY-qKm" secondAttribute="trailing" constant="10" id="KBt-WG-aLP"/>
                 <constraint firstItem="MhB-gz-8UD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SW8-1Z-dLJ"/>
-                <constraint firstAttribute="trailing" secondItem="RcE-wH-387" secondAttribute="trailing" constant="141" id="SdI-UD-ghu"/>
                 <constraint firstAttribute="trailing" secondItem="BC6-cx-FvU" secondAttribute="trailing" id="Tu1-Jn-mnZ"/>
-                <constraint firstItem="RcE-wH-387" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="142" id="VwS-lg-7b0"/>
                 <constraint firstItem="BYt-tY-qKm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="b4x-5w-UQy"/>
                 <constraint firstItem="3tV-fi-dUx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="bv6-Wy-xoF"/>
                 <constraint firstItem="1jm-6c-qFM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="57" id="bvC-x6-ghX"/>
                 <constraint firstItem="BC6-cx-FvU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jCJ-rf-IYG"/>
+                <constraint firstItem="RcE-wH-387" firstAttribute="centerX" secondItem="BC6-cx-FvU" secondAttribute="centerX" id="kZh-Iv-pfH"/>
+                <constraint firstItem="MhB-gz-8UD" firstAttribute="top" secondItem="BC6-cx-FvU" secondAttribute="top" id="nMH-Mm-RZY"/>
                 <constraint firstAttribute="bottom" secondItem="BC6-cx-FvU" secondAttribute="bottom" id="qz5-hd-0dJ"/>
                 <constraint firstItem="1jm-6c-qFM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="t4m-JD-wSt"/>
                 <constraint firstItem="BC6-cx-FvU" firstAttribute="top" secondItem="1jm-6c-qFM" secondAttribute="bottom" constant="8" id="uF7-W7-kjV"/>
@@ -95,6 +91,11 @@
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="CDg-Cp-LB1"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="1351" y="-140"/>
         </view>
     </objects>

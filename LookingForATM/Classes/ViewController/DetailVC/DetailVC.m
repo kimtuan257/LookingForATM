@@ -91,7 +91,11 @@
     atm.latitude = [NSNumber numberWithDouble:_latitude];
     atm.longitude = [NSNumber numberWithDouble:_longitude];
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Add ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE"
+                                                   message:@"Add ATM to Favorites success"
+                                                  delegate:self
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil, nil];
     [alert show];
     [_addFavoriteButton setHidden:YES];
     [_deleteFavoriteButton setHidden:NO];
@@ -112,7 +116,11 @@
         if ([locationCurrent distanceFromLocation:locationTemp] == 0) {
             [dataTemp MR_deleteEntity];
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Remove ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE"
+                                                           message:@"Remove ATM to Favorites success"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil, nil];
             [alert show];
             [_addFavoriteButton setHidden:NO];
             [_deleteFavoriteButton setHidden:YES];
@@ -125,14 +133,7 @@
 
 - (void)showDetailPlace {
     CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
-    MKCoordinateRegion region;
-    region.center.latitude  = location.coordinate.latitude;
-    region.center.longitude = location.coordinate.longitude;
-    MKCoordinateSpan          span;
-    span.latitudeDelta      = 0.02;
-    span.longitudeDelta     = 0.02;
-    region.span             = span;
-    [_mapView setRegion:region animated:YES];
+    [self zoomMapAndCenterAtLocation:location span:0.02];
     
     _nameLabel.text = [NSString stringWithFormat:@"%@", _name];
     _addressLabel.text = [NSString stringWithFormat:@"%@", _address];
@@ -178,6 +179,21 @@
         _currentRoute = [response.routes firstObject];
         [self drawRouteOnMap:_currentRoute];
     }];
+}
+
+#pragma mark - MAP
+
+- (void)zoomMapAndCenterAtLocation:(CLLocation *)location span:(float)span {
+    MKCoordinateRegion region;
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    
+    MKCoordinateSpan coordSpan;
+    coordSpan.latitudeDelta  = span;
+    coordSpan.longitudeDelta = span;
+    
+    region.span = coordSpan;
+    [_mapView setRegion:region animated:YES];
 }
 
 #pragma mark - MKMapViewDelegate

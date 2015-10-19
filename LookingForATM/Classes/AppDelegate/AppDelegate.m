@@ -34,7 +34,7 @@
     if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [_locationManager requestWhenInUseAuthorization];
     }
-    _locationManager.distanceFilter = 10;//10 met
+    _locationManager.distanceFilter = 10;//10 met update 1 lan
     _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;//do chinh xac gan 10 met
     [_locationManager startUpdatingLocation];
     

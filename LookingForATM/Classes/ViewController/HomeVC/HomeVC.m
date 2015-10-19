@@ -55,7 +55,9 @@
     [_indicatorView stopAnimating];
     
     //init Search Bar
-    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34)];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    _searchBarINS = [[INSSearchBar alloc]initWithFrame:CGRectMake(35, 20, screenWidth - 70, 34)];
     [self.view addSubview:_searchBarINS];
     _searchBarINS.delegate = self;
     
@@ -90,14 +92,7 @@
     [_mapView setHidden:NO];
     _mapView.showsUserLocation = YES;
     CLLocation *location = _mapView.userLocation.location;
-    MKCoordinateRegion region;
-    region.center.latitude  = location.coordinate.latitude;
-    region.center.longitude = location.coordinate.longitude;
-    MKCoordinateSpan          span;
-    span.latitudeDelta      = 0.02;
-    span.longitudeDelta     = 0.02;
-    region.span             = span;
-    [_mapView setRegion:region animated:YES];
+    [self zoomMapAndCenterAtLocation:location span:0.02];
     [self searchBarTextDidChange:_searchBarINS];
 }
 
@@ -209,18 +204,27 @@
     [SVProgressHUD showWithStatus:@"Searching ATM" maskType:SVProgressHUDMaskTypeGradient];
 }
 
+#pragma mark - MAP
+
+- (void)zoomMapAndCenterAtLocation:(CLLocation *)location span:(float)span {
+    MKCoordinateRegion region;
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    
+    MKCoordinateSpan coordSpan;
+    coordSpan.latitudeDelta  = span;
+    coordSpan.longitudeDelta = span;
+    
+    region.span = coordSpan;
+    
+    [_mapView setRegion:region animated:YES];
+}
+
 #pragma mark - MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     CLLocation *location = userLocation.location;
-    MKCoordinateRegion region;
-    region.center.latitude  = location.coordinate.latitude;
-    region.center.longitude = location.coordinate.longitude;
-    MKCoordinateSpan          span;
-    span.latitudeDelta      = 0.02;
-    span.longitudeDelta     = 0.02;
-    region.span             = span;
-    [_mapView setRegion:region animated:YES];
+    [self zoomMapAndCenterAtLocation:location span:0.02];
     [self searchBarTextDidChange:_searchBarINS];
     if (_routeOverlay) {
         [_mapView removeOverlay:_routeOverlay];
@@ -321,7 +325,9 @@
 
 #pragma mark - INSSearchBarDelegate
 - (CGRect)destinationFrameForSearchBar:(INSSearchBar *)searchBar {
-    return CGRectMake(35, 20, CGRectGetWidth(self.view.bounds) - 70, 34);
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    return CGRectMake(35, 20, screenWidth - 70, 34);
 }
 
 - (void)searchBarTextDidChange:(INSSearchBar *)searchBar {

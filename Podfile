@@ -5,6 +5,7 @@ target 'LookingForATM' do
 pod "AFNetworking", "~> 2.0"
 pod "MagicalRecord"
 pod "SVProgressHUD"
+pod "DZNEmptyDataSet"
 end
 
 target 'LookingForATMTests' do
