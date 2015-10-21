@@ -16,8 +16,9 @@
 #import "AppDelegate.h"
 #import "DetailVC.h"
 #import <CoreLocation/CoreLocation.h>
+#import <UIScrollView+EmptyDataSet.h>
 
-@interface FavoritesVC ()<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate> {
+@interface FavoritesVC ()<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource> {
     AppDelegate *_myAppDelegate;
     CLLocationManager *_locationManager;
 }
@@ -44,6 +45,14 @@
     _locationManager.distanceFilter = 10;//10 met
     _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;//do chinh xac gan 10 met
     [_locationManager startUpdatingLocation];
+    
+    self.favoritesTableView.emptyDataSetDelegate = self;
+    self.favoritesTableView.emptyDataSetSource = self;
+    self.favoritesTableView.tableFooterView = [UIView new];
+    
+    self.historyTableView.emptyDataSetSource = self;
+    self.historyTableView.emptyDataSetDelegate = self;
+    self.historyTableView.tableFooterView = [UIView new];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -98,6 +107,45 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     [_historyTableView reloadData];
     [_favoritesTableView reloadData];
+}
+
+#pragma mark - DZNDataSetSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"NO DATA";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"List ATM is empty";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"FavoritesEmpty.png"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIColor whiteColor];
+}
+
+#pragma mark - DZNDataSetDelegate
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    return YES;
 }
 
 #pragma mark - UITableViewDataSource

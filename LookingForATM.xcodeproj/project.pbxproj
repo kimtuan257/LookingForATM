@@ -64,6 +64,8 @@
 		B0C364911BB1389E0015A975 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3648F1BB1389E0015A975 /* HomeCell.m */; settings = {ASSET_TAGS = (); }; };
 		B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0C364901BB1389E0015A975 /* HomeCell.xib */; settings = {ASSET_TAGS = (); }; };
 		B0C364951BB13C190015A975 /* Items.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C364941BB13C190015A975 /* Items.m */; settings = {ASSET_TAGS = (); }; };
+		B0DCEBE41BD5E5EE0060C4A0 /* FavoritesEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DCEBE21BD5E5EE0060C4A0 /* FavoritesEmpty.png */; settings = {ASSET_TAGS = (); }; };
+		B0DCEBE51BD5E5EE0060C4A0 /* FavoritesEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DCEBE31BD5E5EE0060C4A0 /* FavoritesEmpty@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +163,8 @@
 		B0C364901BB1389E0015A975 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		B0C364931BB13C190015A975 /* Items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Items.h; sourceTree = "<group>"; };
 		B0C364941BB13C190015A975 /* Items.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Items.m; sourceTree = "<group>"; };
+		B0DCEBE21BD5E5EE0060C4A0 /* FavoritesEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoritesEmpty.png; sourceTree = "<group>"; };
+		B0DCEBE31BD5E5EE0060C4A0 /* FavoritesEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FavoritesEmpty@2x.png"; sourceTree = "<group>"; };
 		B7FCC0B2C10F948A6C1B7388 /* Pods-LookingForATM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LookingForATM.release.xcconfig"; path = "Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +225,7 @@
 				B023E5661BCDECB9004BCD7B /* Back */,
 				B023E5691BCDECB9004BCD7B /* DeleteFavorite */,
 				B023E56C1BCDECB9004BCD7B /* Favorites */,
+				B0DCEBE11BD5E5EE0060C4A0 /* FavoritesEmpty */,
 				B023E56F1BCDECB9004BCD7B /* GetLocation */,
 				B023E5721BCDECB9004BCD7B /* Home */,
 				B023E5751BCDECB9004BCD7B /* INSSearchBar */,
@@ -506,6 +511,15 @@
 			path = HomeCell;
 			sourceTree = "<group>";
 		};
+		B0DCEBE11BD5E5EE0060C4A0 /* FavoritesEmpty */ = {
+			isa = PBXGroup;
+			children = (
+				B0DCEBE21BD5E5EE0060C4A0 /* FavoritesEmpty.png */,
+				B0DCEBE31BD5E5EE0060C4A0 /* FavoritesEmpty@2x.png */,
+			);
+			path = FavoritesEmpty;
+			sourceTree = "<group>";
+		};
 		E1DD3180525FC4EBC300CAFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +543,7 @@
 				B0C364461BB130AA0015A975 /* Frameworks */,
 				B0C364471BB130AA0015A975 /* Resources */,
 				26660C0008428DEEF96B6486 /* Copy Pods Resources */,
+				1F90FF471CE7F6650F9A0783 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -635,11 +650,13 @@
 				B023E58A1BCDECB9004BCD7B /* DeleteFavorites@2x.png in Resources */,
 				B065DCBE1BCF4AAA001D2A19 /* Info.plist in Resources */,
 				B023E5911BCDECB9004BCD7B /* NavBarIconSearch_blue.png in Resources */,
+				B0DCEBE51BD5E5EE0060C4A0 /* FavoritesEmpty@2x.png in Resources */,
 				B023E5B41BCDEEF1004BCD7B /* LaunchScreen.storyboard in Resources */,
 				B023E58C1BCDECB9004BCD7B /* Favorite@2x.png in Resources */,
 				B023E59A1BCDECB9004BCD7B /* NavBarIconSearchCircle_blue@2x.png in Resources */,
 				B023E5941BCDECB9004BCD7B /* NavBarIconSearch_white@2x.png in Resources */,
 				B023E5851BCDECB9004BCD7B /* AddFavorites.png in Resources */,
+				B0DCEBE41BD5E5EE0060C4A0 /* FavoritesEmpty.png in Resources */,
 				B0A5E9311BCF8896007D8A77 /* MarkerCurrent.png in Resources */,
 				B0C3648C1BB133310015A975 /* HomeVC.xib in Resources */,
 				B0C364921BB1389E0015A975 /* HomeCell.xib in Resources */,
@@ -680,6 +697,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1F90FF471CE7F6650F9A0783 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LookingForATM/Pods-LookingForATM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		26660C0008428DEEF96B6486 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

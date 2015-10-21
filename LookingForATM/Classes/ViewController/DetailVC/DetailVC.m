@@ -174,7 +174,12 @@
     MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         if (error) {
-            NSLog(@"ERROR!");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING"
+                                                            message:@"Error not found direction"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
         }
         _currentRoute = [response.routes firstObject];
         [self drawRouteOnMap:_currentRoute];

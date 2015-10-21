@@ -91,6 +91,7 @@
 - (IBAction)actionGetLocation:(id)sender {
     [_mapView setHidden:NO];
     _mapView.showsUserLocation = YES;
+    _segmentControl.selectedSegmentIndex = 0;
     CLLocation *location = _mapView.userLocation.location;
     [self zoomMapAndCenterAtLocation:location span:0.02];
     [self searchBarTextDidChange:_searchBarINS];
