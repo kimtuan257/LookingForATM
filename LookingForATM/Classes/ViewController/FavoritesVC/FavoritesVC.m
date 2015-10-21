@@ -16,8 +16,9 @@
 #import "AppDelegate.h"
 #import "DetailVC.h"
 #import <CoreLocation/CoreLocation.h>
+#import <UIScrollView+EmptyDataSet.h>
 
-@interface FavoritesVC ()<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate> {
+@interface FavoritesVC ()<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource> {
     AppDelegate *_myAppDelegate;
     CLLocationManager *_locationManager;
 }
@@ -29,11 +30,13 @@
 
 @implementation FavoritesVC
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_titleLabel setText:@"ATM Searched"];
     [_favoritesTableView setHidden:YES];
-    _myAppDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    _myAppDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [_favoritesTableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
     [_historyTableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil] forCellReuseIdentifier:@"HomeCell"];
     
@@ -42,18 +45,28 @@
     _locationManager.distanceFilter = 10;//10 met
     _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;//do chinh xac gan 10 met
     [_locationManager startUpdatingLocation];
+    
+    self.favoritesTableView.emptyDataSetDelegate = self;
+    self.favoritesTableView.emptyDataSetSource = self;
+    self.favoritesTableView.tableFooterView = [UIView new];
+    
+    self.historyTableView.emptyDataSetSource = self;
+    self.historyTableView.emptyDataSetDelegate = self;
+    self.historyTableView.tableFooterView = [UIView new];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark - IBActions
+
 - (IBAction)segmentAction:(id)sender {
     if (_segmentedControl.selectedSegmentIndex == 0) {
         [_titleLabel setText:@"ATM Searched"];
         [_historyTableView setHidden:NO];
         [_favoritesTableView setHidden:YES];
-    }else{
+    } else {
         [_titleLabel setText:@"ATM Favorites"];
         [_historyTableView setHidden:YES];
         [_favoritesTableView setHidden:NO];
@@ -65,7 +78,8 @@
 }
 
 #pragma mark - getter ATMFavoritesModel
--(NSFetchedResultsController*)fetchFavorite {
+
+- (NSFetchedResultsController*)fetchFavorite {
     if (!_fetchFavorite) {
         _fetchFavorite = [ATMFavoritesModel fetchFavoriteWithDelegate:self];
     }
@@ -73,7 +87,8 @@
 }
 
 #pragma mark - getter ATMHistoryModel
--(NSFetchedResultsController*)fetchHistory {
+
+- (NSFetchedResultsController*)fetchHistory {
     if (!_fetchHistory) {
         _fetchHistory = [ATMHistoryModel fetchHistoryWithDelegate:self];
     }
@@ -81,27 +96,69 @@
 }
 
 #pragma mark - NSFetchResultController
--(void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [_favoritesTableView reloadData];
     [_historyTableView reloadData];
 }
 
-#pragma mark - Location Manager Delegate
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     [_historyTableView reloadData];
     [_favoritesTableView reloadData];
 }
 
-#pragma mark - TableView DataSource and Delegate
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#pragma mark - DZNDataSetSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"NO DATA";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"List ATM is empty";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"FavoritesEmpty.png"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIColor whiteColor];
+}
+
+#pragma mark - DZNDataSetDelegate
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    return YES;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.favoritesTableView) {
-        return self.fetchFavorite.fetchedObjects.count;
-    }else{
-        return self.fetchHistory.fetchedObjects.count;
+        return [self.fetchFavorite.fetchedObjects count];
+    } else {
+        return [self.fetchHistory.fetchedObjects count];
     }
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell" forIndexPath:indexPath];
     if (tableView == _favoritesTableView) {
         ATMFavorites *favorites = self.fetchFavorite.fetchedObjects[indexPath.row];
@@ -112,7 +169,7 @@
         CLLocation *atmLocation = [[CLLocation alloc]initWithLatitude:atmLatitude longitude:atmLongitude];
         cell.distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppDelegate.currentLocation distanceFromLocation:atmLocation]/1000];
         return cell;
-    }else{
+    } else {
         ATMHistory *history = self.fetchHistory.fetchedObjects[indexPath.row];
         cell.nameLabel.text = history.name;
         cell.addressLabel.text = history.address;
@@ -124,17 +181,13 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 90;
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _favoritesTableView) {
         ATMFavorites *favorites = self.fetchFavorite.fetchedObjects[indexPath.row];
         [favorites MR_deleteEntity];
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [_favoritesTableView reloadData];
-    }else{
+    } else {
         ATMHistory *history = self.fetchHistory.fetchedObjects[indexPath.row];
         [history MR_deleteEntity];
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
@@ -142,7 +195,13 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 90;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _favoritesTableView) {
         [_favoritesTableView deselectRowAtIndexPath:indexPath animated:YES];
         DetailVC *vc = [DetailVC new];
@@ -152,7 +211,7 @@
         vc.address = favorite.address;
         vc.latitude = [favorite.latitude doubleValue];
         vc.longitude = [favorite.longitude doubleValue];
-    }else{
+    } else {
         [_historyTableView deselectRowAtIndexPath:indexPath animated:YES];
         DetailVC *vc = [DetailVC new];
         ATMHistory *history = self.fetchHistory.fetchedObjects[indexPath.row];

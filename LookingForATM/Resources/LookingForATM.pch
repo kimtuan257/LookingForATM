@@ -1,0 +1,19 @@
+//
+//  LookingForATM.pch
+//  LookingForATM
+//
+//  Created by Le Kim Tuan on 9/27/15.
+//  Copyright © 2015 Le Kim Tuan. All rights reserved.
+//
+
+#ifndef LookingForATM_pch
+#define LookingForATM_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import <MagicalRecord/MagicalRecord.h>
+
+#endif /* LookingForATM_pch */

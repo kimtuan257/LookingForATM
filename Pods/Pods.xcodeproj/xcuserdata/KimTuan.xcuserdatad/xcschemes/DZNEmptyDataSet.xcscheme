@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B5A4953B0702E977E8193B48'
-               BlueprintName = 'AFNetworking'
+               BlueprintIdentifier = 'D60B43CF2E078AED88DBED3B'
+               BlueprintName = 'DZNEmptyDataSet'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libAFNetworking.a'>
+               BuildableName = 'libDZNEmptyDataSet.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

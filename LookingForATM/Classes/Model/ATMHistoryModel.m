@@ -10,7 +10,7 @@
 #import "ATMHistory.h"
 
 @implementation ATMHistoryModel
-+(NSFetchedResultsController *)fetchHistoryWithDelegate:(id)delegate {
++ (NSFetchedResultsController *)fetchHistoryWithDelegate:(id)delegate {
     return [ATMHistory MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"name != nil"] groupBy:nil delegate:delegate];
 }
 @end

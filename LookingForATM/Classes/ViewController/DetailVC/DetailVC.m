@@ -28,10 +28,12 @@
 
 @implementation DetailVC
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _myAppdelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    _myAppdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
     [self showDetailPlace];
@@ -40,11 +42,12 @@
 }
 
 //Check in coredata atmcurrent has or not
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     FavoritesVC *favorites = [FavoritesVC new];
     NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
     BOOL flag = YES;
-    for (int i = 0; i < tempArray.count; i++) {
+    NSInteger tempArrayCount = [tempArray count];
+    for (int i = 0; i < tempArrayCount; i++) {
         ATMFavorites *dataTemp = tempArray[i];
         
         //Get location of atm current
@@ -65,11 +68,17 @@
     if (!flag) {
         [_addFavoriteButton setHidden:YES];
         [_deleteFavoriteButton setHidden:NO];
-    }else{
+    } else {
         [_addFavoriteButton setHidden:NO];
         [_deleteFavoriteButton setHidden:YES];
     }
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - IBActions
 
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -82,7 +91,11 @@
     atm.latitude = [NSNumber numberWithDouble:_latitude];
     atm.longitude = [NSNumber numberWithDouble:_longitude];
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Add ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE"
+                                                   message:@"Add ATM to Favorites success"
+                                                  delegate:self
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil, nil];
     [alert show];
     [_addFavoriteButton setHidden:YES];
     [_deleteFavoriteButton setHidden:NO];
@@ -90,9 +103,10 @@
 
 - (IBAction)deleteFavorites:(id)sender {
     FavoritesVC *favorites = [FavoritesVC new];
-    NSArray *arrayTemp = favorites.fetchFavorite.fetchedObjects;
-    for (int i = 0; i < arrayTemp.count; i++) {
-        ATMFavorites *dataTemp = arrayTemp[i];
+    NSArray *tempArray = favorites.fetchFavorite.fetchedObjects;
+    NSInteger tempArrayCount = [tempArray count];
+    for (int i = 0; i < tempArrayCount; i++) {
+        ATMFavorites *dataTemp = tempArray[i];
         double latitudeTemp = [dataTemp.latitude doubleValue];
         double longitudeTemp = [dataTemp.longitude doubleValue];
         CLLocation *locationTemp = [[CLLocation alloc]initWithLatitude:latitudeTemp longitude:longitudeTemp];
@@ -102,7 +116,11 @@
         if ([locationCurrent distanceFromLocation:locationTemp] == 0) {
             [dataTemp MR_deleteEntity];
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE" message:@"Remove ATM to Favorites success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NOTICE"
+                                                           message:@"Remove ATM to Favorites success"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil, nil];
             [alert show];
             [_addFavoriteButton setHidden:NO];
             [_deleteFavoriteButton setHidden:YES];
@@ -111,20 +129,11 @@
     }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+#pragma mark - Private
 
--(void)showDetailPlace {
+- (void)showDetailPlace {
     CLLocation *location = [[CLLocation alloc]initWithLatitude:_latitude longitude:_longitude];
-    MKCoordinateRegion region;
-    region.center.latitude  = location.coordinate.latitude;
-    region.center.longitude = location.coordinate.longitude;
-    MKCoordinateSpan          span;
-    span.latitudeDelta      = 0.02;
-    span.longitudeDelta     = 0.02;
-    region.span             = span;
-    [_mapView setRegion:region animated:YES];
+    [self zoomMapAndCenterAtLocation:location span:0.02];
     
     _nameLabel.text = [NSString stringWithFormat:@"%@", _name];
     _addressLabel.text = [NSString stringWithFormat:@"%@", _address];
@@ -132,7 +141,7 @@
     _distanceLabel.text = [NSString stringWithFormat:@"%0.2f km", [_myAppdelegate.currentLocation distanceFromLocation:itemLocation]/1000];
 }
 
--(void)addPinToMap {
+- (void)addPinToMap {
     FXAnnotation *pin = [FXAnnotation new];
     pin.title = _name;
     pin.subtitle = _address;
@@ -140,7 +149,7 @@
     [_mapView addAnnotation:pin];
 }
 
--(void)drawRouteOnMap:(MKRoute*)route {
+- (void)drawRouteOnMap:(MKRoute*)route {
     if (_routeOverlay) {
         [_mapView removeOverlay:_routeOverlay];
     }
@@ -148,7 +157,7 @@
     [_mapView addOverlay:_routeOverlay];
 }
 
--(void)directionOnmap {
+- (void)directionOnmap {
     CLLocation *currentLocation = _myAppdelegate.currentLocation;
     CLLocationCoordinate2D currentCoord = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
     MKPlacemark *currentPlacemark = [[MKPlacemark alloc]initWithCoordinate:currentCoord addressDictionary:nil];
@@ -165,21 +174,41 @@
     MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         if (error) {
-            NSLog(@"ERROR!");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING"
+                                                            message:@"Error not found direction"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
         }
         _currentRoute = [response.routes firstObject];
         [self drawRouteOnMap:_currentRoute];
     }];
 }
 
+#pragma mark - MAP
 
-#pragma mark - MapView Delegate
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+- (void)zoomMapAndCenterAtLocation:(CLLocation *)location span:(float)span {
+    MKCoordinateRegion region;
+    region.center.latitude  = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    
+    MKCoordinateSpan coordSpan;
+    coordSpan.latitudeDelta  = span;
+    coordSpan.longitudeDelta = span;
+    
+    region.span = coordSpan;
+    [_mapView setRegion:region animated:YES];
+}
+
+#pragma mark - MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     [self directionOnmap];
     [self showDetailPlace];
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *annotationView = [[MKPinAnnotationView alloc]init];
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
@@ -198,10 +227,10 @@
     return annotationView;
 }
 
--(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *render = [[MKPolylineRenderer alloc]initWithOverlay:overlay];
     render.strokeColor = [UIColor greenColor];
-    render.lineWidth = 4;
+    render.lineWidth = 3;
     return render;
 }
 

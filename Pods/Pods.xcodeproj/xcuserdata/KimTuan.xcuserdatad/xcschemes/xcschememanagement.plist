@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DZNEmptyDataSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>198FAB6C3A88156965CF9248E54BD1BC</key>
+		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B281DA29A9C3EDFB45BA53651F6BA611</key>
+		<key>736E57AD5AEFAAF68D47AE4E8FCB8F68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BAD8B5BB832CB563B4C0A090916890B9</key>
+		<key>8096DDFFF6367F6A3F5FC12EABF1ABC7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D44834A841E41875F18592065FCBECD5</key>
+		<key>D54AB3ECEB9A8FBA15D4F73CBE326692</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3449F70E3EA33552281E823DDC87786</key>
 		<dict>
 			<key>primary</key>
 			<true/>

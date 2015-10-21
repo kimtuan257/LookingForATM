@@ -34,14 +34,14 @@
     if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [_locationManager requestWhenInUseAuthorization];
     }
-    _locationManager.distanceFilter = 10;//10 met
+    _locationManager.distanceFilter = 10;//10 met update 1 lan
     _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;//do chinh xac gan 10 met
     [_locationManager startUpdatingLocation];
     
     return YES;
 }
 
--(void)openSetting {
+- (void)openSetting {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
         UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"This app does not have access to Location service"
                                                         message:@"You can enable access in Settings"
@@ -49,7 +49,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil, nil];
         [alert1 show];
-    }else{
+    } else {
         UIAlertView *alert2 = [[UIAlertView alloc]initWithTitle:@"This app does not have access to Location service"
                                                         message:@"You can enable access in Settings"
                                                        delegate:self
@@ -60,13 +60,13 @@
     }
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 121 && buttonIndex == 1) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     _currentLocation = newLocation;
 }
 
